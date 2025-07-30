@@ -3,286 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Project Introduction</title>
+    <title>Highland Brew - Premium Coffee Delivered</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
         }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
         }
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #fff;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
+        
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=800&q=80');
+            background-size: cover;
+            background-position: center;
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #fff; }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .coffee-bg {
+            background-color: #f5f0e6;
+        }
+        
+        .btn-primary {
+            background-color: #6F4E37;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5a3d2a;
         }
     </style>
 </head>
-<body class="font-sans antialiased text-gray-800">
+<body class="coffee-bg">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <i class="fas fa-robot text-3xl text-purple-600 mr-2"></i>
-                        <span class="text-xl font-bold text-gray-900">AI Project</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium">About</a>
-                    <a href="#features" class="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium">Features</a>
-                    <a href="#technology" class="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium">Technology</a>
-                    <a href="#team" class="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium">Team</a>
-                    <a href="#contact" class="bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition duration-300">Contact Us</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="heading-font text-2xl font-bold text-amber-900">Highland Brew</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-amber-900 hover:text-amber-700 transition-all">Home</a>
+                <a href="#products" class="text-amber-900 hover:text-amber-700 transition-all">Products</a>
+                <a href="#about" class="text-amber-900 hover:text-amber-700 transition-all">About</a>
+                <a href="#contact" class="text-amber-900 hover:text-amber-700 transition-all">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#cart" class="text-amber-900 hover:text-amber-700">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <button class="md:hidden text-amber-900" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-        
         <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-purple-600 hover:bg-gray-50">About</a>
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-purple-600 hover:bg-gray-50">Features</a>
-                <a href="#technology" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-purple-600 hover:bg-gray-50">Technology</a>
-                <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-purple-600 hover:bg-gray-50">Team</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-purple-600 hover:bg-purple-700">Contact Us</a>
-            </div>
+        <div class="md:hidden hidden bg-white w-full px-4 py-2" id="mobile-menu">
+            <a href="#home" class="block py-2 text-amber-900 hover:text-amber-700">Home</a>
+            <a href="#products" class="block py-2 text-amber-900 hover:text-amber-700">Products</a>
+            <a href="#about" class="block py-2 text-amber-900 hover:text-amber-700">About</a>
+            <a href="#contact" class="block py-2 text-amber-900 hover:text-amber-700">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-            <div class="md:flex items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                        <span class="typewriter">Revolutionizing the Future with AI</span>
-                    </h1>
-                    <p class="text-xl mb-8 opacity-90">Our cutting-edge AI project is transforming industries and creating smarter solutions for complex problems.</p>
-                    <div class="flex space-x-4">
-                        <a href="#demo" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">See Demo</a>
-                        <a href="#learn" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition duration-300">Learn More</a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" alt="AI Illustration" class="w-3/4 h-auto animate-pulse">
-                </div>
-            </div>
+    <section id="home" class="hero-gradient text-white py-20 md:py-32 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="heading-font text-4xl md:text-6xl font-bold mb-6">Artisan Coffee, Elevated</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Discover the world's finest single-origin and blended coffees, roasted to perfection.</p>
+            <a href="#products" class="btn-primary inline-block px-8 py-3 rounded-full text-white font-semibold hover:shadow-lg transition-all">Shop Now</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">About Our AI Project</h2>
-                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
+    <section id="about" class="py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Our Story</h2>
+                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
             </div>
-            <div class="md:flex items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4392/4392528.png" alt="AI About" class="w-full max-w-md mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Coffee beans" class="rounded-lg shadow-lg w-full">
                 </div>
-                <div class="md:w-1/2 md:pl-12">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Transforming Industries with Intelligent Solutions</h3>
-                    <p class="text-gray-600 mb-6">Our AI project represents a breakthrough in artificial intelligence technology, combining machine learning, natural language processing, and computer vision to create solutions that were previously unimaginable.</p>
-                    <p class="text-gray-600 mb-6">We've developed a platform that learns and adapts to complex environments, providing actionable insights and automating processes across multiple industries including healthcare, finance, and manufacturing.</p>
-                    <div class="flex items-center">
-                        <div class="mr-4">
-                            <i class="fas fa-brain text-4xl text-purple-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Self-Learning Algorithms</h4>
-                            <p class="text-gray-600">Our AI continuously improves its performance through advanced neural networks.</p>
-                        </div>
-                    </div>
+                <div class="md:w-1/2">
+                    <h3 class="heading-font text-2xl font-bold text-amber-900 mb-4">From Highland Farms to Your Cup</h3>
+                    <p class="text-gray-700 mb-4">Founded in 2010, Highland Brew sources only the highest quality coffee beans from sustainable farms across the world's premier coffee-growing regions.</p>
+                    <p class="text-gray-700 mb-4">Our master roasters use traditional techniques combined with modern technology to bring out the unique character of each bean.</p>
+                    <p class="text-gray-700">Every batch is carefully tested to ensure consistency and quality in every cup you brew.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Key Features</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover the powerful capabilities of our AI platform</p>
-                <div class="w-20 h-1 bg-purple-600 mx-auto mt-4"></div>
+    <!-- Featured Products -->
+    <section id="products" class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Featured Coffees</h2>
+                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-chart-line text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
-                    <p class="text-gray-600">Our AI analyzes patterns and trends to forecast future outcomes with remarkable accuracy, helping businesses make data-driven decisions.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-language text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Natural Language Processing</h3>
-                    <p class="text-gray-600">Advanced NLP capabilities allow our AI to understand, interpret, and generate human language with contextual awareness.</p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-eye text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Computer Vision</h3>
-                    <p class="text-gray-600">Our system can analyze and interpret visual information from images and videos with human-like precision.</p>
-                </div>
-                
-                <!-- Feature 4 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-robot text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Automation</h3>
-                    <p class="text-gray-600">Streamline repetitive tasks and processes with our intelligent automation solutions that learn and improve over time.</p>
-                </div>
-                
-                <!-- Feature 5 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-shield-alt text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Security</h3>
-                    <p class="text-gray-600">Built with enterprise-grade security protocols to ensure your data remains protected at all times.</p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
-                    <div class="text-purple-600 mb-4">
-                        <i class="fas fa-project-diagram text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Scalability</h3>
-                    <p class="text-gray-600">Our cloud-based architecture allows the system to scale seamlessly to meet growing demands.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technology Stack -->
-    <section id="technology" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Technology Stack</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Built with the most advanced AI technologies available</p>
-                <div class="w-20 h-1 bg-purple-600 mx-auto mt-4"></div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="TensorFlow" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">TensorFlow</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2103/2103655.png" alt="PyTorch" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">PyTorch</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777154.png" alt="Python" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">Python</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777128.png" alt="Kubernetes" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">Kubernetes</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777140.png" alt="Docker" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">Docker</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777146.png" alt="AWS" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">AWS</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777163.png" alt="React" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">React</span>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-lg">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2777/2777179.png" alt="Node.js" class="h-16 w-16 mb-4">
-                    <span class="font-semibold">Node.js</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">The brilliant minds behind our AI innovation</p>
-                <div class="w-20 h-1 bg-purple-600 mx-auto mt-4"></div>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Team Member 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member" class="w-full h-64 object-cover">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Ethiopian Yirgacheffe" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-1">Dr. Sarah Johnson</h3>
-                        <p class="text-purple-600 mb-3">Chief AI Scientist</p>
-                        <p class="text-gray-600">PhD in Machine Learning from Stanford with 15+ years of experience in AI research and development.</p>
-                        <div class="flex mt-4 space-x-3">
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fas fa-envelope"></i></a>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-amber-900">Ethiopian Yirgacheffe</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Light Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Floral and tea-like with notes of bergamot and lemon.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$18.99</span>
+                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Team Member 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member" class="w-full h-64 object-cover">
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Colombian Supremo" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-1">Michael Chen</h3>
-                        <p class="text-purple-600 mb-3">Lead Engineer</p>
-                        <p class="text-gray-600">Former Google engineer specializing in large-scale AI systems and distributed computing.</p>
-                        <div class="flex mt-4 space-x-3">
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fas fa-envelope"></i></a>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-amber-900">Colombian Supremo</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Balanced with notes of caramel, nuts, and a hint of citrus.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$16.99</span>
+                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Team Member 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md">
-                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member" class="w-full h-64 object-cover">
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Sumatra Mandheling" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-1">Emma Rodriguez</h3>
-                        <p class="text-purple-600 mb-3">Product Manager</p>
-                        <p class="text-gray-600">Expert in bringing AI products to market with a focus on user experience and business value.</p>
-                        <div class="flex mt-4 space-x-3">
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-purple-600"><i class="fas fa-envelope"></i></a>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-xl font-bold text-amber-900">Sumatra Mandheling</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Dark Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Full-bodied with earthy tones and notes of dark chocolate.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$19.99</span>
+                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#full-catalog" class="inline-block border-2 border-amber-900 text-amber-900 px-6 py-2 rounded-full font-semibold hover:bg-amber-900 hover:text-white transition-all">View Full Catalog</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Product Catalog (hidden by default) -->
+    <section id="full-catalog" class="py-16 px-4 bg-gray-50 hidden">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="heading-font text-3xl font-bold text-amber-900">Our Coffee Selection</h2>
+                <div class="flex space-x-4">
+                    <select class="border border-gray-300 rounded px-3 py-2">
+                        <option>Filter by Roast</option>
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Dark</option>
+                    </select>
+                    <select class="border border-gray-300 rounded px-3 py-2">
+                        <option>Filter by Origin</option>
+                        <option>Africa</option>
+                        <option>Central America</option>
+                        <option>South America</option>
+                        <option>Asia</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Additional products would be listed here -->
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Guatemalan Antigua" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-lg font-bold text-amber-900">Guatemalan Antigua</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-xs mb-3">Rich and complex with cocoa and spice notes.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$17.99</span>
+                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kenya AA" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-lg font-bold text-amber-900">Kenya AA</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Light Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-xs mb-3">Bright acidity with berry and wine-like flavors.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$21.99</span>
+                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Italian Espresso" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-lg font-bold text-amber-900">Italian Espresso</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Dark Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-xs mb-3">Bold and intense with a rich crema and chocolate notes.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$15.99</span>
+                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Costa Rican Tarrazú" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="heading-font text-lg font-bold text-amber-900">Costa Rican Tarrazú</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
+                        </div>
+                        <p class="text-gray-600 text-xs mb-3">Clean and balanced with honey and citrus notes.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-900 font-bold">$18.99</span>
+                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -290,192 +261,743 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 gradient-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div class="p-6">
-                    <div class="text-4xl font-bold mb-2">98%</div>
-                    <div class="text-lg opacity-90">Accuracy Rate</div>
+    <!-- Product Detail Page (hidden by default) -->
+    <section id="product-detail" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80" alt="Ethiopian Yirgacheffe" class="w-full rounded-lg shadow-lg">
                 </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold mb-2">50+</div>
-                    <div class="text-lg opacity-90">Patents Filed</div>
-                </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold mb-2">1M+</div>
-                    <div class="text-lg opacity-90">Data Points Analyzed</div>
-                </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold mb-2">24/7</div>
-                    <div class="text-lg opacity-90">System Uptime</div>
+                <div class="md:w-1/2">
+                    <h1 class="heading-font text-3xl font-bold text-amber-900 mb-2">Ethiopian Yirgacheffe</h1>
+                    <div class="flex items-center mb-4">
+                        <span class="bg-amber-100 text-amber-800 text-sm px-3 py-1 rounded-full mr-3">Light Roast</span>
+                        <div class="flex text-amber-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-600 ml-2">(42 reviews)</span>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6">This exquisite single-origin coffee comes from the Yirgacheffe region of Ethiopia, known for producing some of the world's most distinctive coffees. Grown at high altitudes, these beans develop complex floral and citrus notes that shine in this light roast.</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-bold text-amber-900 mb-2">Tasting Notes</h3>
+                        <p class="text-gray-700">Bergamot, Lemon, Jasmine, Tea-like body</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-bold text-amber-900 mb-2">Grind Options</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Whole Bean</button>
+                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">French Press</button>
+                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Drip</button>
+                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Espresso</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-bold text-amber-900 mb-2">Size</h3>
+                        <div class="flex gap-4">
+                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">12 oz ($18.99)</button>
+                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">2 lb ($32.99)</button>
+                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">5 lb ($74.99)</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center mb-6">
+                        <div class="flex items-center border border-gray-300 rounded mr-4">
+                            <button class="px-3 py-1 text-gray-600">-</button>
+                            <span class="px-3 py-1">1</span>
+                            <button class="px-3 py-1 text-gray-600">+</button>
+                        </div>
+                        <button class="btn-primary flex-1 py-3 rounded text-white font-semibold hover:shadow-lg transition-all">
+                            Add to Cart - $18.99
+                        </button>
+                    </div>
+                    
+                    <div class="text-sm text-gray-600">
+                        <p><i class="fas fa-truck mr-2"></i> Free shipping on orders over $50</p>
+                        <p><i class="fas fa-undo mr-2"></i> 30-day satisfaction guarantee</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We'd love to hear from you about how our AI can help your business</p>
-                <div class="w-20 h-1 bg-purple-600 mx-auto mt-4"></div>
-            </div>
-            <div class="md:flex">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="bg-gray-50 p-8 rounded-xl h-full">
-                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 pt-1">
-                                    <i class="fas fa-map-marker-alt text-purple-600 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Address</h4>
-                                    <p class="text-gray-600">123 AI Boulevard, Tech City, TC 10001</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 pt-1">
-                                    <i class="fas fa-phone-alt text-purple-600 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Phone</h4>
-                                    <p class="text-gray-600">+1 (555) 123-4567</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 pt-1">
-                                    <i class="fas fa-envelope text-purple-600 text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Email</h4>
-                                    <p class="text-gray-600">info@aiproject.com</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-10">
-                            <h4 class="text-lg font-medium mb-4">Follow Us</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-gray-600 hover:text-purple-600"><i class="fab fa-twitter text-2xl"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-purple-600"><i class="fab fa-linkedin text-2xl"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-purple-600"><i class="fab fa-github text-2xl"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-purple-600"><i class="fab fa-medium text-2xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Shopping Cart (hidden by default) -->
+    <section id="cart" class="py-16 px-4 bg-gray-50 hidden">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="heading-font text-3xl font-bold text-amber-900 mb-8">Your Shopping Cart</h2>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+                <div class="hidden md:grid grid-cols-12 bg-gray-100 p-4 font-semibold text-amber-900">
+                    <div class="col-span-6">Product</div>
+                    <div class="col-span-2 text-center">Price</div>
+                    <div class="col-span-2 text-center">Quantity</div>
+                    <div class="col-span-2 text-center">Total</div>
                 </div>
-                <div class="md:w-1/2 md:pl-12">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                
+                <!-- Cart Item 1 -->
+                <div class="p-4 border-b border-gray-200">
+                    <div class="flex flex-col md:flex-row md:items-center">
+                        <div class="flex items-center md:w-6/12 mb-4 md:mb-0">
+                            <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Ethiopian Yirgacheffe" class="w-16 h-16 object-cover rounded mr-4">
+                            <div>
+                                <h3 class="font-semibold text-amber-900">Ethiopian Yirgacheffe</h3>
+                                <p class="text-sm text-gray-600">Light Roast • Whole Bean</p>
+                            </div>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
+                            <span class="md:hidden font-semibold mr-2">Price: </span>
+                            <span>$18.99</span>
                         </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-                            <input type="text" id="subject" name="subject" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
+                            <div class="flex items-center border border-gray-300 rounded">
+                                <button class="px-2 py-1 text-gray-600">-</button>
+                                <span class="px-2 py-1">1</span>
+                                <button class="px-2 py-1 text-gray-600">+</button>
+                            </div>
                         </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300">
-                                Send Message
+                        <div class="md:w-2/12 flex md:justify-center items-center">
+                            <span class="md:hidden font-semibold mr-2">Total: </span>
+                            <span class="font-semibold">$18.99</span>
+                            <button class="ml-4 text-red-500 hover:text-red-700">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                
+                <!-- Cart Item 2 -->
+                <div class="p-4 border-b border-gray-200">
+                    <div class="flex flex-col md:flex-row md:items-center">
+                        <div class="flex items-center md:w-6/12 mb-4 md:mb-0">
+                            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Colombian Supremo" class="w-16 h-16 object-cover rounded mr-4">
+                            <div>
+                                <h3 class="font-semibold text-amber-900">Colombian Supremo</h3>
+                                <p class="text-sm text-gray-600">Medium Roast • French Press</p>
+                            </div>
+                        </div>
+                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
+                            <span class="md:hidden font-semibold mr-2">Price: </span>
+                            <span>$16.99</span>
+                        </div>
+                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
+                            <div class="flex items-center border border-gray-300 rounded">
+                                <button class="px-2 py-1 text-gray-600">-</button>
+                                <span class="px-2 py-1">2</span>
+                                <button class="px-2 py-1 text-gray-600">+</button>
+                            </div>
+                        </div>
+                        <div class="md:w-2/12 flex md:justify-center items-center">
+                            <span class="md:hidden font-semibold mr-2">Total: </span>
+                            <span class="font-semibold">$33.98</span>
+                            <button class="ml-4 text-red-500 hover:text-red-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Summary</h3>
+                <div class="flex justify-between mb-2">
+                    <span>Subtotal</span>
+                    <span>$52.97</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span>Shipping</span>
+                    <span>$5.99</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span>Tax</span>
+                    <span>$4.24</span>
+                </div>
+                <div class="border-t border-gray-200 my-4"></div>
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Total</span>
+                    <span>$63.20</span>
+                </div>
+                <button class="btn-primary w-full py-3 rounded text-white font-semibold mt-6 hover:shadow-lg transition-all">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Form (hidden by default) -->
+    <section id="checkout" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="heading-font text-3xl font-bold text-amber-900 mb-8">Checkout</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/3">
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Information</h3>
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">First Name</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Address</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Apartment, Suite, etc. (Optional)</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">City</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">State/Province</label>
+                                    <select class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                        <option>Select</option>
+                                        <option>California</option>
+                                        <option>New York</option>
+                                        <!-- More states -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">ZIP/Postal Code</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Phone</label>
+                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Payment Method</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="credit-card" name="payment" checked class="mr-2">
+                                <label for="credit-card" class="flex-1">Credit Card</label>
+                                <div class="flex space-x-2">
+                                    <i class="fab fa-cc-visa text-gray-600"></i>
+                                    <i class="fab fa-cc-mastercard text-gray-600"></i>
+                                    <i class="fab fa-cc-amex text-gray-600"></i>
+                                </div>
+                            </div>
+                            <div class="pl-6">
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2">Card Number</label>
+                                    <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Expiration Date</label>
+                                        <input type="text" placeholder="MM/YY" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Security Code</label>
+                                        <input type="text" placeholder="CVC" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="radio" id="paypal" name="payment" class="mr-2">
+                                <label for="paypal" class="flex-1">PayPal</label>
+                                <i class="fab fa-cc-paypal text-gray-600"></i>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="radio" id="cod" name="payment" class="mr-2">
+                                <label for="cod" class="flex-1">Cash on Delivery</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/3">
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Summary</h3>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" alt="Ethiopian Yirgacheffe" class="w-12 h-12 object-cover rounded mr-2">
+                                    <div>
+                                        <p class="text-sm font-medium">Ethiopian Yirgacheffe</p>
+                                        <p class="text-xs text-gray-600">1 × $18.99</p>
+                                    </div>
+                                </div>
+                                <span>$18.99</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" alt="Colombian Supremo" class="w-12 h-12 object-cover rounded mr-2">
+                                    <div>
+                                        <p class="text-sm font-medium">Colombian Supremo</p>
+                                        <p class="text-xs text-gray-600">2 × $16.99</p>
+                                    </div>
+                                </div>
+                                <span>$33.98</span>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-200 pt-4 space-y-2">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span>$52.97</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Shipping</span>
+                                <span>$5.99</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Tax</span>
+                                <span>$4.24</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-lg pt-2">
+                                <span>Total</span>
+                                <span>$63.20</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full py-3 rounded text-white font-semibold mt-6 hover:shadow-lg transition-all">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Confirmation (hidden by default) -->
+    <section id="order-confirmation" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-2xl text-center">
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="text-green-500 text-6xl mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="heading-font text-3xl font-bold text-amber-900 mb-4">Order Confirmed!</h2>
+                <p class="text-gray-700 mb-6">Thank you for your purchase. Your order has been received and is being processed.</p>
+                
+                <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Details</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p class="text-gray-600">Order Number</p>
+                            <p class="font-medium">HB-2023-05678</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600">Date</p>
+                            <p class="font-medium">June 15, 2023</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600">Total</p>
+                            <p class="font-medium">$63.20</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600">Payment Method</p>
+                            <p class="font-medium">Credit Card</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Estimated Delivery</h3>
+                    <div class="flex justify-center items-center">
+                        <div class="flex flex-col items-center px-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-box text-amber-700"></i>
+                            </div>
+                            <p class="text-sm">Processing</p>
+                            <p class="text-xs text-gray-600">Today</p>
+                        </div>
+                        <div class="h-1 w-16 bg-amber-200"></div>
+                        <div class="flex flex-col items-center px-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-shipping-fast text-amber-700"></i>
+                            </div>
+                            <p class="text-sm">Shipped</p>
+                            <p class="text-xs text-gray-600">Jun 17</p>
+                        </div>
+                        <div class="h-1 w-16 bg-amber-200"></div>
+                        <div class="flex flex-col items-center px-6">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
+                                <i class="fas fa-home text-amber-700"></i>
+                            </div>
+                            <p class="text-sm">Delivered</p>
+                            <p class="text-xs text-gray-600">Jun 19</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#products" class="border-2 border-amber-900 text-amber-900 px-6 py-2 rounded-full font-semibold hover:bg-amber-900 hover:text-white transition-all">Continue Shopping</a>
+                    <a href="#track-order" class="btn-primary px-6 py-2 rounded-full text-white font-semibold hover:shadow-lg transition-all">Track Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Tracking (hidden by default) -->
+    <section id="track-order" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-2xl">
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h2 class="heading-font text-3xl font-bold text-amber-900 mb-6 text-center">Track Your Order</h2>
+                
+                <div class="mb-8">
+                    <label class="block text-gray-700 mb-2">Order Number</label>
+                    <div class="flex">
+                        <input type="text" placeholder="Enter your order number" class="flex-1 px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <button class="btn-primary px-6 py-2 rounded-r text-white font-semibold">Track</button>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-6">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Status: HB-2023-05678</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="font-medium">Order Confirmed</p>
+                                <p class="text-sm text-gray-600">June 15, 2023 at 2:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="font-medium">Processing</p>
+                                <p class="text-sm text-gray-600">June 15, 2023 at 4:45 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center">
+                                    <i class="fas fa-shipping-fast text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="font-medium">Shipped</p>
+                                <p class="text-sm text-gray-600">June 17, 2023 at 10:15 AM</p>
+                                <p class="text-sm text-gray-600">Tracking #: 1234567890 (USPS)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                                    <i class="fas fa-home text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="font-medium">Out for Delivery</p>
+                                <p class="text-sm text-gray-600">Estimated: June 19, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-600">Shipping Address</p>
+                            <p class="font-medium">John Doe</p>
+                            <p class="font-medium">123 Main Street</p>
+                            <p class="font-medium">Apartment 4B</p>
+                            <p class="font-medium">New York, NY 10001</p>
+                            <p class="font-medium">United States</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600">Contact Information</p>
+                            <p class="font-medium">john.doe@example.com</p>
+                            <p class="font-medium">(555) 123-4567</p>
+                            <br>
+                            <p class="text-gray-600">Payment Method</p>
+                            <p class="font-medium">Credit Card ending in 4242</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page (hidden by default) -->
+    <section id="contact" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary px-6 py-2 rounded text-white font-semibold hover:shadow-lg transition-all">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Our Information</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Address</h4>
+                                <p class="text-gray-700">123 Coffee Lane<br>Portland, OR 97201<br>United States</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-phone-alt mr-2"></i> Phone</h4>
+                                <p class="text-gray-700">(555) 123-4567</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-envelope mr-2"></i> Email</h4>
+                                <p class="text-gray-700">info@highlandbrew.com</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-clock mr-2"></i> Business Hours</h4>
+                                <p class="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 3:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Info Page (hidden by default) -->
+    <section id="delivery-info" class="py-16 px-4 hidden">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Delivery Information</h2>
+                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="mb-8">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Policy</h3>
+                    <p class="text-gray-700 mb-4">We strive to process and ship all orders within 1-2 business days. Once your order has shipped, you will receive a confirmation email with tracking information.</p>
+                    <p class="text-gray-700">Most orders are delivered within 3-5 business days after shipping, depending on your location.</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Rates</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Delivery Method</th>
+                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Cost</th>
+                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Delivery Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-4 border-b border-gray-200">Standard Shipping</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">$5.99</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">3-5 business days</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b border-gray-200">Express Shipping</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">$12.99</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">1-2 business days</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b border-gray-200">Free Shipping</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">$0.00</td>
+                                    <td class="py-2 px-4 border-b border-gray-200">3-5 business days (orders over $50)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Service Areas</h3>
+                    <p class="text-gray-700 mb-4">We currently ship to all 50 U.S. states. International shipping is not available at this time.</p>
+                    <p class="text-gray-700">For local customers in the Portland area, we offer free same-day delivery for orders placed before 12 PM.</p>
+                </div>
+                
+                <div>
+                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Returns & Exchanges</h3>
+                    <p class="text-gray-700 mb-4">We want you to be completely satisfied with your purchase. If you're not happy with your coffee for any reason, please contact us within 30 days of receipt for a full refund or exchange.</p>
+                    <p class="text-gray-700">Due to the perishable nature of our products, we cannot accept returns of opened coffee bags.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 px-4 bg-amber-900 text-white">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="heading-font text-2xl md:text-3xl font-bold mb-4">Join Our Coffee Club</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Subscribe to our newsletter and receive 10% off your first order, plus exclusive offers, new product announcements, and brewing tips.</p>
+            <form class="flex flex-col sm:flex-row max-w-md mx-auto sm:max-w-xl">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded sm:rounded-r-none mb-2 sm:mb-0 focus:outline-none text-gray-900">
+                <button type="submit" class="bg-amber-700 px-6 py-3 rounded sm:rounded-l-none font-semibold hover:bg-amber-800 transition-all">Subscribe</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="md:flex md:justify-between">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center">
-                        <i class="fas fa-robot text-3xl text-purple-600 mr-2"></i>
-                        <span class="text-xl font-bold">AI Project</span>
+    <footer class="bg-amber-950 text-amber-100 py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="heading-font text-xl font-bold text-white mb-4">Highland Brew</h3>
+                    <p class="mb-4">Artisan coffee roasted to perfection and delivered to your door.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <p class="mt-4 text-gray-400 max-w-xs">Revolutionizing industries with cutting-edge artificial intelligence solutions.</p>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">Product</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-300 hover:text-white">Features</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Pricing</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">API</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Documentation</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">Company</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Blog</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Careers</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Press</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">Legal</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-300 hover:text-white">Privacy</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Terms</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">Cookie Policy</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white">GDPR</a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#products" class="hover:text-white transition-all">All Coffees</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Light Roasts</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Medium Roasts</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Dark Roasts</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-white transition-all">About Us</a></li>
+                        <li><a href="#delivery-info" class="hover:text-white transition-all">Delivery Info</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-all">Terms & Conditions</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-all">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact</h4>
+                    <address class="not-italic">
+                        <p class="mb-2">123 Coffee Lane</p>
+                        <p class="mb-2">Portland, OR 97201</p>
+                        <p class="mb-2">United States</p>
+                        <p class="mb-2">Phone: (555) 123-4567</p>
+                        <p>Email: info@highlandbrew.com</p>
+                    </address>
                 </div>
             </div>
-            <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">© 2023 AI Project. All rights reserved.</p>
-                <div class="mt-4 md:mt-0 flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
-                </div>
+            <div class="border-t border-amber-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2023 Highland Brew. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Toggle mobile menu
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
-        
-        // Smooth scrolling for anchor links
+
+        // Simple navigation between sections
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
+                if (targetId === '#cart') {
+                    // Show cart section and hide others
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('cart').classList.remove('hidden');
+                } else if (targetId === '#full-catalog') {
+                    // Show full catalog
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('full-catalog').classList.remove('hidden');
+                } else if (targetId === '#product-detail') {
+                    // Show product detail
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('product-detail').classList.remove('hidden');
+                } else if (targetId === '#checkout') {
+                    // Show checkout
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('checkout').classList.remove('hidden');
+                } else if (targetId === '#order-confirmation') {
+                    // Show order confirmation
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('order-confirmation').classList.remove('hidden');
+                } else if (targetId === '#track-order') {
+                    // Show track order
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('track-order').classList.remove('hidden');
+                } else if (targetId === '#contact') {
+                    // Show contact
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('contact').classList.remove('hidden');
+                } else if (targetId === '#delivery-info') {
+                    // Show delivery info
+                    document.querySelectorAll('section[id]').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    document.getElementById('delivery-info').classList.remove('hidden');
+                } else {
+                    // Default behavior for other links
+                    document.querySelector(targetId).scrollIntoView({
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
                 }
+            });
+        });
+
+        // Add to cart buttons
+        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
+            button.addEventListener('click', function() {
+                // In a real app, this would add the product to the cart
+                alert('Product added to cart!');
             });
         });
     </script>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính sách thanh toán - MyVelody</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --brand-purple: #B93EC7;
+            --brand-purple-hover: #9d35a8;
+            --bg-dark: #121212;
+            --card-bg: #181818;
+            --text-main: #ffffff;
+            --text-gray: #b3b3b3;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at top left, rgba(185, 62, 199, 0.05), transparent);
+        }
+
+        .policy-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .policy-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        h3 {
+            color: var(--brand-purple);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 i {
+            margin-right: 12px;
+        }
+
+        p, li {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .last-updated {
+            color: var(--brand-purple);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .back-btn {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            color: var(--brand-purple);
+        }
+
+        .highlight-box {
+            background: rgba(185, 62, 199, 0.05);
+            border-left: 4px solid var(--brand-purple);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Tùy chỉnh thanh cuộn */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-purple);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container policy-container">
+        <a href="checkout.html" class="back-btn fw-bold">
+            <i class="bi bi-arrow-left me-2"></i> Quay lại trang thanh toán
+        </a>
+
+        <div class="policy-card">
+            <span class="last-updated">Cập nhật lần cuối: 21 tháng 01, 2026</span>
+            <h1>Chính sách thanh toán</h1>
+            <p>Chào mừng bạn đến với MyVelody. Để đảm bảo quyền lợi của khách hàng và tính minh bạch trong quá trình sử dụng dịch vụ Gói MAX, chúng tôi xin thông báo các quy định về thanh toán như sau:</p>
+
+            <div class="highlight-box">
+                <i class="bi bi-shield-lock-fill text-brand me-2"></i> 
+                Mọi giao dịch của bạn đều được mã hóa bằng tiêu chuẩn <strong>AES-256</strong> và bảo mật tuyệt đối. Chúng tôi không bao giờ lưu trữ toàn bộ thông tin thẻ tín dụng của bạn trên máy chủ của mình.
+            </div>
+
+            <section>
+                <h3><i class="bi bi-credit-card-2-front"></i> 1. Phương thức thanh toán</h3>
+                <p>Chúng tôi chấp nhận các hình thức thanh toán sau:</p>
+                <ul>
+                    <li><strong>Thẻ quốc tế:</strong> Visa, MasterCard, JCB.</li>
+                    <li><strong>Ví điện tử:</strong> MoMo, ZaloPay, ShopeePay.</li>
+                    <li><strong>Thẻ ATM nội địa:</strong> Thông qua cổng thanh toán liên kết với hơn 40 ngân hàng tại Việt Nam.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3><i class="bi bi-arrow-repeat"></i> 2. Chu kỳ thanh toán & Tự động gia hạn</h3>
+                <p>Gói MAX là dịch vụ trả phí định kỳ:</p>
+                <ul>
+                    <li>Hệ thống sẽ tự động trừ phí vào đầu mỗi chu kỳ (hàng tháng hoặc hàng năm tùy gói bạn chọn).</li>
+                    <li>Thông báo thanh toán sẽ được gửi qua Email của bạn 03 ngày trước khi việc gia hạn diễn ra.</li>
+                    <li>Bạn có thể hủy tính năng tự động gia hạn bất cứ lúc nào trong phần <strong>Cài đặt tài khoản</strong>.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3><i class="bi bi-cash-stack"></i> 3. Giá cả và Thuế</h3>
+                <p>Giá niêm yết trên website đã bao gồm thuế giá trị gia tăng (VAT) theo quy định của pháp luật Việt Nam. Chúng tôi cam kết không có chi phí ẩn phát sinh trong suốt quá trình sử dụng dịch vụ.</p>
+            </section>
+
+            <section>
+                <h3><i class="bi bi-x-circle"></i> 4. Chính sách Hoàn tiền</h3>
+                <p>Để đảm bảo sự hài lòng cao nhất, MyVelody áp dụng chính sách hoàn tiền trong vòng <strong>07 ngày</strong> kể từ lần thanh toán đầu tiên nếu khách hàng gặp sự cố kỹ thuật không thể khắc phục hoặc không hài lòng với chất lượng âm thanh.</p>
+                <p><i>Lưu ý: Chính sách này không áp dụng cho các gói đã được sử dụng quá 50% thời hạn chu kỳ.</i></p>
+            </section>
+
+            <section>
+                <h3><i class="bi bi-headset"></i> 5. Hỗ trợ giải quyết khiếu nại</h3>
+                <p>Nếu có bất kỳ sai sót nào trong quá trình trừ tiền hoặc lỗi giao dịch, vui lòng liên hệ đội ngũ hỗ trợ của chúng tôi:</p>
+                <ul>
+                    <li>Email: support@myvelody.com</li>
+                    <li>Hotline: 1900 xxxx (8:00 - 22:00 hàng ngày)</li>
+                </ul>
+            </section>
+
+            <div class="footer-note">
+                <p class="small">Cảm ơn bạn đã tin tưởng và đồng hành cùng âm nhạc chất lượng cao tại MyVelody.</p>
+                <img src="https://img.icons8.com/color/48/visa.png" width="30" alt="visa">
+                <img src="https://img.icons8.com/color/48/mastercard.png" width="30" alt="mastercard">
+                <img src="https://img.icons8.com/color/48/momo_wallet.png" width="30" alt="momo">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

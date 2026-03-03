@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều khoản đăng ký thành viên - MyVelody</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --brand-purple: #B93EC7;
+            --brand-purple-hover: #9d35a8;
+            --bg-dark: #121212;
+            --card-bg: #181818;
+            --text-main: #ffffff;
+            --text-gray: #b3b3b3;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at top right, rgba(185, 62, 199, 0.08), transparent);
+        }
+
+        .terms-container {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            background: rgba(185, 62, 199, 0.15);
+            color: var(--brand-purple);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(185, 62, 199, 0.3);
+        }
+
+        .policy-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        h4 {
+            color: var(--brand-purple);
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.3s;
+        }
+
+        .step-item:hover {
+            background: rgba(185, 62, 199, 0.04);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--brand-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        p, li {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .highlight-text {
+            color: white;
+            font-weight: 500;
+        }
+
+        .footer-action {
+            margin-top: 4rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #282828;
+        }
+
+        .btn-purple {
+            background: var(--brand-purple);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-purple:hover {
+            background: var(--brand-purple-hover);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover { color: var(--brand-purple); }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container terms-container">
+        <a href="register.html" class="back-link">
+            <i class="bi bi-chevron-left me-2"></i> Quay lại trang đăng ký
+        </a>
+
+        <div class="policy-card">
+            <div class="text-center mb-5">
+                <span class="welcome-badge">CHÀO MỪNG THÀNH VIÊN MỚI</span>
+                <h1>Khởi đầu hành trình <br><span style="color: var(--brand-purple)">âm nhạc của bạn</span></h1>
+                <p>Bằng việc tạo tài khoản, bạn đồng ý với các quy tắc cộng đồng để đảm bảo trải nghiệm tốt nhất cho mọi người.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div>
+                    <h4 class="mt-0">Quyền sở hữu tài khoản</h4>
+                    <p class="mb-0">Mỗi tài khoản được tạo ra là dành riêng cho <span class="highlight-text">một cá nhân</span>. Bạn cam kết cung cấp email chính xác để nhận các bản cập nhật và khôi phục mật khẩu khi cần thiết.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div>
+                    <h4 class="mt-0">Trải nghiệm cá nhân hóa</h4>
+                    <p class="mb-0">MyVelody sử dụng dữ liệu nghe nhạc của bạn để gợi ý các danh sách phát (Playlist) phù hợp. Chúng tôi <span class="highlight-text">cam kết bảo mật</span> và không bán dữ liệu cá nhân của bạn cho bên thứ ba.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div>
+                    <h4 class="mt-0">Quyền lợi Gói Miễn phí & MAX</h4>
+                    <p class="mb-0">Tài khoản mới mặc định là gói Miễn phí. Bạn có thể nâng cấp lên gói <span class="highlight-text">MAX (24-bit Audio)</span> bất cứ lúc nào để tận hưởng âm thanh không nén và không quảng cáo.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div>
+                    <h4 class="mt-0">Tiêu chuẩn cộng đồng</h4>
+                    <p class="mb-0">Vui lòng không sử dụng các công cụ can thiệp vào hệ thống hoặc chia sẻ tài khoản cho mục đích thương mại. Hãy cùng MyVelody xây dựng một cộng đồng yêu âm nhạc văn minh.</p>
+                </div>
+            </div>
+
+            <div class="footer-action">
+                <p class="small mb-4">Bạn đã sẵn sàng khám phá hơn 100 triệu bài hát chất lượng cao?</p>
+                <a href="register.html" class="btn btn-purple">Tôi đã hiểu và Đồng ý</a>
+                <div class="mt-4">
+                    <p style="font-size: 0.8rem;">Phiên bản 1.0.2 - Phát hành bởi MyVelody Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

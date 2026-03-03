@@ -1,1005 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Highland Brew - Premium Coffee Delivered</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=800&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-        
-        .coffee-bg {
-            background-color: #f5f0e6;
-        }
-        
-        .btn-primary {
-            background-color: #6F4E37;
-        }
-        
-        .btn-primary:hover {
-            background-color: #5a3d2a;
-        }
-    </style>
+    <title>MyVelody - Music Social</title>
+    <link rel="icon" href="navbar_logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="coffee-bg">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="#" class="heading-font text-2xl font-bold text-amber-900">Highland Brew</a>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="text-amber-900 hover:text-amber-700 transition-all">Home</a>
-                <a href="#products" class="text-amber-900 hover:text-amber-700 transition-all">Products</a>
-                <a href="#about" class="text-amber-900 hover:text-amber-700 transition-all">About</a>
-                <a href="#contact" class="text-amber-900 hover:text-amber-700 transition-all">Contact</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <a href="#cart" class="text-amber-900 hover:text-amber-700">
-                    <i class="fas fa-shopping-cart"></i>
+
+<body class="bg-dark text-white">
+
+    <div class="d-flex">
+        <aside class="sidebar-left d-flex flex-column p-3 vh-100 sticky-top">
+            <a href="login.html">
+                <div class="user-profile-section mb-4 p-3 rounded-3 d-flex align-items-center gap-3">
+
+
+                    <div class="avatar-wrapper">
+                        <img src="https://ui-avatars.com/api/?name=Guest&background=random" alt="Avatar"
+                            class="rounded-circle border border-2 border-purple" style="width: 45px; height: 45px;">
+                    </div>
+
+                    <div class="user-info overflow-hidden">
+                        <h6 class="text-white mb-0 text-truncate">Xin chào, Khách</h6>
+                        <small class="text-secondary">@myvelody_user</small>
+                    </div>
+
+
+                </div>
+            </a>
+            <nav class="nav flex-column gap-2 mb-4">
+                <a href="index.html" class="nav-link active d-flex align-items-center gap-3">
+                    <i class="bi bi-house-door-fill fs-5"></i> <span>Trang chủ</span>
                 </a>
-                <button class="md:hidden text-amber-900" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-white w-full px-4 py-2" id="mobile-menu">
-            <a href="#home" class="block py-2 text-amber-900 hover:text-amber-700">Home</a>
-            <a href="#products" class="block py-2 text-amber-900 hover:text-amber-700">Products</a>
-            <a href="#about" class="block py-2 text-amber-900 hover:text-amber-700">About</a>
-            <a href="#contact" class="block py-2 text-amber-900 hover:text-amber-700">Contact</a>
-        </div>
-    </nav>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-collection-play fs-5"></i> <span>Thư viện</span>
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-search fs-5"></i> <span>Tìm kiếm</span>
+                </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white py-20 md:py-32 px-4">
-        <div class="container mx-auto text-center">
-            <h1 class="heading-font text-4xl md:text-6xl font-bold mb-6">Artisan Coffee, Elevated</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Discover the world's finest single-origin and blended coffees, roasted to perfection.</p>
-            <a href="#products" class="btn-primary inline-block px-8 py-3 rounded-full text-white font-semibold hover:shadow-lg transition-all">Shop Now</a>
-        </div>
-    </section>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-bell fs-5"></i> <span>Thông báo</span>
+                </a>
+            </nav>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 px-4">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Our Story</h2>
-                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
-            </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Coffee beans" class="rounded-lg shadow-lg w-full">
-                </div>
-                <div class="md:w-1/2">
-                    <h3 class="heading-font text-2xl font-bold text-amber-900 mb-4">From Highland Farms to Your Cup</h3>
-                    <p class="text-gray-700 mb-4">Founded in 2010, Highland Brew sources only the highest quality coffee beans from sustainable farms across the world's premier coffee-growing regions.</p>
-                    <p class="text-gray-700 mb-4">Our master roasters use traditional techniques combined with modern technology to bring out the unique character of each bean.</p>
-                    <p class="text-gray-700">Every batch is carefully tested to ensure consistency and quality in every cup you brew.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <hr class="border-secondary opacity-25">
 
-    <!-- Featured Products -->
-    <section id="products" class="py-16 px-4 bg-white">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Featured Coffees</h2>
-                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
+            <div class="nav flex-column gap-2 mt-2">
+                <h6 class="text-uppercase text-secondary x-small fw-bold mb-3 px-3"
+                    style="font-size: 0.7rem; letter-spacing: 1px;">Cá nhân</h6>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-plus-square-fill fs-5 text-white-50"></i> <span>Tạo Playlist</span>
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-heart-fill fs-5 text-purple"></i> <span>Bài hát đã thích</span>
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary" data-bs-toggle="modal"
+                    data-bs-target="#uploadModal">
+                    <i class="bi bi-cloud-arrow-up-fill fs-5"></i> <span>Đăng nhạc</span>
+                </a>
+                <a href="register.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                    <i class="bi bi-gear fs-5"></i> <span>Cài đặt</span>
+                </a>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Ethiopian Yirgacheffe" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-xl font-bold text-amber-900">Ethiopian Yirgacheffe</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Light Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Floral and tea-like with notes of bergamot and lemon.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$18.99</span>
-                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Colombian Supremo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-xl font-bold text-amber-900">Colombian Supremo</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Balanced with notes of caramel, nuts, and a hint of citrus.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$16.99</span>
-                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Sumatra Mandheling" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-xl font-bold text-amber-900">Sumatra Mandheling</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Dark Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">Full-bodied with earthy tones and notes of dark chocolate.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$19.99</span>
-                            <button class="btn-primary text-white px-4 py-2 rounded text-sm">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#full-catalog" class="inline-block border-2 border-amber-900 text-amber-900 px-6 py-2 rounded-full font-semibold hover:bg-amber-900 hover:text-white transition-all">View Full Catalog</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Full Product Catalog (hidden by default) -->
-    <section id="full-catalog" class="py-16 px-4 bg-gray-50 hidden">
-        <div class="container mx-auto">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="heading-font text-3xl font-bold text-amber-900">Our Coffee Selection</h2>
-                <div class="flex space-x-4">
-                    <select class="border border-gray-300 rounded px-3 py-2">
-                        <option>Filter by Roast</option>
-                        <option>Light</option>
-                        <option>Medium</option>
-                        <option>Dark</option>
-                    </select>
-                    <select class="border border-gray-300 rounded px-3 py-2">
-                        <option>Filter by Origin</option>
-                        <option>Africa</option>
-                        <option>Central America</option>
-                        <option>South America</option>
-                        <option>Asia</option>
-                    </select>
-                </div>
+            <div class="mt-auto p-3 rounded-4 promo-box">
+                <p class="small fw-bold text-white mb-2">Trải nghiệm không quảng cáo?</p>
+                <a href="plan.html" class="btn btn-purple btn-sm w-100 rounded-pill fw-bold">Nâng cấp Plus</a>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Additional products would be listed here -->
-                <!-- Product 4 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Guatemalan Antigua" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-lg font-bold text-amber-900">Guatemalan Antigua</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mb-3">Rich and complex with cocoa and spice notes.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$17.99</span>
-                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kenya AA" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-lg font-bold text-amber-900">Kenya AA</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Light Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mb-3">Bright acidity with berry and wine-like flavors.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$21.99</span>
-                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Italian Espresso" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-lg font-bold text-amber-900">Italian Espresso</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Dark Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mb-3">Bold and intense with a rich crema and chocolate notes.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$15.99</span>
-                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 7 -->
-                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Costa Rican Tarrazú" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="heading-font text-lg font-bold text-amber-900">Costa Rican Tarrazú</h3>
-                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Medium Roast</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mb-3">Clean and balanced with honey and citrus notes.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-900 font-bold">$18.99</span>
-                            <button class="btn-primary text-white px-3 py-1 rounded text-xs">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </aside>
 
-    <!-- Product Detail Page (hidden by default) -->
-    <section id="product-detail" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80" alt="Ethiopian Yirgacheffe" class="w-full rounded-lg shadow-lg">
-                </div>
-                <div class="md:w-1/2">
-                    <h1 class="heading-font text-3xl font-bold text-amber-900 mb-2">Ethiopian Yirgacheffe</h1>
-                    <div class="flex items-center mb-4">
-                        <span class="bg-amber-100 text-amber-800 text-sm px-3 py-1 rounded-full mr-3">Light Roast</span>
-                        <div class="flex text-amber-500">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+        <main class="main-content-wrapper flex-grow-1 overflow-x-hidden">
+
+
+            <div class="container py-5" style="max-width: 1200px;">
+                <div id="heroCarousel" class="carousel slide carousel-fade shadow custom-rounded overflow-hidden"
+                    data-bs-ride="carousel">
+
+
+
+                    <div id="pricingIntroCarousel"
+                        class="carousel slide carousel-fade shadow-lg custom-rounded overflow-hidden"
+                        data-bs-ride="carousel" data-bs-interval="4000">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, #2862cd 0%, #000000 400%);">
+                                </div>
+
+                                <div
+                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
+                                        week</span>
+
+                                    <h2 class="display-3 fw-bold text-white mb-3">
+                                        Lạ <span style="color:#2657b2">Lùng</span>
+                                    </h2>
+
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                        style="max-width: 500px;">
+                                        vũ.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, #720c0c 0%, #000000 400%);">
+                                </div>
+
+                                <div
+                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
+                                        week</span>
+
+                                    <h2 class="display-3 fw-bold text-white mb-3"> Chạy
+                                        <span style="color:#cc1d1d">Ngay Đi</span>
+                                    </h2>
+
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                        style="max-width: 500px;">
+                                        Sơn Tùng-MTP
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, #18c145 0%, #000000 400%);">
+                                </div>
+
+                                <div
+                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
+                                        week</span>
+
+                                    <h2 class="display-3 fw-bold text-white mb-3">
+                                        Sóng <span style="color:#97d412">Gió</span>
+                                    </h2>
+
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                        style="max-width: 500px;">
+                                        J97
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, #181818 0%, #000000 400%);">
+                                </div>
+
+                                <div
+                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Bài viết trong
+                                        tuần</span>
+
+                                    <h2 class="display-3 fw-bold text-white mb-3">
+                                        Nghệ sĩ: <span style="color:#4b4b4b">Nghệ và Sĩ.</span>
+                                    </h2>
+
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                        style="max-width: 500px;">
+                                        Tác giả: Trần Võ
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, #e808f0 0%, #000000 400%);">
+                                </div>
+
+                                <a href="plan.html">
+                                    <div
+                                        class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                        <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Khuyết mãi
+                                            tốt
+                                            nhất</span>
+
+
+
+                                        <h2 class="display-3 fw-bold text-white mb-3">
+                                            Giảm giá lên đến <span style="color:#c709c4">60%</span>
+                                        </h2>
+
+                                        <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                            style="max-width: 500px;">
+                                            Dành cho gói <span style="color:#c709c4">PLUS</span>
+                                            </h2>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="carousel-item" style="height: 550px;">
+                                <div class="w-100 h-100"
+                                    style="background: radial-gradient(circle at center, gold 0%, #000000 400%);"></div>
+
+                                <a href="plan.html"> <!--400% -> 0% Đen hoàn toàn-->
+                                    <div
+                                        class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                        <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Gói tốt nhất
+                                            dành cho
+                                            người sành điệu</span>
+
+                                        <h2 class="display-3 fw-bold text-white mb-3">
+                                            Trạm đỉnh cùng <span class="text-warning">MAX</span>
+                                        </h2>
+
+                                        <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
+                                            style="max-width: 500px;">
+                                            Một trải nghiệm <span class="text-warning">tuyệt đỉnh.</span>
+                                            </h2>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <div class="carousel-item active" style="height: 550px;">
+                                <img src="tlinh-1-1692242064961531721539.jpg" class="position-absolute w-100 h-100"
+                                    style="object-fit: cover; top: 0; left: 0; z-index: 1;" alt="Background">
+
+                                <div class="position-absolute w-100 h-100" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)); 
+                top: 0; left: 0; z-index: 2;">
+                                </div>
+
+                                <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5"
+                                    style="position: relative; z-index: 3;">
+
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Album of the
+                                        year</span>
+
+                                    <h2 class="display-3 fw-semibold mb-3">
+                                        <span style=" color:#ed41f9">Ái</span>
+                                    </h2>
+
+                                    <p class="fs-5 text-light mx-auto mb-5 fw-semibold" style="max-width: 500px;">
+                                        tlinh
+                                    </p>
+                                </div>
+                            </div>
+
+
+
                         </div>
-                        <span class="text-gray-600 ml-2">(42 reviews)</span>
-                    </div>
-                    
-                    <p class="text-gray-700 mb-6">This exquisite single-origin coffee comes from the Yirgacheffe region of Ethiopia, known for producing some of the world's most distinctive coffees. Grown at high altitudes, these beans develop complex floral and citrus notes that shine in this light roast.</p>
-                    
-                    <div class="mb-6">
-                        <h3 class="font-bold text-amber-900 mb-2">Tasting Notes</h3>
-                        <p class="text-gray-700">Bergamot, Lemon, Jasmine, Tea-like body</p>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h3 class="font-bold text-amber-900 mb-2">Grind Options</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Whole Bean</button>
-                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">French Press</button>
-                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Drip</button>
-                            <button class="border border-amber-700 text-amber-700 px-3 py-1 rounded-full text-sm hover:bg-amber-700 hover:text-white transition-all">Espresso</button>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h3 class="font-bold text-amber-900 mb-2">Size</h3>
-                        <div class="flex gap-4">
-                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">12 oz ($18.99)</button>
-                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">2 lb ($32.99)</button>
-                            <button class="border border-amber-700 text-amber-700 px-4 py-2 rounded hover:bg-amber-700 hover:text-white transition-all">5 lb ($74.99)</button>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center mb-6">
-                        <div class="flex items-center border border-gray-300 rounded mr-4">
-                            <button class="px-3 py-1 text-gray-600">-</button>
-                            <span class="px-3 py-1">1</span>
-                            <button class="px-3 py-1 text-gray-600">+</button>
-                        </div>
-                        <button class="btn-primary flex-1 py-3 rounded text-white font-semibold hover:shadow-lg transition-all">
-                            Add to Cart - $18.99
+                        <button class="carousel-control-prev custom-nav-btn" type="button"
+                            data-bs-target="#pricingIntroCarousel" data-bs-slide="prev">
+                            <div class="nav-circle">
+                                <i class="bi bi-chevron-left"></i>
+                            </div>
+                        </button>
+
+                        <button class="carousel-control-next custom-nav-btn" type="button"
+                            data-bs-target="#pricingIntroCarousel" data-bs-slide="next">
+                            <div class="nav-circle">
+                                <i class="bi bi-chevron-right"></i>
+                            </div>
                         </button>
                     </div>
+
+
+                    <div class="position-absolute top-0 start-0 p-4 z-3">
+                        <a href="index.html">
+                            <!-- Logo -->
+                            <img src="navbar_logo_jpg.png" alt="Logo" style="width: 200px; height: auto;">
+                        </a>
+                    </div>
+                    <div class="position-absolute top-0 end-0 p-4 z-3 d-flex align-items-center gap-3">
+                        <a href="login.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+                            Đăng nhập
+                        </a>
+
+                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+                            Đăng ký
+                        </a>
+
+                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+                            Đăng nhạc
+                        </a>
+                    </div>
+
+
+
+
+                    <div id="main-nav-wrapper">
+                        <div id="main-nav" class="py-4 transition-all">
+                            <div class="container">
+                                <div class="row align-items-center justify-content-center" id="nav-row">
+
+                                    <div class="col-md-8 col-12 transition-all" id="search-col">
+                                        <div class="search-box position-relative">
+                                            <i
+                                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                                            <input type="text" id="searchInput"
+                                                class="text-white bg-dark form-control search-input ps-5 py-3 shadow-none border-0"
+                                                placeholder="Bạn muốn nghe gì? (Tên bài hát, nghệ sĩ...)">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--  -->
+                    <div class="container mt-4" id="my-music-container" style="display: none;">
+                        <h2 class="text-white mb-4"><i class="bi bi-person-lines-fill text-purple me-2"></i>Nhạc của tôi
+                        </h2>
+                        <div id="my-music-list" class="scroll-container">
+                        </div>
+                    </div>
+
+                    <div class="container mt-5">
+                        <h2 class="text-white mb-4">Dành cho bạn</h2>
+                        <div id="music-list" class="scroll-container"></div>
+                    </div>
+
+                    <div class="container mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="text-white"><i class="bi bi-fire text-warning me-2"></i>Bảng xếp hạng Trending
+                            </h2>
+                            <a href="#" class="text-secondary text-decoration-none small">Xem tất cả</a>
+                        </div>
+                        <div id="trending-list" class="scroll-container"></div>
+                    </div>
+
+                    <div class="container mt-5">
+                        <h3 class=" mb-4">Nghệ sĩ trên nền tảng</h3>
+                        <div id="artist-list" class="scroll-container"></div>
+                    </div>
+
+
+
+
+
+
+                    <footer class="custom-footer pt-5 pb-4 mt-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <h5 class="text-white fw-bold mb-3">MyVelody</h5>
+                                    <p class="text-secondary small">Mạng xã hội âm nhạc kết nối mọi người.</p>
+                                </div>
+
+                                <div class="col-md-2 col-6 mb-4">
+                                    <h6 class="text-white fw-bold mb-3">Sản phẩm</h6>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#" class="footer-link">Music App</a></li>
+                                        <li><a href="#" class="footer-link">Gói Premium</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-2 col-6 mb-4">
+                                    <h6 class="text-white fw-bold mb-3">Công ty</h6>
+                                    <ul class="list-unstyled">
+                                        <li><a href="aboutus.html" class="footer-link">Về chúng tôi</a></li>
+                                        <li><a href="#" class="footer-link">Liên hệ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <hr class="footer-divider border-secondary">
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <p class="text-secondary small mb-0">© 2026 MyVelody. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+
+
+
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+                    </script>
+
+                    <script>
+
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const nav = document.getElementById("main-nav");
+                            const navWrapper = document.getElementById("main-nav-wrapper");
+
+                            // Lấy vị trí ban đầu của thanh tìm kiếm (offset top)
+                            // navWrapper.offsetTop sẽ tính khoảng cách từ đầu trang đến thanh tìm kiếm
+                            const stickyPoint = navWrapper.offsetTop;
+
+                            window.onscroll = function () {
+                                handleStickyNav();
+                            };
+
+                            function handleStickyNav() {
+                                if (window.pageYOffset >= stickyPoint) {
+                                    // Thêm class sticky
+                                    nav.classList.add("sticky");
+
+                                    // Giữ chiều cao cho wrapper để tránh nội dung bên dưới bị giật lên (layout shift)
+                                    navWrapper.style.height = nav.offsetHeight + "px";
+                                } else {
+                                    // Gỡ class sticky
+                                    nav.classList.remove("sticky");
+                                    navWrapper.style.height = "auto";
+                                }
+                            }
+                        });
+
+                        //
+
+
+                        //
+
+                        const songs = [
+                            { title: "Making My Way", artist: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=1", url: "cloud_simula/SON TUNG M-TP - MAKING MY WAY - OFFICIAL VISUALIZER.mp3" },
+                            { title: "Nấu Ăn Cho Em", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=2" },
+                            { title: "Waiting For You", artist: "MONO", img: "https://picsum.photos/300/300?random=3" },
+                            { title: "À Lôi", artist: "Double2T", img: "https://picsum.photos/300/300?random=4" },
+                            { title: "Cắt Đôi Nỗi Sầu", artist: "Tăng Duy Tân", img: "https://picsum.photos/300/300?random=5" },
+                            { title: "id 07201", artist: "W/n", img: "https://picsum.photos/300/300?random=6" },
+                            { title: "Bật Tình Yêu Lên", artist: "Hòa Minzy", img: "https://picsum.photos/300/300?random=7" },
+                            { title: "Nếu Lúc Đó", artist: "tlinh", img: "https://picsum.photos/300/300?random=8" },
+                            { title: "Vũ Trụ Có Anh", artist: "Phương Mỹ Chi", img: "https://picsum.photos/300/300?random=9" },
+                            { title: "Mưa Tháng Sáu", artist: "Văn Mai Hương", img: "https://picsum.photos/300/300?random=10" },
+                            { title: "Hit Me Up", artist: "Binz", img: "https://picsum.photos/300/300?random=26" },
+                            { title: "Ngủ Một Mình", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=27" },
+                            { title: "Ưng Quá Chừng", artist: "AMEE", img: "https://picsum.photos/300/300?random=28" },
+                            { title: "Đưa Em Về Nhà", artist: "GREY D", img: "https://picsum.photos/300/300?random=29" },
+                            { title: "Từng Quen", artist: "Wren Evans", img: "https://picsum.photos/300/300?random=30" },
+                            { title: "Ngày Mai Người Ta Lấy Chồng", artist: "Anh Tú", img: "https://picsum.photos/300/300?random=31" },
+                            { title: "Em Xinh", artist: "MONO", img: "https://picsum.photos/300/300?random=32" },
+                            { title: "Dâu Thiên Hạ", artist: "Suboi", img: "https://picsum.photos/300/300?random=33" }
+                        ];
+
+                        const trendingSongs = [
+                            { title: "Hào Quang", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=11" },
+                            { title: "Đừng Làm Nó Phức Tạp", artist: "tlinh", img: "https://picsum.photos/300/300?random=12" },
+                            { title: "Exit Sign", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=13" },
+                            { title: "Thiên Lý Ơi", artist: "Jack - J97", img: "https://picsum.photos/300/300?random=14" },
+                            { title: "Sau Lời Từ Khước", artist: "Phan Mạnh Quỳnh", img: "https://picsum.photos/300/300?random=15" },
+                            { title: "Kim Phút Kim Giờ", artist: "Anh Trai Vượt Ngàn Chông Gai", img: "https://picsum.photos/300/300?random=34" },
+                            { title: "Hút Pin", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=35" },
+                            { title: "Lối Nhỏ", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=36" },
+                            { title: "Vì Anh Đâu Biết", artist: "Madihu ft. Vũ", img: "https://picsum.photos/300/300?random=37" },
+                            { title: "ThichThich", artist: "Phương Ly", img: "https://picsum.photos/300/300?random=38" }
+                        ];
+
+                        const artists = [
+                            { name: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=21" },
+                            { name: "Đen Vâu", img: "https://picsum.photos/300/300?random=22" },
+                            { name: "tlinh", img: "https://picsum.photos/300/300?random=23" },
+                            { name: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=24" },
+                            { name: "MONO", img: "https://picsum.photos/300/300?random=25" },
+                            { name: "Mỹ Tâm", img: "https://picsum.photos/300/300?random=39" },
+                            { name: "Hà Anh Tuấn", img: "https://picsum.photos/300/300?random=40" },
+                            { name: "Soobin", img: "https://picsum.photos/300/300?random=41" },
+                            { name: "Binz", img: "https://picsum.photos/300/300?random=42" },
+                            { name: "Wren Evans", img: "https://picsum.photos/300/300?random=43" },
+                            { name: "MCK", img: "https://picsum.photos/300/300?random=44" },
+                            { name: "Grey D", img: "https://picsum.photos/300/300?random=45" },
+                            { name: "Hoàng Thùy Linh", img: "https://picsum.photos/300/300?random=46" },
+                            { name: "Karik", img: "https://picsum.photos/300/300?random=47" },
+                            { name: "Bích Phương", img: "https://picsum.photos/300/300?random=48" }
+                        ];
+                        // Hàm render cho Nhạc và Trending
+                        const renderMusicSection = (data, containerId, isTrending = false) => {
+                            const container = document.getElementById(containerId);
+                            if (!container) return;
+                            container.innerHTML = "";
+
+                            data.forEach((song, index) => {
+                                // Chuyển object song thành string để truyền vào function
+                                const songData = JSON.stringify(song).replace(/"/g, '&quot;');
+
+                                const songHTML = `
+        <div class="music-item" onclick="playMusic(${songData})"> 
+            <div class="music-card p-0 overflow-hidden position-relative border-0 h-100 shadow-sm" style="cursor: pointer;">
+                ${isTrending ? `<div class="rank-badge">#${index + 1}</div>` : ''}
+                <img src="${song.img}" class="img-fluid w-100" alt="${song.title}">
+                <div class="card-overlay position-absolute bottom-0 start-0 w-100 p-3">
+                    <i class="bi bi-play-circle-fill fs-2 text-purple play-icon-hover"></i>
+                    <h6 class="text-white mb-0 fw-bold text-truncate">${song.title}</h6>
+                    <p class="text-light small mb-0 opacity-75 text-truncate">${song.artist}</p>
+                </div>
+            </div>
+        </div>`;
+                                container.innerHTML += songHTML;
+                            });
+                        };
+
+                        // Hàm render cho Nghệ sĩ
+                        const renderArtistSection = (data, containerId) => {
+                            const container = document.getElementById(containerId);
+                            if (!container) return;
+                            container.innerHTML = "";
+
+                            data.forEach(artist => {
+                                const artistHTML = `
+            <div class="artist-item"> 
+                <div class="artist-card shadow-sm">
+                    <img src="${artist.img}" class="artist-img" alt="${artist.name}">
                     
-                    <div class="text-sm text-gray-600">
-                        <p><i class="fas fa-truck mr-2"></i> Free shipping on orders over $50</p>
-                        <p><i class="fas fa-undo mr-2"></i> 30-day satisfaction guarantee</p>
+                    <div class="artist-overlay">
+                        <h6 class="artist-overlay-name text-truncate">${artist.name}</h6>
+                        <p class="artist-overlay-role mb-0 text-truncate">Nghệ sĩ</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </div>`;
+                                container.innerHTML += artistHTML;
+                            });
+                        };
+                        // Gọi hàm hiển thị như cũ
+                        renderArtistSection(artists, 'artist-list');
+                        renderMusicSection(songs, 'music-list');
+                        renderMusicSection(trendingSongs, 'trending-list', true);
+                    </script>
 
-    <!-- Shopping Cart (hidden by default) -->
-    <section id="cart" class="py-16 px-4 bg-gray-50 hidden">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="heading-font text-3xl font-bold text-amber-900 mb-8">Your Shopping Cart</h2>
-            
-            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-                <div class="hidden md:grid grid-cols-12 bg-gray-100 p-4 font-semibold text-amber-900">
-                    <div class="col-span-6">Product</div>
-                    <div class="col-span-2 text-center">Price</div>
-                    <div class="col-span-2 text-center">Quantity</div>
-                    <div class="col-span-2 text-center">Total</div>
-                </div>
-                
-                <!-- Cart Item 1 -->
-                <div class="p-4 border-b border-gray-200">
-                    <div class="flex flex-col md:flex-row md:items-center">
-                        <div class="flex items-center md:w-6/12 mb-4 md:mb-0">
-                            <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Ethiopian Yirgacheffe" class="w-16 h-16 object-cover rounded mr-4">
-                            <div>
-                                <h3 class="font-semibold text-amber-900">Ethiopian Yirgacheffe</h3>
-                                <p class="text-sm text-gray-600">Light Roast • Whole Bean</p>
-                            </div>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
-                            <span class="md:hidden font-semibold mr-2">Price: </span>
-                            <span>$18.99</span>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
-                            <div class="flex items-center border border-gray-300 rounded">
-                                <button class="px-2 py-1 text-gray-600">-</button>
-                                <span class="px-2 py-1">1</span>
-                                <button class="px-2 py-1 text-gray-600">+</button>
-                            </div>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center items-center">
-                            <span class="md:hidden font-semibold mr-2">Total: </span>
-                            <span class="font-semibold">$18.99</span>
-                            <button class="ml-4 text-red-500 hover:text-red-700">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Cart Item 2 -->
-                <div class="p-4 border-b border-gray-200">
-                    <div class="flex flex-col md:flex-row md:items-center">
-                        <div class="flex items-center md:w-6/12 mb-4 md:mb-0">
-                            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="Colombian Supremo" class="w-16 h-16 object-cover rounded mr-4">
-                            <div>
-                                <h3 class="font-semibold text-amber-900">Colombian Supremo</h3>
-                                <p class="text-sm text-gray-600">Medium Roast • French Press</p>
-                            </div>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
-                            <span class="md:hidden font-semibold mr-2">Price: </span>
-                            <span>$16.99</span>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center mb-4 md:mb-0">
-                            <div class="flex items-center border border-gray-300 rounded">
-                                <button class="px-2 py-1 text-gray-600">-</button>
-                                <span class="px-2 py-1">2</span>
-                                <button class="px-2 py-1 text-gray-600">+</button>
-                            </div>
-                        </div>
-                        <div class="md:w-2/12 flex md:justify-center items-center">
-                            <span class="md:hidden font-semibold mr-2">Total: </span>
-                            <span class="font-semibold">$33.98</span>
-                            <button class="ml-4 text-red-500 hover:text-red-700">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Summary</h3>
-                <div class="flex justify-between mb-2">
-                    <span>Subtotal</span>
-                    <span>$52.97</span>
-                </div>
-                <div class="flex justify-between mb-2">
-                    <span>Shipping</span>
-                    <span>$5.99</span>
-                </div>
-                <div class="flex justify-between mb-2">
-                    <span>Tax</span>
-                    <span>$4.24</span>
-                </div>
-                <div class="border-t border-gray-200 my-4"></div>
-                <div class="flex justify-between font-bold text-lg">
-                    <span>Total</span>
-                    <span>$63.20</span>
-                </div>
-                <button class="btn-primary w-full py-3 rounded text-white font-semibold mt-6 hover:shadow-lg transition-all">
-                    Proceed to Checkout
-                </button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Checkout Form (hidden by default) -->
-    <section id="checkout" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="heading-font text-3xl font-bold text-amber-900 mb-8">Checkout</h2>
-            
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-2/3">
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Information</h3>
-                        <form>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                <div>
-                                    <label class="block text-gray-700 mb-2">First Name</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 mb-2">Last Name</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Address</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Apartment, Suite, etc. (Optional)</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                                <div>
-                                    <label class="block text-gray-700 mb-2">City</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 mb-2">State/Province</label>
-                                    <select class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                        <option>Select</option>
-                                        <option>California</option>
-                                        <option>New York</option>
-                                        <!-- More states -->
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 mb-2">ZIP/Postal Code</label>
-                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Phone</label>
-                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Payment Method</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <input type="radio" id="credit-card" name="payment" checked class="mr-2">
-                                <label for="credit-card" class="flex-1">Credit Card</label>
-                                <div class="flex space-x-2">
-                                    <i class="fab fa-cc-visa text-gray-600"></i>
-                                    <i class="fab fa-cc-mastercard text-gray-600"></i>
-                                    <i class="fab fa-cc-amex text-gray-600"></i>
-                                </div>
-                            </div>
-                            <div class="pl-6">
-                                <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2">Card Number</label>
-                                    <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-gray-700 mb-2">Expiration Date</label>
-                                        <input type="text" placeholder="MM/YY" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-gray-700 mb-2">Security Code</label>
-                                        <input type="text" placeholder="CVC" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <div class="fixed-bottom bg-dark border-top border-secondary p-2 d-none" id="music-player">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-md-3 d-flex align-items-center gap-3">
+                                    <!-- size -->
+                                    <img id="player-img" src="" class="rounded"
+                                        style="width: 150px; height: 150px; object-fit: cover;">
+                                    <div class="overflow-hidden">
+                                        <h4 id="player-title" class="mb-0 text-white text-truncate"
+                                            style="font-size: 1.3rem;">Tên bài hát</h4>
+                                        <h5 id="player-artist" class="text-secondary text-truncate">Nghệ sĩ</h5>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-center">
-                                <input type="radio" id="paypal" name="payment" class="mr-2">
-                                <label for="paypal" class="flex-1">PayPal</label>
-                                <i class="fab fa-cc-paypal text-gray-600"></i>
-                            </div>
-                            
-                            <div class="flex items-center">
-                                <input type="radio" id="cod" name="payment" class="mr-2">
-                                <label for="cod" class="flex-1">Cash on Delivery</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/3">
-                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
-                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Summary</h3>
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between">
-                                <div class="flex items-center">
-                                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" alt="Ethiopian Yirgacheffe" class="w-12 h-12 object-cover rounded mr-2">
-                                    <div>
-                                        <p class="text-sm font-medium">Ethiopian Yirgacheffe</p>
-                                        <p class="text-xs text-gray-600">1 × $18.99</p>
-                                    </div>
+                                <div class="col-md-6 text-center">
+                                    <audio id="main-audio" controls class="w-100 custom-audio-player">
+                                        <source src="" type="audio/mpeg">
+                                    </audio>
                                 </div>
-                                <span>$18.99</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <div class="flex items-center">
-                                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" alt="Colombian Supremo" class="w-12 h-12 object-cover rounded mr-2">
-                                    <div>
-                                        <p class="text-sm font-medium">Colombian Supremo</p>
-                                        <p class="text-xs text-gray-600">2 × $16.99</p>
-                                    </div>
-                                </div>
-                                <span>$33.98</span>
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200 pt-4 space-y-2">
-                            <div class="flex justify-between">
-                                <span>Subtotal</span>
-                                <span>$52.97</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Shipping</span>
-                                <span>$5.99</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Tax</span>
-                                <span>$4.24</span>
-                            </div>
-                            <div class="flex justify-between font-bold text-lg pt-2">
-                                <span>Total</span>
-                                <span>$63.20</span>
-                            </div>
-                        </div>
-                        <button class="btn-primary w-full py-3 rounded text-white font-semibold mt-6 hover:shadow-lg transition-all">
-                            Place Order
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Confirmation (hidden by default) -->
-    <section id="order-confirmation" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-2xl text-center">
-            <div class="bg-white rounded-lg shadow-md p-8">
-                <div class="text-green-500 text-6xl mb-4">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="heading-font text-3xl font-bold text-amber-900 mb-4">Order Confirmed!</h2>
-                <p class="text-gray-700 mb-6">Thank you for your purchase. Your order has been received and is being processed.</p>
-                
-                <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Details</h3>
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <p class="text-gray-600">Order Number</p>
-                            <p class="font-medium">HB-2023-05678</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-600">Date</p>
-                            <p class="font-medium">June 15, 2023</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-600">Total</p>
-                            <p class="font-medium">$63.20</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-600">Payment Method</p>
-                            <p class="font-medium">Credit Card</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mb-8">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Estimated Delivery</h3>
-                    <div class="flex justify-center items-center">
-                        <div class="flex flex-col items-center px-6">
-                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-box text-amber-700"></i>
-                            </div>
-                            <p class="text-sm">Processing</p>
-                            <p class="text-xs text-gray-600">Today</p>
-                        </div>
-                        <div class="h-1 w-16 bg-amber-200"></div>
-                        <div class="flex flex-col items-center px-6">
-                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-shipping-fast text-amber-700"></i>
-                            </div>
-                            <p class="text-sm">Shipped</p>
-                            <p class="text-xs text-gray-600">Jun 17</p>
-                        </div>
-                        <div class="h-1 w-16 bg-amber-200"></div>
-                        <div class="flex flex-col items-center px-6">
-                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-2">
-                                <i class="fas fa-home text-amber-700"></i>
-                            </div>
-                            <p class="text-sm">Delivered</p>
-                            <p class="text-xs text-gray-600">Jun 19</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#products" class="border-2 border-amber-900 text-amber-900 px-6 py-2 rounded-full font-semibold hover:bg-amber-900 hover:text-white transition-all">Continue Shopping</a>
-                    <a href="#track-order" class="btn-primary px-6 py-2 rounded-full text-white font-semibold hover:shadow-lg transition-all">Track Order</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Tracking (hidden by default) -->
-    <section id="track-order" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-2xl">
-            <div class="bg-white rounded-lg shadow-md p-8">
-                <h2 class="heading-font text-3xl font-bold text-amber-900 mb-6 text-center">Track Your Order</h2>
-                
-                <div class="mb-8">
-                    <label class="block text-gray-700 mb-2">Order Number</label>
-                    <div class="flex">
-                        <input type="text" placeholder="Enter your order number" class="flex-1 px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        <button class="btn-primary px-6 py-2 rounded-r text-white font-semibold">Track</button>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-200 pt-6">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Order Status: HB-2023-05678</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                                    <i class="fas fa-check text-white text-xs"></i>
+                                <div class="col-md-3 text-end">
+                                    <button class="btn btn-link text-secondary" onclick="closePlayer()"><i
+                                            class="bi bi-x-lg"></i></button>
                                 </div>
                             </div>
-                            <div class="ml-3">
-                                <p class="font-medium">Order Confirmed</p>
-                                <p class="text-sm text-gray-600">June 15, 2023 at 2:30 PM</p>
-                            </div>
                         </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                                    <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <script>
+                        function playMusic(song) {
+                            const player = document.getElementById('music-player');
+                            const audio = document.getElementById('main-audio');
+                            const title = document.getElementById('player-title');
+                            const artist = document.getElementById('player-artist');
+                            const img = document.getElementById('player-img');
+
+                            // Hiện thanh player
+                            player.classList.remove('d-none');
+
+                            // Cập nhật thông tin
+                            title.innerText = song.title;
+                            artist.innerText = song.artist;
+                            img.src = song.img;
+
+                            // Cập nhật nguồn nhạc và chơi
+                            audio.src = song.url || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Fallback nếu thiếu link
+                            audio.play();
+                        }
+
+                        function closePlayer() {
+                            const player = document.getElementById('music-player');
+                            const audio = document.getElementById('main-audio');
+                            audio.pause();
+                            player.classList.add('d-none');
+                        }
+                    </script>
+
+
+                    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content bg-dark text-white border-secondary">
+                                <div class="modal-header border-secondary">
+                                    <h5 class="modal-title" id="uploadModalLabel">Đăng tác phẩm mới</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="uploadForm">
+                                        <div class="mb-3">
+                                            <label for="songTitle" class="form-label">Tên bài hát</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                                id="songTitle" required placeholder="Nhập tên bài hát...">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="songArtist" class="form-label">Nghệ sĩ / Ca sĩ</label>
+                                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                                id="songArtist" required placeholder="Nhập tên nghệ sĩ...">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="songThumbnail" class="form-label">Ảnh bìa (Thumbnail)</label>
+                                            <input type="file" class="form-control bg-dark text-white border-secondary"
+                                                id="songThumbnail" accept="image/*" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="songFile" class="form-label">File âm thanh / Video
+                                                (MP3/MP4)</label>
+                                            <input type="file" class="form-control bg-dark text-white border-secondary"
+                                                id="songFile" accept="audio/*, video/mp4" required>
+                                            <small class="text-secondary">File sẽ được đưa vào thư mục cloud_simula (Cần
+                                                backend để lưu trữ thực tế).</small>
+                                        </div>
+                                        <div class="d-grid gap-2 mt-4">
+                                            <button type="submit" class="btn btn-purple fw-bold"
+                                                style="background-color: #a224d7; color: white;">Đăng bài</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="ml-3">
-                                <p class="font-medium">Processing</p>
-                                <p class="text-sm text-gray-600">June 15, 2023 at 4:45 PM</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center">
-                                    <i class="fas fa-shipping-fast text-white text-xs"></i>
-                                </div>
-                            </div>
-                            <div class="ml-3">
-                                <p class="font-medium">Shipped</p>
-                                <p class="text-sm text-gray-600">June 17, 2023 at 10:15 AM</p>
-                                <p class="text-sm text-gray-600">Tracking #: 1234567890 (USPS)</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <div class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
-                                    <i class="fas fa-home text-white text-xs"></i>
-                                </div>
-                            </div>
-                            <div class="ml-3">
-                                <p class="font-medium">Out for Delivery</p>
-                                <p class="text-sm text-gray-600">Estimated: June 19, 2023</p>
-                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Details</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <p class="text-gray-600">Shipping Address</p>
-                            <p class="font-medium">John Doe</p>
-                            <p class="font-medium">123 Main Street</p>
-                            <p class="font-medium">Apartment 4B</p>
-                            <p class="font-medium">New York, NY 10001</p>
-                            <p class="font-medium">United States</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-600">Contact Information</p>
-                            <p class="font-medium">john.doe@example.com</p>
-                            <p class="font-medium">(555) 123-4567</p>
-                            <br>
-                            <p class="text-gray-600">Payment Method</p>
-                            <p class="font-medium">Credit Card ending in 4242</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Page (hidden by default) -->
-    <section id="contact" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-4xl">
-            <div class="text-center mb-12">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Contact Us</h2>
-                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2">
-                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
-                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Send Us a Message</h3>
-                        <form>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Name</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Subject</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 mb-2">Message</label>
-                                <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary px-6 py-2 rounded text-white font-semibold hover:shadow-lg transition-all">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
-                        <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Our Information</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Address</h4>
-                                <p class="text-gray-700">123 Coffee Lane<br>Portland, OR 97201<br>United States</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-phone-alt mr-2"></i> Phone</h4>
-                                <p class="text-gray-700">(555) 123-4567</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-envelope mr-2"></i> Email</h4>
-                                <p class="text-gray-700">info@highlandbrew.com</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-amber-900 mb-2"><i class="fas fa-clock mr-2"></i> Business Hours</h4>
-                                <p class="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 3:00 PM<br>Sunday: Closed</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+    // 1. KHI VỪA MỞ WEB HOẶC RELOAD: Đọc dữ liệu từ localStorage
+    // Nếu chưa có dữ liệu thì gán là một mảng rỗng []
+    let myUploadedSongs = JSON.parse(localStorage.getItem('myVelodySongs')) || [];
 
-    <!-- Delivery Info Page (hidden by default) -->
-    <section id="delivery-info" class="py-16 px-4 hidden">
-        <div class="container mx-auto max-w-4xl">
-            <div class="text-center mb-12">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold text-amber-900 mb-4">Delivery Information</h2>
-                <div class="w-24 h-1 bg-amber-700 mx-auto"></div>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow-md p-8">
-                <div class="mb-8">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Policy</h3>
-                    <p class="text-gray-700 mb-4">We strive to process and ship all orders within 1-2 business days. Once your order has shipped, you will receive a confirmation email with tracking information.</p>
-                    <p class="text-gray-700">Most orders are delivered within 3-5 business days after shipping, depending on your location.</p>
-                </div>
-                
-                <div class="mb-8">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Shipping Rates</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Delivery Method</th>
-                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Cost</th>
-                                    <th class="py-2 px-4 border-b border-gray-200 text-left text-amber-900">Delivery Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="py-2 px-4 border-b border-gray-200">Standard Shipping</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">$5.99</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">3-5 business days</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b border-gray-200">Express Shipping</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">$12.99</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">1-2 business days</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b border-gray-200">Free Shipping</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">$0.00</td>
-                                    <td class="py-2 px-4 border-b border-gray-200">3-5 business days (orders over $50)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="mb-8">
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Service Areas</h3>
-                    <p class="text-gray-700 mb-4">We currently ship to all 50 U.S. states. International shipping is not available at this time.</p>
-                    <p class="text-gray-700">For local customers in the Portland area, we offer free same-day delivery for orders placed before 12 PM.</p>
-                </div>
-                
-                <div>
-                    <h3 class="heading-font text-xl font-bold text-amber-900 mb-4">Returns & Exchanges</h3>
-                    <p class="text-gray-700 mb-4">We want you to be completely satisfied with your purchase. If you're not happy with your coffee for any reason, please contact us within 30 days of receipt for a full refund or exchange.</p>
-                    <p class="text-gray-700">Due to the perishable nature of our products, we cannot accept returns of opened coffee bags.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Nếu trong kho có bài hát, lập tức hiển thị khu vực "Nhạc của tôi"
+    if (myUploadedSongs.length > 0) {
+        document.getElementById('my-music-container').style.display = 'block';
+        renderMusicSection(myUploadedSongs, 'my-music-list');
+    }
 
-    <!-- Newsletter -->
-    <section class="py-12 px-4 bg-amber-900 text-white">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="heading-font text-2xl md:text-3xl font-bold mb-4">Join Our Coffee Club</h2>
-            <p class="mb-6 max-w-2xl mx-auto">Subscribe to our newsletter and receive 10% off your first order, plus exclusive offers, new product announcements, and brewing tips.</p>
-            <form class="flex flex-col sm:flex-row max-w-md mx-auto sm:max-w-xl">
-                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded sm:rounded-r-none mb-2 sm:mb-0 focus:outline-none text-gray-900">
-                <button type="submit" class="bg-amber-700 px-6 py-3 rounded sm:rounded-l-none font-semibold hover:bg-amber-800 transition-all">Subscribe</button>
-            </form>
-        </div>
-    </section>
+    // 2. KHI ẤN NÚT "ĐĂNG BÀI"
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Ngăn trang reload
 
-    <!-- Footer -->
-    <footer class="bg-amber-950 text-amber-100 py-12 px-4">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="heading-font text-xl font-bold text-white mb-4">Highland Brew</h3>
-                    <p class="mb-4">Artisan coffee roasted to perfection and delivered to your door.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-amber-300 hover:text-white"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4">Shop</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#products" class="hover:text-white transition-all">All Coffees</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Light Roasts</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Medium Roasts</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Dark Roasts</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Gift Cards</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4">Information</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="hover:text-white transition-all">About Us</a></li>
-                        <li><a href="#delivery-info" class="hover:text-white transition-all">Delivery Info</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-all">Terms & Conditions</a></li>
-                        <li><a href="#contact" class="hover:text-white transition-all">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4">Contact</h4>
-                    <address class="not-italic">
-                        <p class="mb-2">123 Coffee Lane</p>
-                        <p class="mb-2">Portland, OR 97201</p>
-                        <p class="mb-2">United States</p>
-                        <p class="mb-2">Phone: (555) 123-4567</p>
-                        <p>Email: info@highlandbrew.com</p>
-                    </address>
-                </div>
-            </div>
-            <div class="border-t border-amber-800 mt-8 pt-8 text-center text-sm">
-                <p>&copy; 2023 Highland Brew. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        const title = document.getElementById('songTitle').value;
+        const artist = document.getElementById('songArtist').value;
+        
+        // Lấy thông tin file người dùng vừa chọn
+        const thumbnailFile = document.getElementById('songThumbnail').files[0];
+        const mediaFile = document.getElementById('songFile').files[0];
 
-    <script>
-        // Toggle mobile menu
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        if (thumbnailFile && mediaFile) {
+            // Trích xuất tên file và ghép thành đường dẫn trỏ tới thư mục cloud_simula
+            const thumbPath = 'cloud_simula/' + thumbnailFile.name;
+            const mediaPath = 'cloud_simula/' + mediaFile.name;
 
-        // Simple navigation between sections
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#cart') {
-                    // Show cart section and hide others
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('cart').classList.remove('hidden');
-                } else if (targetId === '#full-catalog') {
-                    // Show full catalog
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('full-catalog').classList.remove('hidden');
-                } else if (targetId === '#product-detail') {
-                    // Show product detail
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('product-detail').classList.remove('hidden');
-                } else if (targetId === '#checkout') {
-                    // Show checkout
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('checkout').classList.remove('hidden');
-                } else if (targetId === '#order-confirmation') {
-                    // Show order confirmation
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('order-confirmation').classList.remove('hidden');
-                } else if (targetId === '#track-order') {
-                    // Show track order
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('track-order').classList.remove('hidden');
-                } else if (targetId === '#contact') {
-                    // Show contact
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('contact').classList.remove('hidden');
-                } else if (targetId === '#delivery-info') {
-                    // Show delivery info
-                    document.querySelectorAll('section[id]').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    document.getElementById('delivery-info').classList.remove('hidden');
-                } else {
-                    // Default behavior for other links
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+            // Tạo object bài hát mới
+            const newSong = {
+                title: title,
+                artist: artist,
+                img: thumbPath, // vd: cloud_simula/anh-bia.jpg
+                url: mediaPath  // vd: cloud_simula/video.mp4
+            };
 
-        // Add to cart buttons
-        document.querySelectorAll('button:contains("Add to Cart")').forEach(button => {
-            button.addEventListener('click', function() {
-                // In a real app, this would add the product to the cart
-                alert('Product added to cart!');
-            });
-        });
-    </script>
+            // Thêm bài hát lên đầu danh sách
+            myUploadedSongs.unshift(newSong); 
+
+            // LƯU NGƯỢC LẠI VÀO LOCALSTORAGE ĐỂ KHÔNG BỊ MẤT KHI RELOAD
+            localStorage.setItem('myVelodySongs', JSON.stringify(myUploadedSongs));
+
+            // Hiển thị lại giao diện
+            document.getElementById('my-music-container').style.display = 'block';
+            renderMusicSection(myUploadedSongs, 'my-music-list');
+
+            // Đóng Modal và xóa trắng form
+            const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
+            modal.hide();
+            this.reset();
+
+            // Nhắc nhở người dùng
+            alert('Đã lưu thông tin bài hát! Để nhạc phát được, hãy nhớ copy file thật vào thư mục cloud_simula trên máy tính của bạn nhé.');
+        }
+    });
+</script>
+
 </body>
+
 </html>

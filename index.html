@@ -6,40 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyVelody - Music Social</title>
     <link rel="icon" href="navbar_logo.png" type="image/png">
+    <!-- FIX #7: Xóa import trùng lặp — chỉ import 1 lần -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* FIX #3: Carousel responsive thay vì height cứng 550px */
+        .carousel-item {
+            height: clamp(300px, 60vw, 550px);
+        }
+
+        @media (max-width: 768px) {
+            .display-3 {
+                font-size: 1.8rem !important;
+            }
+
+            .carousel-caption .fs-5 {
+                font-size: 0.9rem !important;
+            }
+
+            .carousel-caption {
+                padding-bottom: 1rem !important;
+            }
+
+            /* Kéo các section list ra sát mép màn hình mobile */
+            .container {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-dark text-white">
 
     <div class="d-flex">
-        <aside class="sidebar-left d-flex flex-column p-3 vh-100 sticky-top">
+        <!-- FIX #2: Thêm d-none d-md-flex để ẩn sidebar trên mobile -->
+        <aside class="sidebar-left d-none d-md-flex flex-column p-3 vh-100 sticky-top">
             <a href="login.html">
                 <div class="user-profile-section mb-4 p-3 rounded-3 d-flex align-items-center gap-3">
-
-
                     <div class="avatar-wrapper">
                         <img src="https://ui-avatars.com/api/?name=Guest&background=random" alt="Avatar"
                             class="rounded-circle border border-2 border-purple" style="width: 45px; height: 45px;">
                     </div>
-
                     <div class="user-info overflow-hidden">
                         <h6 class="text-white mb-0 text-truncate">Xin chào, Khách</h6>
                         <small class="text-secondary">@myvelody_user</small>
                     </div>
-
-
                 </div>
             </a>
+
             <nav class="nav flex-column gap-2 mb-4">
                 <a href="index.html" class="nav-link active d-flex align-items-center gap-3">
                     <i class="bi bi-house-door-fill fs-5"></i> <span>Trang chủ</span>
@@ -50,7 +70,6 @@
                 <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
                     <i class="bi bi-search fs-5"></i> <span>Tìm kiếm</span>
                 </a>
-
                 <a href="#" class="nav-link d-flex align-items-center gap-3 text-secondary">
                     <i class="bi bi-bell fs-5"></i> <span>Thông báo</span>
                 </a>
@@ -71,7 +90,8 @@
                     data-bs-target="#uploadModal">
                     <i class="bi bi-cloud-arrow-up-fill fs-5"></i> <span>Đăng nhạc</span>
                 </a>
-                <a href="register.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                <!-- FIX #10: Sửa link Cài đặt trỏ đúng trang -->
+                <a href="settings.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
                     <i class="bi bi-gear fs-5"></i> <span>Cài đặt</span>
                 </a>
             </div>
@@ -84,609 +104,544 @@
 
         <main class="main-content-wrapper flex-grow-1 overflow-x-hidden">
 
+            <div class="container py-3 py-md-5" style="max-width: 1200px;">
 
-            <div class="container py-5" style="max-width: 1200px;">
-                <div id="heroCarousel" class="carousel slide carousel-fade shadow custom-rounded overflow-hidden"
-                    data-bs-ride="carousel">
+                <!-- FIX #1: Xóa thẻ #heroCarousel không có nội dung và không bao giờ đóng -->
+                <!-- Chỉ giữ lại #pricingIntroCarousel -->
+                <div id="pricingIntroCarousel"
+                    class="carousel slide carousel-fade shadow-lg custom-rounded overflow-hidden position-relative"
+                    data-bs-ride="carousel" data-bs-interval="4000">
 
+                    <div class="carousel-inner">
 
-
-                    <div id="pricingIntroCarousel"
-                        class="carousel slide carousel-fade shadow-lg custom-rounded overflow-hidden"
-                        data-bs-ride="carousel" data-bs-interval="4000">
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, #2862cd 0%, #000000 400%);">
-                                </div>
-
-                                <div
-                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
-                                        week</span>
-
-                                    <h2 class="display-3 fw-bold text-white mb-3">
-                                        Lạ <span style="color:#2657b2">Lùng</span>
-                                    </h2>
-
-                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                        style="max-width: 500px;">
-                                        vũ.
-                                    </p>
-                                </div>
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, #2862cd 0%, #000000 400%);">
                             </div>
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, #720c0c 0%, #000000 400%);">
-                                </div>
-
-                                <div
-                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
-                                        week</span>
-
-                                    <h2 class="display-3 fw-bold text-white mb-3"> Chạy
-                                        <span style="color:#cc1d1d">Ngay Đi</span>
-                                    </h2>
-
-                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                        style="max-width: 500px;">
-                                        Sơn Tùng-MTP
-                                    </p>
-                                </div>
+                            <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the week</span>
+                                <h2 class="display-3 fw-bold text-white mb-3">
+                                    Lạ <span style="color:#2657b2">Lùng</span>
+                                </h2>
+                                <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                    vũ.
+                                </p>
                             </div>
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, #18c145 0%, #000000 400%);">
-                                </div>
-
-                                <div
-                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the
-                                        week</span>
-
-                                    <h2 class="display-3 fw-bold text-white mb-3">
-                                        Sóng <span style="color:#97d412">Gió</span>
-                                    </h2>
-
-                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                        style="max-width: 500px;">
-                                        J97
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, #181818 0%, #000000 400%);">
-                                </div>
-
-                                <div
-                                    class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Bài viết trong
-                                        tuần</span>
-
-                                    <h2 class="display-3 fw-bold text-white mb-3">
-                                        Nghệ sĩ: <span style="color:#4b4b4b">Nghệ và Sĩ.</span>
-                                    </h2>
-
-                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                        style="max-width: 500px;">
-                                        Tác giả: Trần Võ
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, #e808f0 0%, #000000 400%);">
-                                </div>
-
-                                <a href="plan.html">
-                                    <div
-                                        class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                        <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Khuyết mãi
-                                            tốt
-                                            nhất</span>
-
-
-
-                                        <h2 class="display-3 fw-bold text-white mb-3">
-                                            Giảm giá lên đến <span style="color:#c709c4">60%</span>
-                                        </h2>
-
-                                        <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                            style="max-width: 500px;">
-                                            Dành cho gói <span style="color:#c709c4">PLUS</span>
-                                            </h2>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="carousel-item" style="height: 550px;">
-                                <div class="w-100 h-100"
-                                    style="background: radial-gradient(circle at center, gold 0%, #000000 400%);"></div>
-
-                                <a href="plan.html"> <!--400% -> 0% Đen hoàn toàn-->
-                                    <div
-                                        class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
-                                        <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Gói tốt nhất
-                                            dành cho
-                                            người sành điệu</span>
-
-                                        <h2 class="display-3 fw-bold text-white mb-3">
-                                            Trạm đỉnh cùng <span class="text-warning">MAX</span>
-                                        </h2>
-
-                                        <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light"
-                                            style="max-width: 500px;">
-                                            Một trải nghiệm <span class="text-warning">tuyệt đỉnh.</span>
-                                            </h2>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-
-
-                            <div class="carousel-item active" style="height: 550px;">
-                                <img src="tlinh-1-1692242064961531721539.jpg" class="position-absolute w-100 h-100"
-                                    style="object-fit: cover; top: 0; left: 0; z-index: 1;" alt="Background">
-
-                                <div class="position-absolute w-100 h-100" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)); 
-                top: 0; left: 0; z-index: 2;">
-                                </div>
-
-                                <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5"
-                                    style="position: relative; z-index: 3;">
-
-                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Album of the
-                                        year</span>
-
-                                    <h2 class="display-3 fw-semibold mb-3">
-                                        <span style=" color:#ed41f9">Ái</span>
-                                    </h2>
-
-                                    <p class="fs-5 text-light mx-auto mb-5 fw-semibold" style="max-width: 500px;">
-                                        tlinh
-                                    </p>
-                                </div>
-                            </div>
-
-
-
                         </div>
-                        <button class="carousel-control-prev custom-nav-btn" type="button"
-                            data-bs-target="#pricingIntroCarousel" data-bs-slide="prev">
-                            <div class="nav-circle">
-                                <i class="bi bi-chevron-left"></i>
+
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, #720c0c 0%, #000000 400%);">
                             </div>
-                        </button>
-
-                        <button class="carousel-control-next custom-nav-btn" type="button"
-                            data-bs-target="#pricingIntroCarousel" data-bs-slide="next">
-                            <div class="nav-circle">
-                                <i class="bi bi-chevron-right"></i>
+                            <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the week</span>
+                                <h2 class="display-3 fw-bold text-white mb-3">Chạy
+                                    <span style="color:#cc1d1d">Ngay Đi</span>
+                                </h2>
+                                <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                    Sơn Tùng-MTP
+                                </p>
                             </div>
-                        </button>
-                    </div>
+                        </div>
 
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, #18c145 0%, #000000 400%);">
+                            </div>
+                            <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Song of the week</span>
+                                <h2 class="display-3 fw-bold text-white mb-3">
+                                    Sóng <span style="color:#97d412">Gió</span>
+                                </h2>
+                                <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                    J97
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="position-absolute top-0 start-0 p-4 z-3">
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, #181818 0%, #000000 400%);">
+                            </div>
+                            <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Bài viết trong tuần</span>
+                                <h2 class="display-3 fw-bold text-white mb-3">
+                                    Nghệ sĩ: <span style="color:#4b4b4b">Nghệ và Sĩ.</span>
+                                </h2>
+                                <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                    Tác giả: Trần Võ
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- FIX #6 + #9: Sửa thẻ </h2> lạc bên trong <p> và lỗi chính tả "Khuyết" → "Khuyến" -->
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, #e808f0 0%, #000000 400%);">
+                            </div>
+                            <a href="plan.html">
+                                <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Khuyến mãi tốt nhất</span>
+                                    <h2 class="display-3 fw-bold text-white mb-3">
+                                        Giảm giá lên đến <span style="color:#c709c4">60%</span>
+                                    </h2>
+                                    <!-- FIX #6: Xóa </h2> lạc bên trong <p> -->
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                        Dành cho gói <span style="color:#c709c4">PLUS</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- FIX #6 + #9: Sửa thẻ </h2> lạc và "Trạm" → "Trải nghiệm" -->
+                        <div class="carousel-item">
+                            <div class="w-100 h-100"
+                                style="background: radial-gradient(circle at center, gold 0%, #000000 400%);">
+                            </div>
+                            <a href="plan.html">
+                                <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5">
+                                    <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Gói tốt nhất dành cho người sành điệu</span>
+                                    <h2 class="display-3 fw-bold text-white mb-3">
+                                        Trải nghiệm đỉnh cùng <span class="text-warning">MAX</span>
+                                    </h2>
+                                    <!-- FIX #6: Xóa </h2> lạc bên trong <p> -->
+                                    <p class="fs-5 text-light opacity-75 mx-auto mb-5 fw-light" style="max-width: 500px;">
+                                        Một trải nghiệm <span class="text-warning">tuyệt đỉnh.</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="carousel-item active">
+                            <img src="tlinh-1-1692242064961531721539.jpg" class="position-absolute w-100 h-100"
+                                style="object-fit: cover; top: 0; left: 0; z-index: 1;" alt="Background">
+                            <div class="position-absolute w-100 h-100"
+                                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)); top: 0; left: 0; z-index: 2;">
+                            </div>
+                            <div class="carousel-caption h-100 d-flex flex-column justify-content-center align-items-center pb-5"
+                                style="position: relative; z-index: 3;">
+                                <span class="text-uppercase fw-bold text-white mb-3 tracking-wide">Album of the year</span>
+                                <h2 class="display-3 fw-semibold mb-3">
+                                    <span style="color:#ed41f9">Ái</span>
+                                </h2>
+                                <p class="fs-5 text-light mx-auto mb-5 fw-semibold" style="max-width: 500px;">
+                                    tlinh
+                                </p>
+                            </div>
+                        </div>
+
+                    </div><!-- end .carousel-inner -->
+
+                    <button class="carousel-control-prev custom-nav-btn" type="button"
+                        data-bs-target="#pricingIntroCarousel" data-bs-slide="prev">
+                        <div class="nav-circle"><i class="bi bi-chevron-left"></i></div>
+                    </button>
+                    <button class="carousel-control-next custom-nav-btn" type="button"
+                        data-bs-target="#pricingIntroCarousel" data-bs-slide="next">
+                        <div class="nav-circle"><i class="bi bi-chevron-right"></i></div>
+                    </button>
+
+                    <!-- Logo overlay -->
+                    <div class="position-absolute top-0 start-0 p-3 p-md-4 z-3">
                         <a href="index.html">
-                            <!-- Logo -->
-                            <img src="navbar_logo_jpg.png" alt="Logo" style="width: 200px; height: auto;">
+                            <img src="navbar_logo_jpg.png" alt="Logo" style="width: 140px; height: auto;">
                         </a>
                     </div>
-                    <div class="position-absolute top-0 end-0 p-4 z-3 d-flex align-items-center gap-3">
-                        <a href="login.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+
+                    <!-- FIX #4: Nút header responsive, ẩn bớt trên màn nhỏ -->
+                    <div class="position-absolute top-0 end-0 p-2 p-md-4 z-3 d-flex align-items-center gap-1 gap-md-3">
+                        <a href="login.html" class="btn btn-hero-outline rounded-pill px-2 px-md-4 btn-sm fw-bold">
                             Đăng nhập
                         </a>
-
-                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-2 px-md-4 btn-sm fw-bold d-none d-sm-inline">
                             Đăng ký
                         </a>
-
-                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-4 fw-bold">
+                        <a href="register.html" class="btn btn-hero-outline rounded-pill px-2 px-md-4 btn-sm fw-bold d-none d-md-inline">
                             Đăng nhạc
                         </a>
                     </div>
 
+                </div><!-- end #pricingIntroCarousel -->
 
-
-
-                    <div id="main-nav-wrapper">
-                        <div id="main-nav" class="py-4 transition-all">
-                            <div class="container">
-                                <div class="row align-items-center justify-content-center" id="nav-row">
-
-                                    <div class="col-md-8 col-12 transition-all" id="search-col">
-                                        <div class="search-box position-relative">
-                                            <i
-                                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
-                                            <input type="text" id="searchInput"
-                                                class="text-white bg-dark form-control search-input ps-5 py-3 shadow-none border-0"
-                                                placeholder="Bạn muốn nghe gì? (Tên bài hát, nghệ sĩ...)">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--  -->
-                    <div class="container mt-4" id="my-music-container" style="display: none;">
-                        <h2 class="text-white mb-4"><i class="bi bi-person-lines-fill text-purple me-2"></i>Nhạc của tôi
-                        </h2>
-                        <div id="my-music-list" class="scroll-container">
-                        </div>
-                    </div>
-
-                    <div class="container mt-5">
-                        <h2 class="text-white mb-4">Dành cho bạn</h2>
-                        <div id="music-list" class="scroll-container"></div>
-                    </div>
-
-                    <div class="container mt-5">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h2 class="text-white"><i class="bi bi-fire text-warning me-2"></i>Bảng xếp hạng Trending
-                            </h2>
-                            <a href="#" class="text-secondary text-decoration-none small">Xem tất cả</a>
-                        </div>
-                        <div id="trending-list" class="scroll-container"></div>
-                    </div>
-
-                    <div class="container mt-5">
-                        <h3 class=" mb-4">Nghệ sĩ trên nền tảng</h3>
-                        <div id="artist-list" class="scroll-container"></div>
-                    </div>
-
-
-
-
-
-
-                    <footer class="custom-footer pt-5 pb-4 mt-5">
+                <!-- Thanh tìm kiếm -->
+                <div id="main-nav-wrapper">
+                    <div id="main-nav" class="py-4 transition-all">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 mb-4">
-                                    <h5 class="text-white fw-bold mb-3">MyVelody</h5>
-                                    <p class="text-secondary small">Mạng xã hội âm nhạc kết nối mọi người.</p>
-                                </div>
-
-                                <div class="col-md-2 col-6 mb-4">
-                                    <h6 class="text-white fw-bold mb-3">Sản phẩm</h6>
-                                    <ul class="list-unstyled">
-                                        <li><a href="#" class="footer-link">Music App</a></li>
-                                        <li><a href="#" class="footer-link">Gói Premium</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-2 col-6 mb-4">
-                                    <h6 class="text-white fw-bold mb-3">Công ty</h6>
-                                    <ul class="list-unstyled">
-                                        <li><a href="aboutus.html" class="footer-link">Về chúng tôi</a></li>
-                                        <li><a href="#" class="footer-link">Liên hệ</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <hr class="footer-divider border-secondary">
-
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <p class="text-secondary small mb-0">© 2026 MyVelody. All rights reserved.</p>
+                            <div class="row align-items-center justify-content-center" id="nav-row">
+                                <div class="col-md-8 col-12 transition-all" id="search-col">
+                                    <div class="search-box position-relative">
+                                        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                                        <input type="text" id="searchInput"
+                                            class="text-white bg-dark form-control search-input ps-5 py-3 shadow-none border-0"
+                                            placeholder="Bạn muốn nghe gì? (Tên bài hát, nghệ sĩ...)">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </footer>
+                    </div>
+                </div>
+
+                <!-- Nhạc của tôi -->
+                <div class="container mt-4" id="my-music-container" style="display: none;">
+                    <h2 class="text-white mb-4"><i class="bi bi-person-lines-fill text-purple me-2"></i>Nhạc của tôi</h2>
+                    <div id="my-music-list" class="scroll-container"></div>
+                </div>
+
+                <!-- Dành cho bạn -->
+                <div class="container mt-5">
+                    <h2 class="text-white mb-4">Dành cho bạn</h2>
+                    <div id="music-list" class="scroll-container"></div>
+                </div>
+
+                <!-- Trending -->
+                <div class="container mt-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-white"><i class="bi bi-fire text-warning me-2"></i>Bảng xếp hạng Trending</h2>
+                        <a href="#" class="text-secondary text-decoration-none small">Xem tất cả</a>
+                    </div>
+                    <div id="trending-list" class="scroll-container"></div>
+                </div>
+
+                <!-- Nghệ sĩ -->
+                <div class="container mt-5">
+                    <h3 class="mb-4">Nghệ sĩ trên nền tảng</h3>
+                    <div id="artist-list" class="scroll-container"></div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="custom-footer pt-5 pb-4 mt-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <h5 class="text-white fw-bold mb-3">MyVelody</h5>
+                                <p class="text-secondary small">Mạng xã hội âm nhạc kết nối mọi người.</p>
+                            </div>
+                            <div class="col-md-2 col-6 mb-4">
+                                <h6 class="text-white fw-bold mb-3">Sản phẩm</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="footer-link">Music App</a></li>
+                                    <li><a href="#" class="footer-link">Gói Premium</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-2 col-6 mb-4">
+                                <h6 class="text-white fw-bold mb-3">Công ty</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="aboutus.html" class="footer-link">Về chúng tôi</a></li>
+                                    <li><a href="#" class="footer-link">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr class="footer-divider border-secondary">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <p class="text-secondary small mb-0">© 2026 MyVelody. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            </div><!-- end .container -->
+
+        </main>
+    </div><!-- end .d-flex -->
 
 
-
-
-
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-                    </script>
-
-                    <script>
-
-                        document.addEventListener("DOMContentLoaded", function () {
-                            const nav = document.getElementById("main-nav");
-                            const navWrapper = document.getElementById("main-nav-wrapper");
-
-                            // Lấy vị trí ban đầu của thanh tìm kiếm (offset top)
-                            // navWrapper.offsetTop sẽ tính khoảng cách từ đầu trang đến thanh tìm kiếm
-                            const stickyPoint = navWrapper.offsetTop;
-
-                            window.onscroll = function () {
-                                handleStickyNav();
-                            };
-
-                            function handleStickyNav() {
-                                if (window.pageYOffset >= stickyPoint) {
-                                    // Thêm class sticky
-                                    nav.classList.add("sticky");
-
-                                    // Giữ chiều cao cho wrapper để tránh nội dung bên dưới bị giật lên (layout shift)
-                                    navWrapper.style.height = nav.offsetHeight + "px";
-                                } else {
-                                    // Gỡ class sticky
-                                    nav.classList.remove("sticky");
-                                    navWrapper.style.height = "auto";
-                                }
-                            }
-                        });
-
-                        //
-
-
-                        //
-
-                        const songs = [
-                            { title: "Making My Way", artist: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=1", url: "cloud_simula/SON TUNG M-TP - MAKING MY WAY - OFFICIAL VISUALIZER.mp3" },
-                            { title: "Nấu Ăn Cho Em", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=2" },
-                            { title: "Waiting For You", artist: "MONO", img: "https://picsum.photos/300/300?random=3" },
-                            { title: "À Lôi", artist: "Double2T", img: "https://picsum.photos/300/300?random=4" },
-                            { title: "Cắt Đôi Nỗi Sầu", artist: "Tăng Duy Tân", img: "https://picsum.photos/300/300?random=5" },
-                            { title: "id 07201", artist: "W/n", img: "https://picsum.photos/300/300?random=6" },
-                            { title: "Bật Tình Yêu Lên", artist: "Hòa Minzy", img: "https://picsum.photos/300/300?random=7" },
-                            { title: "Nếu Lúc Đó", artist: "tlinh", img: "https://picsum.photos/300/300?random=8" },
-                            { title: "Vũ Trụ Có Anh", artist: "Phương Mỹ Chi", img: "https://picsum.photos/300/300?random=9" },
-                            { title: "Mưa Tháng Sáu", artist: "Văn Mai Hương", img: "https://picsum.photos/300/300?random=10" },
-                            { title: "Hit Me Up", artist: "Binz", img: "https://picsum.photos/300/300?random=26" },
-                            { title: "Ngủ Một Mình", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=27" },
-                            { title: "Ưng Quá Chừng", artist: "AMEE", img: "https://picsum.photos/300/300?random=28" },
-                            { title: "Đưa Em Về Nhà", artist: "GREY D", img: "https://picsum.photos/300/300?random=29" },
-                            { title: "Từng Quen", artist: "Wren Evans", img: "https://picsum.photos/300/300?random=30" },
-                            { title: "Ngày Mai Người Ta Lấy Chồng", artist: "Anh Tú", img: "https://picsum.photos/300/300?random=31" },
-                            { title: "Em Xinh", artist: "MONO", img: "https://picsum.photos/300/300?random=32" },
-                            { title: "Dâu Thiên Hạ", artist: "Suboi", img: "https://picsum.photos/300/300?random=33" }
-                        ];
-
-                        const trendingSongs = [
-                            { title: "Hào Quang", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=11" },
-                            { title: "Đừng Làm Nó Phức Tạp", artist: "tlinh", img: "https://picsum.photos/300/300?random=12" },
-                            { title: "Exit Sign", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=13" },
-                            { title: "Thiên Lý Ơi", artist: "Jack - J97", img: "https://picsum.photos/300/300?random=14" },
-                            { title: "Sau Lời Từ Khước", artist: "Phan Mạnh Quỳnh", img: "https://picsum.photos/300/300?random=15" },
-                            { title: "Kim Phút Kim Giờ", artist: "Anh Trai Vượt Ngàn Chông Gai", img: "https://picsum.photos/300/300?random=34" },
-                            { title: "Hút Pin", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=35" },
-                            { title: "Lối Nhỏ", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=36" },
-                            { title: "Vì Anh Đâu Biết", artist: "Madihu ft. Vũ", img: "https://picsum.photos/300/300?random=37" },
-                            { title: "ThichThich", artist: "Phương Ly", img: "https://picsum.photos/300/300?random=38" }
-                        ];
-
-                        const artists = [
-                            { name: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=21" },
-                            { name: "Đen Vâu", img: "https://picsum.photos/300/300?random=22" },
-                            { name: "tlinh", img: "https://picsum.photos/300/300?random=23" },
-                            { name: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=24" },
-                            { name: "MONO", img: "https://picsum.photos/300/300?random=25" },
-                            { name: "Mỹ Tâm", img: "https://picsum.photos/300/300?random=39" },
-                            { name: "Hà Anh Tuấn", img: "https://picsum.photos/300/300?random=40" },
-                            { name: "Soobin", img: "https://picsum.photos/300/300?random=41" },
-                            { name: "Binz", img: "https://picsum.photos/300/300?random=42" },
-                            { name: "Wren Evans", img: "https://picsum.photos/300/300?random=43" },
-                            { name: "MCK", img: "https://picsum.photos/300/300?random=44" },
-                            { name: "Grey D", img: "https://picsum.photos/300/300?random=45" },
-                            { name: "Hoàng Thùy Linh", img: "https://picsum.photos/300/300?random=46" },
-                            { name: "Karik", img: "https://picsum.photos/300/300?random=47" },
-                            { name: "Bích Phương", img: "https://picsum.photos/300/300?random=48" }
-                        ];
-                        // Hàm render cho Nhạc và Trending
-                        const renderMusicSection = (data, containerId, isTrending = false) => {
-                            const container = document.getElementById(containerId);
-                            if (!container) return;
-                            container.innerHTML = "";
-
-                            data.forEach((song, index) => {
-                                // Chuyển object song thành string để truyền vào function
-                                const songData = JSON.stringify(song).replace(/"/g, '&quot;');
-
-                                const songHTML = `
-        <div class="music-item" onclick="playMusic(${songData})"> 
-            <div class="music-card p-0 overflow-hidden position-relative border-0 h-100 shadow-sm" style="cursor: pointer;">
-                ${isTrending ? `<div class="rank-badge">#${index + 1}</div>` : ''}
-                <img src="${song.img}" class="img-fluid w-100" alt="${song.title}">
-                <div class="card-overlay position-absolute bottom-0 start-0 w-100 p-3">
-                    <i class="bi bi-play-circle-fill fs-2 text-purple play-icon-hover"></i>
-                    <h6 class="text-white mb-0 fw-bold text-truncate">${song.title}</h6>
-                    <p class="text-light small mb-0 opacity-75 text-truncate">${song.artist}</p>
+    <!-- FIX #5: Music Player compact trên mobile -->
+    <div class="fixed-bottom bg-dark border-top border-secondary p-2 d-none" id="music-player">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-4 col-md-3 d-flex align-items-center gap-2">
+                    <img id="player-img" src="" class="rounded" style="width: 45px; height: 45px; object-fit: cover; flex-shrink: 0;">
+                    <div class="overflow-hidden d-none d-md-block">
+                        <h6 id="player-title" class="mb-0 text-white text-truncate" style="font-size: 0.95rem;">Tên bài hát</h6>
+                        <small id="player-artist" class="text-secondary text-truncate d-block">Nghệ sĩ</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-6 text-center">
+                    <audio id="main-audio" controls class="w-100 custom-audio-player">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="col-2 col-md-3 text-end">
+                    <button class="btn btn-link text-secondary" onclick="closePlayer()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
             </div>
-        </div>`;
-                                container.innerHTML += songHTML;
-                            });
-                        };
+        </div>
+    </div>
 
-                        // Hàm render cho Nghệ sĩ
-                        const renderArtistSection = (data, containerId) => {
-                            const container = document.getElementById(containerId);
-                            if (!container) return;
-                            container.innerHTML = "";
+    <!-- FIX #2: Bottom navigation cho mobile -->
+    <nav class="d-flex d-md-none fixed-bottom bg-dark border-top border-secondary justify-content-around py-2"
+        id="mobile-bottom-nav" style="bottom: 0; z-index: 1000;">
+        <a href="index.html" class="text-white text-center px-2 text-decoration-none">
+            <i class="bi bi-house-door-fill fs-5 d-block"></i>
+            <span style="font-size: 10px;">Home</span>
+        </a>
+        <a href="#" class="text-secondary text-center px-2 text-decoration-none">
+            <i class="bi bi-search fs-5 d-block"></i>
+            <span style="font-size: 10px;">Tìm kiếm</span>
+        </a>
+        <a href="#" class="text-secondary text-center px-2 text-decoration-none" data-bs-toggle="modal"
+            data-bs-target="#uploadModal">
+            <i class="bi bi-cloud-arrow-up-fill fs-5 d-block"></i>
+            <span style="font-size: 10px;">Đăng nhạc</span>
+        </a>
+        <a href="#" class="text-secondary text-center px-2 text-decoration-none">
+            <i class="bi bi-collection-play fs-5 d-block"></i>
+            <span style="font-size: 10px;">Thư viện</span>
+        </a>
+        <a href="login.html" class="text-secondary text-center px-2 text-decoration-none">
+            <i class="bi bi-person fs-5 d-block"></i>
+            <span style="font-size: 10px;">Tài khoản</span>
+        </a>
+    </nav>
 
-                            data.forEach(artist => {
-                                const artistHTML = `
-            <div class="artist-item"> 
-                <div class="artist-card shadow-sm">
-                    <img src="${artist.img}" class="artist-img" alt="${artist.name}">
-                    
-                    <div class="artist-overlay">
-                        <h6 class="artist-overlay-name text-truncate">${artist.name}</h6>
-                        <p class="artist-overlay-role mb-0 text-truncate">Nghệ sĩ</p>
-                    </div>
+    <!-- Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="uploadModalLabel">Đăng tác phẩm mới</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-            </div>`;
-                                container.innerHTML += artistHTML;
-                            });
-                        };
-                        // Gọi hàm hiển thị như cũ
-                        renderArtistSection(artists, 'artist-list');
-                        renderMusicSection(songs, 'music-list');
-                        renderMusicSection(trendingSongs, 'trending-list', true);
-                    </script>
-
-
-                    <div class="fixed-bottom bg-dark border-top border-secondary p-2 d-none" id="music-player">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-md-3 d-flex align-items-center gap-3">
-                                    <!-- size -->
-                                    <img id="player-img" src="" class="rounded"
-                                        style="width: 150px; height: 150px; object-fit: cover;">
-                                    <div class="overflow-hidden">
-                                        <h4 id="player-title" class="mb-0 text-white text-truncate"
-                                            style="font-size: 1.3rem;">Tên bài hát</h4>
-                                        <h5 id="player-artist" class="text-secondary text-truncate">Nghệ sĩ</h5>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 text-center">
-                                    <audio id="main-audio" controls class="w-100 custom-audio-player">
-                                        <source src="" type="audio/mpeg">
-                                    </audio>
-                                </div>
-                                <div class="col-md-3 text-end">
-                                    <button class="btn btn-link text-secondary" onclick="closePlayer()"><i
-                                            class="bi bi-x-lg"></i></button>
-                                </div>
-                            </div>
+                <div class="modal-body">
+                    <form id="uploadForm">
+                        <div class="mb-3">
+                            <label for="songTitle" class="form-label">Tên bài hát</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="songTitle" required placeholder="Nhập tên bài hát...">
                         </div>
-                    </div>
-                    <script>
-                        function playMusic(song) {
-                            const player = document.getElementById('music-player');
-                            const audio = document.getElementById('main-audio');
-                            const title = document.getElementById('player-title');
-                            const artist = document.getElementById('player-artist');
-                            const img = document.getElementById('player-img');
-
-                            // Hiện thanh player
-                            player.classList.remove('d-none');
-
-                            // Cập nhật thông tin
-                            title.innerText = song.title;
-                            artist.innerText = song.artist;
-                            img.src = song.img;
-
-                            // Cập nhật nguồn nhạc và chơi
-                            audio.src = song.url || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Fallback nếu thiếu link
-                            audio.play();
-                        }
-
-                        function closePlayer() {
-                            const player = document.getElementById('music-player');
-                            const audio = document.getElementById('main-audio');
-                            audio.pause();
-                            player.classList.add('d-none');
-                        }
-                    </script>
-
-
-                    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content bg-dark text-white border-secondary">
-                                <div class="modal-header border-secondary">
-                                    <h5 class="modal-title" id="uploadModalLabel">Đăng tác phẩm mới</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="uploadForm">
-                                        <div class="mb-3">
-                                            <label for="songTitle" class="form-label">Tên bài hát</label>
-                                            <input type="text" class="form-control bg-dark text-white border-secondary"
-                                                id="songTitle" required placeholder="Nhập tên bài hát...">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="songArtist" class="form-label">Nghệ sĩ / Ca sĩ</label>
-                                            <input type="text" class="form-control bg-dark text-white border-secondary"
-                                                id="songArtist" required placeholder="Nhập tên nghệ sĩ...">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="songThumbnail" class="form-label">Ảnh bìa (Thumbnail)</label>
-                                            <input type="file" class="form-control bg-dark text-white border-secondary"
-                                                id="songThumbnail" accept="image/*" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="songFile" class="form-label">File âm thanh / Video
-                                                (MP3/MP4)</label>
-                                            <input type="file" class="form-control bg-dark text-white border-secondary"
-                                                id="songFile" accept="audio/*, video/mp4" required>
-                                            <small class="text-secondary">File sẽ được đưa vào thư mục cloud_simula (Cần
-                                                backend để lưu trữ thực tế).</small>
-                                        </div>
-                                        <div class="d-grid gap-2 mt-4">
-                                            <button type="submit" class="btn btn-purple fw-bold"
-                                                style="background-color: #a224d7; color: white;">Đăng bài</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                        <div class="mb-3">
+                            <label for="songArtist" class="form-label">Nghệ sĩ / Ca sĩ</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="songArtist" required placeholder="Nhập tên nghệ sĩ...">
                         </div>
-                    </div>
+                        <div class="mb-3">
+                            <label for="songThumbnail" class="form-label">Ảnh bìa (Thumbnail)</label>
+                            <input type="file" class="form-control bg-dark text-white border-secondary"
+                                id="songThumbnail" accept="image/*" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="songFile" class="form-label">File âm thanh / Video (MP3/MP4)</label>
+                            <input type="file" class="form-control bg-dark text-white border-secondary"
+                                id="songFile" accept="audio/*, video/mp4" required>
+                            <small class="text-secondary">File sẽ được đưa vào thư mục cloud_simula (Cần backend để lưu trữ thực tế).</small>
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-purple fw-bold"
+                                style="background-color: #a224d7; color: white;">Đăng bài</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-    // 1. KHI VỪA MỞ WEB HOẶC RELOAD: Đọc dữ liệu từ localStorage
-    // Nếu chưa có dữ liệu thì gán là một mảng rỗng []
-    let myUploadedSongs = JSON.parse(localStorage.getItem('myVelodySongs')) || [];
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    // Nếu trong kho có bài hát, lập tức hiển thị khu vực "Nhạc của tôi"
-    if (myUploadedSongs.length > 0) {
-        document.getElementById('my-music-container').style.display = 'block';
-        renderMusicSection(myUploadedSongs, 'my-music-list');
-    }
+    <script>
+        // =============================================
+        // STICKY SEARCH BAR
+        // =============================================
+        document.addEventListener("DOMContentLoaded", function () {
+            const nav = document.getElementById("main-nav");
+            const navWrapper = document.getElementById("main-nav-wrapper");
+            const stickyPoint = navWrapper.offsetTop;
 
-    // 2. KHI ẤN NÚT "ĐĂNG BÀI"
-    document.getElementById('uploadForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Ngăn trang reload
-
-        const title = document.getElementById('songTitle').value;
-        const artist = document.getElementById('songArtist').value;
-        
-        // Lấy thông tin file người dùng vừa chọn
-        const thumbnailFile = document.getElementById('songThumbnail').files[0];
-        const mediaFile = document.getElementById('songFile').files[0];
-
-        if (thumbnailFile && mediaFile) {
-            // Trích xuất tên file và ghép thành đường dẫn trỏ tới thư mục cloud_simula
-            const thumbPath = 'cloud_simula/' + thumbnailFile.name;
-            const mediaPath = 'cloud_simula/' + mediaFile.name;
-
-            // Tạo object bài hát mới
-            const newSong = {
-                title: title,
-                artist: artist,
-                img: thumbPath, // vd: cloud_simula/anh-bia.jpg
-                url: mediaPath  // vd: cloud_simula/video.mp4
+            window.onscroll = function () {
+                if (window.pageYOffset >= stickyPoint) {
+                    nav.classList.add("sticky");
+                    navWrapper.style.height = nav.offsetHeight + "px";
+                } else {
+                    nav.classList.remove("sticky");
+                    navWrapper.style.height = "auto";
+                }
             };
+        });
 
-            // Thêm bài hát lên đầu danh sách
-            myUploadedSongs.unshift(newSong); 
+        // =============================================
+        // DỮ LIỆU BÀI HÁT
+        // =============================================
+        const songs = [
+            { title: "Making My Way", artist: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=1", url: "cloud_simula/SON TUNG M-TP - MAKING MY WAY - OFFICIAL VISUALIZER.mp3" },
+            { title: "Nấu Ăn Cho Em", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=2" },
+            { title: "Waiting For You", artist: "MONO", img: "https://picsum.photos/300/300?random=3" },
+            { title: "À Lôi", artist: "Double2T", img: "https://picsum.photos/300/300?random=4" },
+            { title: "Cắt Đôi Nỗi Sầu", artist: "Tăng Duy Tân", img: "https://picsum.photos/300/300?random=5" },
+            { title: "id 07201", artist: "W/n", img: "https://picsum.photos/300/300?random=6" },
+            { title: "Bật Tình Yêu Lên", artist: "Hòa Minzy", img: "https://picsum.photos/300/300?random=7" },
+            { title: "Nếu Lúc Đó", artist: "tlinh", img: "https://picsum.photos/300/300?random=8" },
+            { title: "Vũ Trụ Có Anh", artist: "Phương Mỹ Chi", img: "https://picsum.photos/300/300?random=9" },
+            { title: "Mưa Tháng Sáu", artist: "Văn Mai Hương", img: "https://picsum.photos/300/300?random=10" },
+            { title: "Hit Me Up", artist: "Binz", img: "https://picsum.photos/300/300?random=26" },
+            { title: "Ngủ Một Mình", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=27" },
+            { title: "Ưng Quá Chừng", artist: "AMEE", img: "https://picsum.photos/300/300?random=28" },
+            { title: "Đưa Em Về Nhà", artist: "GREY D", img: "https://picsum.photos/300/300?random=29" },
+            { title: "Từng Quen", artist: "Wren Evans", img: "https://picsum.photos/300/300?random=30" },
+            { title: "Ngày Mai Người Ta Lấy Chồng", artist: "Anh Tú", img: "https://picsum.photos/300/300?random=31" },
+            { title: "Em Xinh", artist: "MONO", img: "https://picsum.photos/300/300?random=32" },
+            { title: "Dâu Thiên Hạ", artist: "Suboi", img: "https://picsum.photos/300/300?random=33" }
+        ];
 
-            // LƯU NGƯỢC LẠI VÀO LOCALSTORAGE ĐỂ KHÔNG BỊ MẤT KHI RELOAD
-            localStorage.setItem('myVelodySongs', JSON.stringify(myUploadedSongs));
+        const trendingSongs = [
+            { title: "Hào Quang", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=11" },
+            { title: "Đừng Làm Nó Phức Tạp", artist: "tlinh", img: "https://picsum.photos/300/300?random=12" },
+            { title: "Exit Sign", artist: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=13" },
+            { title: "Thiên Lý Ơi", artist: "Jack - J97", img: "https://picsum.photos/300/300?random=14" },
+            { title: "Sau Lời Từ Khước", artist: "Phan Mạnh Quỳnh", img: "https://picsum.photos/300/300?random=15" },
+            { title: "Kim Phút Kim Giờ", artist: "Anh Trai Vượt Ngàn Chông Gai", img: "https://picsum.photos/300/300?random=34" },
+            { title: "Hút Pin", artist: "Anh Trai Say Hi", img: "https://picsum.photos/300/300?random=35" },
+            { title: "Lối Nhỏ", artist: "Đen Vâu", img: "https://picsum.photos/300/300?random=36" },
+            { title: "Vì Anh Đâu Biết", artist: "Madihu ft. Vũ", img: "https://picsum.photos/300/300?random=37" },
+            { title: "ThichThich", artist: "Phương Ly", img: "https://picsum.photos/300/300?random=38" }
+        ];
 
-            // Hiển thị lại giao diện
+        const artists = [
+            { name: "Sơn Tùng M-TP", img: "https://picsum.photos/300/300?random=21" },
+            { name: "Đen Vâu", img: "https://picsum.photos/300/300?random=22" },
+            { name: "tlinh", img: "https://picsum.photos/300/300?random=23" },
+            { name: "HIEUTHUHAI", img: "https://picsum.photos/300/300?random=24" },
+            { name: "MONO", img: "https://picsum.photos/300/300?random=25" },
+            { name: "Mỹ Tâm", img: "https://picsum.photos/300/300?random=39" },
+            { name: "Hà Anh Tuấn", img: "https://picsum.photos/300/300?random=40" },
+            { name: "Soobin", img: "https://picsum.photos/300/300?random=41" },
+            { name: "Binz", img: "https://picsum.photos/300/300?random=42" },
+            { name: "Wren Evans", img: "https://picsum.photos/300/300?random=43" },
+            { name: "MCK", img: "https://picsum.photos/300/300?random=44" },
+            { name: "Grey D", img: "https://picsum.photos/300/300?random=45" },
+            { name: "Hoàng Thùy Linh", img: "https://picsum.photos/300/300?random=46" },
+            { name: "Karik", img: "https://picsum.photos/300/300?random=47" },
+            { name: "Bích Phương", img: "https://picsum.photos/300/300?random=48" }
+        ];
+
+        // =============================================
+        // FIX #8: Dùng data-attribute thay vì onclick JSON
+        // =============================================
+        const renderMusicSection = (data, containerId, isTrending = false) => {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = "";
+
+            data.forEach((song, index) => {
+                const div = document.createElement('div');
+                div.className = 'music-item';
+                div.dataset.song = JSON.stringify(song); // An toàn hơn onclick
+                div.style.cursor = 'pointer';
+                div.innerHTML = `
+                    <div class="music-card p-0 overflow-hidden position-relative border-0 h-100 shadow-sm">
+                        ${isTrending ? `<div class="rank-badge">#${index + 1}</div>` : ''}
+                        <img src="${song.img}" class="img-fluid w-100" alt="${song.title}">
+                        <div class="card-overlay position-absolute bottom-0 start-0 w-100 p-3">
+                            <i class="bi bi-play-circle-fill fs-2 text-purple play-icon-hover"></i>
+                            <h6 class="text-white mb-0 fw-bold text-truncate">${song.title}</h6>
+                            <p class="text-light small mb-0 opacity-75 text-truncate">${song.artist}</p>
+                        </div>
+                    </div>`;
+                // Gán event listener an toàn
+                div.addEventListener('click', () => {
+                    const songData = JSON.parse(div.dataset.song);
+                    playMusic(songData);
+                });
+                container.appendChild(div);
+            });
+        };
+
+        const renderArtistSection = (data, containerId) => {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = "";
+
+            data.forEach(artist => {
+                const div = document.createElement('div');
+                div.className = 'artist-item';
+                div.innerHTML = `
+                    <div class="artist-card shadow-sm">
+                        <img src="${artist.img}" class="artist-img" alt="${artist.name}">
+                        <div class="artist-overlay">
+                            <h6 class="artist-overlay-name text-truncate">${artist.name}</h6>
+                            <p class="artist-overlay-role mb-0 text-truncate">Nghệ sĩ</p>
+                        </div>
+                    </div>`;
+                container.appendChild(div);
+            });
+        };
+
+        renderArtistSection(artists, 'artist-list');
+        renderMusicSection(songs, 'music-list');
+        renderMusicSection(trendingSongs, 'trending-list', true);
+
+        // =============================================
+        // MUSIC PLAYER
+        // =============================================
+        function playMusic(song) {
+            const player = document.getElementById('music-player');
+            const audio = document.getElementById('main-audio');
+            const title = document.getElementById('player-title');
+            const artist = document.getElementById('player-artist');
+            const img = document.getElementById('player-img');
+
+            // Ẩn bottom nav khi player hiện (tránh chồng lên nhau)
+            const mobileNav = document.getElementById('mobile-bottom-nav');
+            if (mobileNav) mobileNav.style.display = 'none';
+
+            player.classList.remove('d-none');
+            title.innerText = song.title;
+            artist.innerText = song.artist;
+            img.src = song.img;
+            audio.src = song.url || "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+            audio.play();
+        }
+
+        function closePlayer() {
+            const player = document.getElementById('music-player');
+            const audio = document.getElementById('main-audio');
+            audio.pause();
+            player.classList.add('d-none');
+
+            // Hiện lại bottom nav
+            const mobileNav = document.getElementById('mobile-bottom-nav');
+            if (mobileNav) mobileNav.style.display = '';
+        }
+
+        // =============================================
+        // UPLOAD FORM (localStorage)
+        // =============================================
+        let myUploadedSongs = JSON.parse(localStorage.getItem('myVelodySongs')) || [];
+
+        if (myUploadedSongs.length > 0) {
             document.getElementById('my-music-container').style.display = 'block';
             renderMusicSection(myUploadedSongs, 'my-music-list');
-
-            // Đóng Modal và xóa trắng form
-            const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
-            modal.hide();
-            this.reset();
-
-            // Nhắc nhở người dùng
-            alert('Đã lưu thông tin bài hát! Để nhạc phát được, hãy nhớ copy file thật vào thư mục cloud_simula trên máy tính của bạn nhé.');
         }
-    });
-</script>
+
+        document.getElementById('uploadForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('songTitle').value;
+            const artist = document.getElementById('songArtist').value;
+            const thumbnailFile = document.getElementById('songThumbnail').files[0];
+            const mediaFile = document.getElementById('songFile').files[0];
+
+            if (thumbnailFile && mediaFile) {
+                const thumbPath = 'cloud_simula/' + thumbnailFile.name;
+                const mediaPath = 'cloud_simula/' + mediaFile.name;
+
+                const newSong = { title, artist, img: thumbPath, url: mediaPath };
+                myUploadedSongs.unshift(newSong);
+                localStorage.setItem('myVelodySongs', JSON.stringify(myUploadedSongs));
+
+                document.getElementById('my-music-container').style.display = 'block';
+                renderMusicSection(myUploadedSongs, 'my-music-list');
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
+                modal.hide();
+                this.reset();
+
+                alert('Đã lưu thông tin bài hát! Để nhạc phát được, hãy nhớ copy file thật vào thư mục cloud_simula trên máy tính của bạn nhé.');
+            }
+        });
+    </script>
 
 </body>
-
 </html>

@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C Playground — tcaoanhvo</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"/>
+
+  <!-- CodeMirror 5 -->
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/runmode/runmode.min.js"></script>
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css"/>
+
+  <style>
+    /* ── Reset & Variables ─────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:        #ffffff;
+      --gray-50:      #f5f5f7;
+      --gray-100:     #e8e8ed;
+      --gray-200:     #d2d2d7;
+      --gray-400:     #86868b;
+      --gray-600:     #515154;
+      --gray-900:     #1d1d1f;
+
+      --blue:         #0071e3;
+      --blue-hover:   #0077ed;
+      --blue-light:   #e8f0fb;
+      --green:        #1d9e1d;
+      --green-light:  #e6f6e6;
+      --orange:       #d4580a;
+      --orange-light: #fef3e8;
+      --red:          #c0392b;
+      --red-light:    #fde8e8;
+      --purple:       #7c3aed;
+      --purple-light: #ede9fe;
+
+      --font-sans:    'DM Sans', -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      --nav-h:        60px;
+      --radius:       12px;
+      --radius-sm:    8px;
+      --shadow-sm:    0 1px 4px rgba(0,0,0,.08);
+      --shadow-md:    0 4px 20px rgba(0,0,0,.10);
+      --transition:   all .2s ease;
+
+      /* Editor layout */
+      --editor-h:     calc(100vh - var(--nav-h) - 56px - 48px);
+      --panel-gap:    12px;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--gray-50);
+      color: var(--gray-900);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ───────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,.88);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--gray-100);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 0;
+    }
+    .nav__logo {
+      font-size: 17px; font-weight: 600;
+      color: var(--gray-900); text-decoration: none;
+      letter-spacing: -.3px; white-space: nowrap;
+    }
+    .nav__logo span { color: var(--blue); }
+
+    .nav__divider {
+      width: 1px; height: 20px;
+      background: var(--gray-200);
+      margin: 0 14px;
+    }
+
+    .nav__title {
+      font-size: 15px; font-weight: 500;
+      color: var(--gray-600);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .nav__badge {
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+      background: var(--blue-light); color: var(--blue);
+      letter-spacing: .02em;
+    }
+
+    .nav__spacer { flex: 1; }
+
+    .nav__links {
+      display: flex; align-items: center;
+      gap: 4px; list-style: none;
+    }
+    .nav__links a {
+      color: var(--gray-600); font-size: 13.5px;
+      padding: 6px 12px; border-radius: 8px;
+      text-decoration: none; transition: var(--transition);
+    }
+    .nav__links a:hover { color: var(--gray-900); background: var(--gray-50); }
+
+    /* ── Toolbar ────────────────────────────────── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      margin-top: var(--nav-h);
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-100);
+      flex-wrap: wrap;
+    }
+
+    .toolbar__group {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .toolbar__sep {
+      width: 1px; height: 22px;
+      background: var(--gray-100); margin: 0 4px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 15px; border-radius: 8px;
+      font-family: var(--font-sans); font-size: 13.5px; font-weight: 500;
+      cursor: pointer; transition: var(--transition); border: none;
+      white-space: nowrap;
+    }
+    .btn--run {
+      background: #22c55e; color: #fff;
+      padding: 8px 20px; font-size: 14px;
+      box-shadow: 0 2px 8px rgba(34,197,94,.3);
+    }
+    .btn--run:hover   { background: #16a34a; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(34,197,94,.35); }
+    .btn--run:active  { transform: translateY(0); }
+    .btn--run:disabled{ background: var(--gray-200); color: var(--gray-400); box-shadow: none; cursor: not-allowed; transform: none; }
+
+    .btn--ghost {
+      background: var(--white); color: var(--gray-600);
+      border: 1px solid var(--gray-200);
+    }
+    .btn--ghost:hover { background: var(--gray-50); color: var(--gray-900); }
+
+    .btn--danger {
+      background: var(--white); color: var(--red);
+      border: 1px solid var(--gray-200);
+    }
+    .btn--danger:hover { background: var(--red-light); border-color: var(--red); }
+
+    .snippet-select {
+      font-family: var(--font-sans); font-size: 13px;
+      border: 1px solid var(--gray-200); border-radius: 8px;
+      background: var(--white); color: var(--gray-900);
+      padding: 7px 12px; cursor: pointer; outline: none;
+      transition: var(--transition);
+    }
+    .snippet-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,113,227,.1); }
+
+    .toolbar__info {
+      margin-left: auto;
+      font-size: 12px; color: var(--gray-400);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .toolbar__shortcut {
+      display: flex; align-items: center; gap: 4px;
+    }
+    kbd {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      padding: 2px 6px; border-radius: 5px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-600);
+    }
+
+    /* ── Main Layout ─────────────────────────────── */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      grid-template-rows: 1fr auto;
+      gap: var(--panel-gap);
+      padding: var(--panel-gap) 16px 16px;
+      height: calc(100vh - var(--nav-h) - 56px);
+    }
+
+    /* ── Editor Panel — VSCode Light ─────────────── */
+    .editor-panel {
+      background: #ffffff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .panel-header {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .panel-header--dark  { background: #f3f3f3; }
+    .panel-header--light { background: var(--white); border-color: var(--gray-100); }
+
+    .panel-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500;
+    }
+    .panel-title--dark  { color: #444; }
+    .panel-title--light { color: var(--gray-600); }
+
+    .dots { display: flex; gap: 5px; }
+    .dot  { width: 11px; height: 11px; border-radius: 50%; }
+    .dot:nth-child(1) { background: #ff5f57; }
+    .dot:nth-child(2) { background: #ffbd2e; }
+    .dot:nth-child(3) { background: #28c840; }
+
+    .file-tag {
+      font-size: 11px; font-weight: 500;
+      padding: 2px 8px; border-radius: 5px;
+      background: #e8e8ed; color: #0078d4;
+      font-family: var(--font-mono);
+    }
+
+    .editor-actions { display: flex; align-items: center; gap: 6px; }
+    .editor-btn {
+      background: none; border: none;
+      color: var(--gray-400); font-size: 12px;
+      padding: 3px 8px; border-radius: 5px;
+      cursor: pointer; font-family: var(--font-sans);
+      transition: var(--transition);
+    }
+    .editor-btn:hover { background: var(--gray-100); color: var(--gray-900); }
+
+    /* ── VSCode Light+ syntax theme ─────────────── */
+    .cm-s-vscode-light.CodeMirror          { background: #fff; color: #1e1e1e; }
+    .cm-s-vscode-light .CodeMirror-gutters { background: #f3f3f3; border-right: 1px solid #e0e0e0; }
+    .cm-s-vscode-light .CodeMirror-linenumber   { color: #237893; padding: 0 10px 0 8px; }
+    .cm-s-vscode-light .CodeMirror-cursor        { border-left: 2px solid #000; }
+    .cm-s-vscode-light .CodeMirror-selected      { background: #add6ff; }
+    .cm-s-vscode-light .CodeMirror-focused .CodeMirror-selected { background: #add6ff; }
+    .cm-s-vscode-light .CodeMirror-activeline-background { background: #f0f0f0; }
+    .cm-s-vscode-light .CodeMirror-matchingbracket {
+      background: #d6d6d6; color: #1e1e1e !important;
+      outline: 1px solid #999;
+    }
+    /* Tokens */
+    .cm-s-vscode-light .cm-keyword    { color: #0000ff; }
+    .cm-s-vscode-light .cm-atom       { color: #0000ff; }
+    .cm-s-vscode-light .cm-type       { color: #0000ff; }
+    .cm-s-vscode-light .cm-builtin    { color: #0000ff; }
+    .cm-s-vscode-light .cm-def        { color: #795e26; }
+    .cm-s-vscode-light .cm-variable   { color: #001080; }
+    .cm-s-vscode-light .cm-variable-2 { color: #001080; }
+    .cm-s-vscode-light .cm-property   { color: #001080; }
+    .cm-s-vscode-light .cm-string     { color: #a31515; }
+    .cm-s-vscode-light .cm-string-2   { color: #a31515; }
+    .cm-s-vscode-light .cm-number     { color: #098658; }
+    .cm-s-vscode-light .cm-comment    { color: #008000; font-style: italic; }
+    .cm-s-vscode-light .cm-meta       { color: #af00db; }
+    .cm-s-vscode-light .cm-operator   { color: #1e1e1e; }
+    .cm-s-vscode-light .cm-bracket    { color: #1e1e1e; }
+    .cm-s-vscode-light .cm-header     { color: #a31515; }
+    .cm-s-vscode-light .cm-error      { color: #cd3131; text-decoration: underline wavy #cd3131; }
+
+    /* ── CodeMirror base ────────────────────────── */
+    .CodeMirror {
+      height: 100% !important;
+      font-family: var(--font-mono) !important;
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      flex: 1;
+    }
+    .CodeMirror-scroll { padding-bottom: 12px; }
+    .cm-editor-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+
+    /* ── stdin panel — light ────────────────────── */
+    .stdin-panel {
+      border-top: 1px solid var(--gray-100);
+      background: #fafafa;
+    }
+    .stdin-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 14px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .stdin-label { font-size: 12px; color: var(--gray-400); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .stdin-textarea {
+      width: 100%; background: #ffffff;
+      border: none; outline: none; resize: vertical;
+      color: #1e1e1e; font-family: var(--font-mono);
+      font-size: 13px; padding: 10px 14px;
+      line-height: 1.6; display: block;
+      min-height: 72px; max-height: 160px;
+    }
+    .stdin-textarea:focus { background: #fefefe; }
+    .stdin-textarea::placeholder { color: #bbb; }
+
+    /* ── Output Panel ─────────────────────────────── */
+    .output-panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .output-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      min-height: 0;
+    }
+
+    .output-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 100%; gap: 10px;
+      color: var(--gray-400);
+    }
+    .output-placeholder-icon { font-size: 36px; }
+    .output-placeholder-text { font-size: 14px; }
+    .output-placeholder-hint { font-size: 12px; color: var(--gray-200); }
+
+    /* Output states */
+    .output-stdout {
+      font-family: var(--font-mono);
+      font-size: 13.5px; line-height: 1.8;
+      color: var(--gray-900);
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .output-stderr {
+      font-family: var(--font-mono);
+      font-size: 13px; line-height: 1.7;
+      color: var(--red);
+      white-space: pre-wrap;
+      word-break: break-all;
+      background: var(--red-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      border-left: 3px solid var(--red);
+    }
+    .output-section { margin-bottom: 14px; }
+    .output-section-label {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--gray-400); margin-bottom: 6px;
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex; align-items: center;
+      padding: 8px 14px; gap: 14px;
+      border-top: 1px solid var(--gray-100);
+      background: var(--gray-50);
+      flex-wrap: wrap;
+    }
+    .status-chip {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 500;
+      padding: 3px 10px; border-radius: 99px;
+    }
+    .status-chip--success { background: var(--green-light); color: var(--green); }
+    .status-chip--error   { background: var(--red-light);   color: var(--red); }
+    .status-chip--running { background: var(--blue-light);  color: var(--blue); }
+    .status-chip--idle    { background: var(--gray-100);    color: var(--gray-400); }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .status-dot--success { background: var(--green); }
+    .status-dot--error   { background: var(--red); }
+    .status-dot--running {
+      background: var(--blue);
+      animation: pulse 1s infinite;
+    }
+    .status-dot--idle    { background: var(--gray-400); }
+
+    .status-meta {
+      font-size: 12px; color: var(--gray-400);
+      display: flex; align-items: center; gap: 3px;
+    }
+    .status-meta span { font-weight: 500; color: var(--gray-600); }
+
+    /* ── Loader animation ───────────────────────── */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .4; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid var(--blue-light);
+      border-top-color: var(--blue);
+      animation: spin .7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    /* ── Error line highlight ───────────────────── */
+    .error-line-gutter { background: rgba(192,57,43,.2); }
+    .error-line-bg     { background: rgba(192,57,43,.08); }
+
+    /* ── Scrollbar ──────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 99px; }
+
+    /* ── Responsive ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 1fr; grid-template-rows: 55vh 1fr; }
+      .toolbar__info { display: none; }
+    }
+
+    /* ── Toast ──────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: var(--gray-900); color: #fff;
+      font-size: 13px; font-weight: 500;
+      padding: 10px 20px; border-radius: 99px;
+      box-shadow: var(--shadow-md);
+      z-index: 9999;
+      animation: toastIn .25s ease;
+      white-space: nowrap;
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    /* ── Export dropdown menu ───────────────────── */
+    .export-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      z-index: 200;
+      min-width: 210px;
+      overflow: hidden;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%;
+      text-align: left; padding: 9px 16px;
+      font-family: var(--font-sans); font-size: 13.5px;
+      color: var(--gray-900); background: none; border: none;
+      cursor: pointer; transition: background .15s;
+    }
+    .export-item:hover { background: var(--gray-50); }
+
+    /* ── Theme transition ───────────────────────── */
+    body, .editor-panel, .toolbar, .nav,
+    .output-panel, .stdin-panel, .status-bar,
+    .panel-header, .stdin-textarea { transition: background .25s, color .2s, border-color .2s; }
+
+    /* ── VSCode Dark+ theme ─────────────────────── */
+    body.dark-mode {
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+    body.dark-mode .nav {
+      background: rgba(30,30,30,.92);
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .nav__logo        { color: #d4d4d4; }
+    body.dark-mode .nav__links a     { color: #9d9d9d; }
+    body.dark-mode .nav__links a:hover{ color: #fff; background: #2a2d2e; }
+    body.dark-mode .nav__title       { color: #9d9d9d; }
+    body.dark-mode .nav__divider     { background: #3c3c3c; }
+
+    body.dark-mode .toolbar {
+      background: #252526;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .btn--ghost {
+      background: #2d2d2d; color: #cccccc;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .btn--ghost:hover { background: #3e3e3e; color: #fff; }
+    body.dark-mode .btn--danger { background: #2d2d2d; border-color: #3c3c3c; color: #f48771; }
+    body.dark-mode .btn--danger:hover { background: #3e2020; }
+    body.dark-mode .snippet-select {
+      background: #2d2d2d; color: #cccccc;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode kbd {
+      background: #2d2d2d; border-color: #555;
+      color: #aaa;
+    }
+    body.dark-mode .toolbar__sep { background: #3c3c3c; }
+
+    /* Editor panel dark */
+    body.dark-mode .editor-panel {
+      background: #1e1e1e;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .panel-header--dark {
+      background: #252526;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .panel-title--dark  { color: #cccccc; }
+    body.dark-mode .file-tag  { background: #2d2d2d; color: #4ec9b0; }
+    body.dark-mode .editor-btn{ color: #858585; }
+    body.dark-mode .editor-btn:hover { background: #2a2d2e; color: #fff; }
+    body.dark-mode #lineInfo  { color: #858585 !important; }
+
+    /* stdin dark */
+    body.dark-mode .stdin-panel  { background: #252526; border-color: #3c3c3c; }
+    body.dark-mode .stdin-header { border-color: #3c3c3c; }
+    body.dark-mode .stdin-label  { color: #858585; }
+    body.dark-mode .stdin-textarea {
+      background: #1e1e1e; color: #d4d4d4;
+    }
+    body.dark-mode .stdin-textarea::placeholder { color: #555; }
+    body.dark-mode .stdin-textarea:focus { background: #1a1a1a; }
+
+    /* Output panel dark */
+    body.dark-mode .output-panel {
+      background: #1e1e1e;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .panel-header--light {
+      background: #252526;
+      border-color: #3c3c3c;
+    }
+    body.dark-mode .panel-title--light { color: #858585; }
+    body.dark-mode .output-stdout      { color: #d4d4d4; }
+    body.dark-mode .output-placeholder-text { color: #555; }
+    body.dark-mode .output-placeholder-hint { color: #3c3c3c; }
+    body.dark-mode .output-section-label    { color: #555; }
+    body.dark-mode .status-bar  { background: #252526; border-color: #3c3c3c; }
+    body.dark-mode .status-meta { color: #555; }
+    body.dark-mode .status-meta span { color: #858585; }
+    body.dark-mode .status-chip--idle { background: #2d2d2d; color: #858585; }
+    body.dark-mode .btn--ghost[id="btnClearOutput"] {
+      background: #2d2d2d; border-color: #3c3c3c; color: #858585;
+    }
+    body.dark-mode .export-menu {
+      background: #252526; border-color: #3c3c3c;
+    }
+    body.dark-mode .export-item { color: #cccccc; }
+    body.dark-mode .export-item:hover { background: #2a2d2e; }
+
+    /* CodeMirror Dark — VSCode Dark+ exact colors */
+    body.dark-mode .cm-s-vscode-light.CodeMirror          { background: #1e1e1e; color: #d4d4d4; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-gutters { background: #1e1e1e; border-color: #3c3c3c; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-linenumber   { color: #858585; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-cursor        { border-left-color: #aeafad; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-selected      { background: #264f78; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-focused .CodeMirror-selected { background: #264f78; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-activeline-background { background: #2a2d2e; }
+    body.dark-mode .cm-s-vscode-light .CodeMirror-matchingbracket { background: #0d3a58; outline-color: #888; }
+    /* Tokens dark */
+    body.dark-mode .cm-s-vscode-light .cm-keyword    { color: #569cd6; }
+    body.dark-mode .cm-s-vscode-light .cm-atom       { color: #569cd6; }
+    body.dark-mode .cm-s-vscode-light .cm-type       { color: #569cd6; }
+    body.dark-mode .cm-s-vscode-light .cm-builtin    { color: #569cd6; }
+    body.dark-mode .cm-s-vscode-light .cm-def        { color: #dcdcaa; }
+    body.dark-mode .cm-s-vscode-light .cm-variable   { color: #9cdcfe; }
+    body.dark-mode .cm-s-vscode-light .cm-variable-2 { color: #9cdcfe; }
+    body.dark-mode .cm-s-vscode-light .cm-property   { color: #9cdcfe; }
+    body.dark-mode .cm-s-vscode-light .cm-string     { color: #ce9178; }
+    body.dark-mode .cm-s-vscode-light .cm-string-2   { color: #ce9178; }
+    body.dark-mode .cm-s-vscode-light .cm-number     { color: #b5cea8; }
+    body.dark-mode .cm-s-vscode-light .cm-comment    { color: #6a9955; }
+    body.dark-mode .cm-s-vscode-light .cm-meta       { color: #c586c0; }
+    body.dark-mode .cm-s-vscode-light .cm-operator   { color: #d4d4d4; }
+    body.dark-mode .cm-s-vscode-light .cm-bracket    { color: #d4d4d4; }
+    body.dark-mode .cm-s-vscode-light .cm-header     { color: #ce9178; }
+    body.dark-mode .cm-s-vscode-light .cm-error      { color: #f44747; }
+
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────── -->
+<nav class="nav">
+  <a class="nav__logo" href="index.html">tcaoanh<span>vo</span></a>
+  <div class="nav__divider"></div>
+  <div class="nav__title">
+    <span>💻</span>
+    C Playground
+    <span class="nav__badge">BETA</span>
+  </div>
+  <div class="nav__spacer"></div>
+  <ul class="nav__links">
+    <li><a href="algorithms/sorting/bubble-sort.html">Sorting</a></li>
+    <li><a href="algorithms/searching/binary-search.html">Searching</a></li>
+    <li><a href="index.html">← Trang chủ</a></li>
+  </ul>
+</nav>
+
+<!-- ── Toolbar ──────────────────────────────────── -->
+<div class="toolbar">
+  <div class="toolbar__group">
+    <button class="btn btn--run" id="btnRun" title="Ctrl+Enter">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M3 2l9 4.5L3 11V2z"/></svg>
+      Chạy
+    </button>
+  </div>
+
+  <div class="toolbar__sep"></div>
+
+  <div class="toolbar__group">
+    <select class="snippet-select" id="snippetSelect" title="Chọn ví dụ mẫu">
+      <option value="">📂 Ví dụ mẫu...</option>
+      <optgroup label="Nhập môn">
+        <option value="hello">Hello World</option>
+        <option value="io">Nhập xuất cơ bản</option>
+        <option value="minmax">Tìm Min / Max</option>
+        <option value="fibonacci">Dãy Fibonacci</option>
+        <option value="factorial">Giai thừa đệ quy</option>
+      </optgroup>
+      <optgroup label="Mảng & Chuỗi">
+        <option value="array">Thao tác mảng</option>
+        <option value="reverse">Đảo ngược mảng</option>
+        <option value="string">Chuỗi cơ bản</option>
+        <option value="palindrome">Kiểm tra Palindrome</option>
+      </optgroup>
+      <optgroup label="Sắp xếp">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+        <option value="quick">Quick Sort</option>
+      </optgroup>
+      <optgroup label="Tìm kiếm">
+        <option value="linear">Linear Search</option>
+        <option value="binary">Binary Search</option>
+      </optgroup>
+      <optgroup label="Con trỏ & Struct">
+        <option value="pointer">Con trỏ cơ bản</option>
+        <option value="struct">Struct Student</option>
+        <option value="linkedlist">Linked List đơn</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div class="toolbar__sep"></div>
+
+  <div class="toolbar__group">
+    <button class="btn btn--ghost" id="btnCopy" title="Sao chép code">⎘ Copy</button>
+    <button class="btn btn--ghost" id="btnFormat" title="Định dạng (căn chỉnh)">⬡ Format</button>
+    <div class="export-wrap" style="position:relative">
+      <button class="btn btn--ghost" id="btnExport" title="Xuất file">⬇ Xuất file ▾</button>
+      <div class="export-menu" id="exportMenu">
+        <button class="export-item" id="exportC">📄 Xuất .c</button>
+        <button class="export-item" id="exportTxt">📝 Xuất .txt</button>
+        <button class="export-item" id="exportHtml">🌐 Xuất .html (có highlight)</button>
+      </div>
+    </div>
+    <button class="btn btn--ghost" id="btnTheme" title="Chuyển theme">🌙 Dark</button>
+    <button class="btn btn--danger" id="btnClear" title="Xóa sạch">✕ Xóa</button>
+  </div>
+
+  <div class="toolbar__info">
+    <span class="toolbar__shortcut"><kbd>Ctrl</kbd><kbd>Enter</kbd> Chạy</span>
+    <span class="toolbar__shortcut"><kbd>Ctrl</kbd><kbd>/</kbd> Comment</span>
+    <span class="toolbar__shortcut"><kbd>Ctrl</kbd><kbd>Z</kbd> Undo</span>
+  </div>
+</div>
+
+<!-- ── Workspace ────────────────────────────────── -->
+<div class="workspace">
+
+  <!-- Editor -->
+  <div class="editor-panel">
+    <div class="panel-header panel-header--dark">
+      <div class="panel-title panel-title--dark">
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <span class="file-tag">main.c</span>
+      </div>
+      <div class="editor-actions">
+        <span id="lineInfo" style="font-size:11px;color:#636d83;font-family:var(--font-mono)">Ln 1, Col 1</span>
+        <button class="editor-btn" id="btnFullscreen" title="Toàn màn hình">⛶</button>
+      </div>
+    </div>
+
+    <!-- CodeMirror mounts here -->
+    <div class="cm-editor-wrap">
+      <textarea id="codeEditor"></textarea>
+    </div>
+
+    <!-- Stdin - always visible -->
+    <div class="stdin-panel">
+      <div class="stdin-header">
+        <span class="stdin-label">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="2" width="10" height="8" rx="1.5" fill="none" stroke="#86868b" stroke-width="1.2"/><path d="M3 5h6M3 7h4" stroke="#86868b" stroke-width="1.1" stroke-linecap="round"/></svg>
+          stdin — Dữ liệu nhập cho scanf()
+        </span>
+        <button class="editor-btn" id="btnClearStdin" title="Xóa stdin">✕ Xóa</button>
+      </div>
+      <textarea class="stdin-textarea" id="stdinInput" placeholder="Nhập dữ liệu ở đây (mỗi giá trị một dòng)&#10;Ví dụ: scanf(&quot;%d %d&quot;, &a, &b) → nhập&#10;10&#10;20" rows="3"></textarea>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="output-panel">
+    <div class="panel-header panel-header--light">
+      <div class="panel-title panel-title--light">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#86868b" stroke-width="1.3"/><path d="M4 5l2.5 2L4 9M7.5 9h3" stroke="#86868b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Output
+      </div>
+      <button class="btn btn--ghost" id="btnClearOutput" style="padding:4px 10px;font-size:12px">Xóa</button>
+    </div>
+
+    <div class="output-body" id="outputBody">
+      <div class="output-placeholder" id="outputPlaceholder">
+        <div class="output-placeholder-icon">▶</div>
+        <div class="output-placeholder-text">Nhấn <strong>Chạy</strong> để thực thi</div>
+        <div class="output-placeholder-hint">Ctrl + Enter</div>
+      </div>
+    </div>
+
+    <div class="status-bar" id="statusBar">
+      <div class="status-chip status-chip--idle" id="statusChip">
+        <div class="status-dot status-dot--idle" id="statusDot"></div>
+        <span id="statusText">Sẵn sàng</span>
+      </div>
+      <div class="status-meta" id="metaTime" style="display:none">
+        ⏱ <span id="execTime">—</span> ms
+      </div>
+      <div class="status-meta" id="metaLang">
+        🔧 <span>Wandbox · GCC · C11</span>
+      </div>
+      <div class="status-meta" id="metaLines">
+        📄 <span id="lineCount">1</span> dòng
+      </div>
+    </div>
+  </div>
+
+</div><!-- /workspace -->
+
+
+<!-- ── Scripts ──────────────────────────────────── -->
+<script>
+'use strict';
+
+/* ════════════════════════════════════════════════
+   SNIPPET LIBRARY
+════════════════════════════════════════════════ */
+const SNIPPETS = {
+  hello: `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    printf("Chào mừng đến với C Playground — tcaoanhvo\\n");
+    return 0;
+}`,
+
+  io: `#include <stdio.h>
+
+int main() {
+    int a, b;
+    printf("Nhập hai số nguyên: ");
+    scanf("%d %d", &a, &b);
+
+    printf("Tổng:      %d\\n", a + b);
+    printf("Hiệu:      %d\\n", a - b);
+    printf("Tích:      %d\\n", a * b);
+    if (b != 0)
+        printf("Thương:    %.2f\\n", (float)a / b);
+    return 0;
+}`,
+
+  minmax: `#include <stdio.h>
+
+void findMinMax(int a[], int n, int *min, int *max) {
+    *min = *max = a[0];
+    for (int i = 1; i < n; i++) {
+        if (a[i] < *min) *min = a[i];
+        if (a[i] > *max) *max = a[i];
+    }
+}
+
+int main() {
+    int a[] = {3, 7, 1, 9, 4, 6, 2, 8, 5};
+    int n   = sizeof(a) / sizeof(a[0]);
+    int min, max;
+
+    findMinMax(a, n, &min, &max);
+
+    printf("Mảng: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\nMin = %d\\nMax = %d\\n", min, max);
+    return 0;
+}`,
+
+  fibonacci: `#include <stdio.h>
+
+/* Fibonacci bằng vòng lặp — O(n) */
+long long fib(int n) {
+    if (n <= 1) return n;
+    long long a = 0, b = 1;
+    for (int i = 2; i <= n; i++) {
+        long long c = a + b;
+        a = b; b = c;
+    }
+    return b;
+}
+
+int main() {
+    int n;
+    printf("Tính Fibonacci đến F(n), nhập n: ");
+    scanf("%d", &n);
+    for (int i = 0; i <= n; i++)
+        printf("F(%2d) = %lld\\n", i, fib(i));
+    return 0;
+}`,
+
+  factorial: `#include <stdio.h>
+
+/* Giai thừa đệ quy */
+long long factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    for (int i = 0; i <= 12; i++)
+        printf("%2d! = %lld\\n", i, factorial(i));
+    return 0;
+}`,
+
+  array: `#include <stdio.h>
+
+void printArr(int a[], int n) {
+    printf("[");
+    for (int i = 0; i < n; i++)
+        printf(i < n-1 ? "%d, " : "%d", a[i]);
+    printf("]\\n");
+}
+
+int sumArr(int a[], int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++) s += a[i];
+    return s;
+}
+
+int main() {
+    int a[] = {5, 3, 8, 1, 9, 2, 7, 4, 6};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("Mảng gốc:  "); printArr(a, n);
+    printf("Tổng:      %d\\n", sumArr(a, n));
+    printf("Trung bình: %.2f\\n", (float)sumArr(a, n) / n);
+    return 0;
+}`,
+
+  reverse: `#include <stdio.h>
+
+void reverse(int a[], int n) {
+    int lo = 0, hi = n - 1;
+    while (lo < hi) {
+        int tmp = a[lo]; a[lo] = a[hi]; a[hi] = tmp;
+        lo++; hi--;
+    }
+}
+
+int main() {
+    int a[] = {1, 2, 3, 4, 5, 6, 7};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("Trước: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+
+    reverse(a, n);
+
+    printf("\\nSau:   ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n");
+    return 0;
+}`,
+
+  string: `#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char s[] = "Hello, tcaoanhvo!";
+    int len = strlen(s);
+
+    printf("Chuỗi:       %s\\n", s);
+    printf("Độ dài:      %d\\n", len);
+
+    /* Đếm chữ hoa / thường */
+    int upper = 0, lower = 0, space = 0;
+    for (int i = 0; i < len; i++) {
+        if (isupper(s[i]))      upper++;
+        else if (islower(s[i])) lower++;
+        else if (isspace(s[i])) space++;
+    }
+    printf("Chữ hoa:     %d\\n", upper);
+    printf("Chữ thường:  %d\\n", lower);
+    printf("Khoảng trắng:%d\\n", space);
+    return 0;
+}`,
+
+  palindrome: `#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool isPalindrome(const char *s) {
+    int lo = 0, hi = strlen(s) - 1;
+    while (lo < hi) {
+        if (s[lo] != s[hi]) return false;
+        lo++; hi--;
+    }
+    return true;
+}
+
+int main() {
+    const char *words[] = {"racecar", "hello", "madam", "level", "world", "noon"};
+    int n = sizeof(words) / sizeof(words[0]);
+    for (int i = 0; i < n; i++)
+        printf("%-10s → %s\\n", words[i], isPalindrome(words[i]) ? "✓ Palindrome" : "✗ Không phải");
+    return 0;
+}`,
+
+  bubble: `#include <stdio.h>
+#include <stdbool.h>
+
+void bubbleSort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (a[j] > a[j+1]) {
+                int t = a[j]; a[j] = a[j+1]; a[j+1] = t;
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+int main() {
+    int a[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(a) / sizeof(a[0]);
+    bubbleSort(a, n);
+    printf("Bubble Sort: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n");
+    return 0;
+}`,
+
+  selection: `#include <stdio.h>
+
+void selectionSort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++)
+            if (a[j] < a[minIdx]) minIdx = j;
+        if (minIdx != i) {
+            int t = a[i]; a[i] = a[minIdx]; a[minIdx] = t;
+        }
+    }
+}
+
+int main() {
+    int a[] = {64, 25, 12, 22, 11};
+    int n = sizeof(a) / sizeof(a[0]);
+    selectionSort(a, n);
+    printf("Selection Sort: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n");
+    return 0;
+}`,
+
+  insertion: `#include <stdio.h>
+
+void insertionSort(int a[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = a[i], j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j+1] = a[j]; j--;
+        }
+        a[j+1] = key;
+    }
+}
+
+int main() {
+    int a[] = {12, 11, 13, 5, 6, 7, 3};
+    int n = sizeof(a) / sizeof(a[0]);
+    insertionSort(a, n);
+    printf("Insertion Sort: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n");
+    return 0;
+}`,
+
+  quick: `#include <stdio.h>
+
+void swap(int *a, int *b) { int t=*a; *a=*b; *b=t; }
+
+int partition(int a[], int lo, int hi) {
+    int pivot = a[hi], i = lo - 1;
+    for (int j = lo; j < hi; j++)
+        if (a[j] <= pivot) { i++; swap(&a[i], &a[j]); }
+    swap(&a[i+1], &a[hi]);
+    return i + 1;
+}
+
+void quickSort(int a[], int lo, int hi) {
+    if (lo < hi) {
+        int p = partition(a, lo, hi);
+        quickSort(a, lo, p - 1);
+        quickSort(a, p + 1, hi);
+    }
+}
+
+int main() {
+    int a[] = {10, 80, 30, 90, 40, 50, 70};
+    int n = sizeof(a) / sizeof(a[0]);
+    quickSort(a, 0, n - 1);
+    printf("Quick Sort: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n");
+    return 0;
+}`,
+
+  linear: `#include <stdio.h>
+
+int linearSearch(int a[], int n, int target) {
+    for (int i = 0; i < n; i++)
+        if (a[i] == target) return i;
+    return -1;
+}
+
+int main() {
+    int a[] = {7, 3, 15, 2, 9, 11, 5};
+    int n = sizeof(a) / sizeof(a[0]);
+    int targets[] = {9, 99, 7};
+
+    for (int t = 0; t < 3; t++) {
+        int idx = linearSearch(a, n, targets[t]);
+        if (idx != -1)
+            printf("Tìm %2d → tìm thấy tại a[%d]\\n", targets[t], idx);
+        else
+            printf("Tìm %2d → không tìm thấy\\n", targets[t]);
+    }
+    return 0;
+}`,
+
+  binary: `#include <stdio.h>
+
+int binarySearch(int a[], int n, int target) {
+    int lo = 0, hi = n - 1;
+    while (lo <= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if      (a[mid] == target) return mid;
+        else if (a[mid] <  target) lo = mid + 1;
+        else                        hi = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    int a[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("Mảng: ");
+    for (int i = 0; i < n; i++) printf("%d ", a[i]);
+    printf("\\n\\n");
+
+    int targets[] = {23, 56, 99, 2};
+    for (int t = 0; t < 4; t++) {
+        int idx = binarySearch(a, n, targets[t]);
+        if (idx != -1)
+            printf("Tìm %2d → a[%d] ✓\\n", targets[t], idx);
+        else
+            printf("Tìm %2d → không có\\n", targets[t]);
+    }
+    return 0;
+}`,
+
+  pointer: `#include <stdio.h>
+
+void increment(int *p) { (*p)++; }
+
+void swap(int *a, int *b) {
+    int t = *a; *a = *b; *b = t;
+}
+
+int main() {
+    int x = 10;
+    int *p = &x;
+
+    printf("x = %d\\n",  x);
+    printf("&x= %p\\n",  (void*)&x);
+    printf("p = %p\\n",  (void*)p);
+    printf("*p= %d\\n\\n", *p);
+
+    increment(p);
+    printf("Sau increment: x = %d\\n", x);
+
+    int a = 5, b = 20;
+    swap(&a, &b);
+    printf("Sau swap: a=%d, b=%d\\n", a, b);
+    return 0;
+}`,
+
+  struct: `#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char name[50];
+    int  age;
+    float gpa;
+} Student;
+
+void printStudent(const Student *s) {
+    printf("%-20s | Tuổi: %2d | GPA: %.2f\\n", s->name, s->age, s->gpa);
+}
+
+int main() {
+    Student students[] = {
+        {"Nguyễn Văn An",  20, 3.75},
+        {"Trần Thị Bình",  21, 3.90},
+        {"Lê Hoàng Cường", 19, 3.60},
+    };
+    int n = sizeof(students) / sizeof(students[0]);
+
+    printf("%-20s | %-8s | GPA\\n", "Tên", "Tuổi");
+    printf("%.50s\\n", "---------------------------------------------------");
+    for (int i = 0; i < n; i++) printStudent(&students[i]);
+    return 0;
+}`,
+
+  linkedlist: `#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node* newNode(int val) {
+    Node *n = malloc(sizeof(Node));
+    n->data = val; n->next = NULL;
+    return n;
+}
+
+void push(Node **head, int val) {
+    Node *n = newNode(val);
+    n->next = *head;
+    *head = n;
+}
+
+void printList(Node *head) {
+    while (head) {
+        printf("%d", head->data);
+        if (head->next) printf(" → ");
+        head = head->next;
+    }
+    printf(" → NULL\\n");
+}
+
+int main() {
+    Node *head = NULL;
+    for (int i = 5; i >= 1; i--) push(&head, i);
+    printf("Linked List: ");
+    printList(head);
+    return 0;
+}`,
+};
+
+/* ════════════════════════════════════════════════
+   CODEMIRROR SETUP
+════════════════════════════════════════════════ */
+const cm = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+  mode:              'text/x-csrc',
+  theme:             'vscode-light',
+  lineNumbers:       true,
+  matchBrackets:     true,
+  autoCloseBrackets: true,
+  styleActiveLine:   true,
+  indentUnit:        4,
+  tabSize:           4,
+  indentWithTabs:    false,
+  lineWrapping:      false,
+  extraKeys: {
+    'Ctrl-Enter':  () => runCode(),
+    'Cmd-Enter':   () => runCode(),
+    'Ctrl-/':      () => cm.toggleComment({ indent: true }),
+    Tab: (cm) => { if (cm.somethingSelected()) cm.indentSelection('add'); else cm.replaceSelection('    '); },
+  },
+});
+
+// Load default snippet
+cm.setValue(SNIPPETS.hello);
+
+// Line/Col info
+cm.on('cursorActivity', () => {
+  const cur = cm.getCursor();
+  document.getElementById('lineInfo').textContent = `Ln ${cur.line+1}, Col ${cur.ch+1}`;
+});
+cm.on('change', () => {
+  document.getElementById('lineCount').textContent = cm.lineCount();
+});
+
+/* ════════════════════════════════════════════════
+   SNIPPET SELECTOR
+════════════════════════════════════════════════ */
+document.getElementById('snippetSelect').addEventListener('change', function() {
+  if (!this.value) return;
+  if (SNIPPETS[this.value]) {
+    cm.setValue(SNIPPETS[this.value]);
+    cm.clearHistory();
+    cm.focus();
+    setTimeout(() => cm.execCommand('goDocStart'), 50);
+  }
+  this.value = '';
+});
+
+/* ════════════════════════════════════════════════
+   STDIN CLEAR BUTTON
+════════════════════════════════════════════════ */
+document.getElementById('btnClearStdin').addEventListener('click', () => {
+  document.getElementById('stdinInput').value = '';
+  document.getElementById('stdinInput').focus();
+});
+
+/* ════════════════════════════════════════════════
+   RUN CODE via Piston API
+════════════════════════════════════════════════ */
+let running = false;
+
+async function runCode() {
+  if (running) return;
+  running = true;
+
+  const code  = cm.getValue().trim();
+  const stdin = document.getElementById('stdinInput').value;
+
+  if (!code) { showToast('⚠️ Editor trống!'); running = false; return; }
+
+  const btnRun = document.getElementById('btnRun');
+  btnRun.disabled = true;
+  btnRun.innerHTML = '<div class="spinner"></div> Đang chạy...';
+  setStatus('running', 'Đang biên dịch...');
+  clearOutput();
+  document.getElementById('metaTime').style.display = 'none';
+
+  const t0 = performance.now();
+
+  try {
+    /* ── Wandbox API — free, no auth required ── */
+    const res = await fetch('https://wandbox.org/api/compile.json', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        compiler:              'gcc-head-c',
+        code:                  code,
+        stdin:                 stdin,
+        'compiler-option-raw': '-std=c11\n-lm\n-Wall',
+      }),
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data    = await res.json();
+    const elapsed = Math.round(performance.now() - t0);
+
+    renderOutputWandbox(data, elapsed);
+
+  } catch (err) {
+    renderNetworkError(err);
+  } finally {
+    running = false;
+    btnRun.disabled = false;
+    btnRun.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M3 2l9 4.5L3 11V2z"/></svg> Chạy';
+  }
+}
+
+/* ════════════════════════════════════════════════
+   OUTPUT HELPERS
+════════════════════════════════════════════════ */
+function clearOutput() {
+  document.getElementById('outputBody').innerHTML =
+    '<div class="output-placeholder" style="opacity:.4"><div class="spinner"></div></div>';
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;');
+}
+
+/* ════════════════════════════════════════════════
+   WANDBOX OUTPUT RENDERER
+   Response fields:
+     status        — "0" = success, else exit code
+     compiler_error — compile errors (string)
+     program_output — stdout + stderr merged
+     program_message — extra info
+════════════════════════════════════════════════ */
+function renderOutputWandbox(data, elapsed) {
+  const body = document.getElementById('outputBody');
+  body.innerHTML = '';
+
+  /* ── Compile error ── */
+  if (data.compiler_error && data.compiler_error.trim()) {
+    const sec = document.createElement('div');
+    sec.className = 'output-section';
+    sec.innerHTML = `
+      <div class="output-section-label" style="color:var(--red)">⛔ Lỗi biên dịch (Compile Error)</div>
+      <div class="output-stderr">${escapeHtml(data.compiler_error.trim())}</div>`;
+    body.appendChild(sec);
+    highlightErrors(data.compiler_error);
+    setStatus('error', 'Compile error');
+    document.getElementById('metaTime').style.display = 'flex';
+    document.getElementById('execTime').textContent = elapsed;
+    return;
+  }
+
+  /* ── Compiler warnings (non-fatal) ── */
+  if (data.compiler_message && data.compiler_message.trim()) {
+    const sec = document.createElement('div');
+    sec.className = 'output-section';
+    sec.innerHTML = `
+      <div class="output-section-label" style="color:var(--orange)">⚠ Compiler Warning</div>
+      <div class="output-stderr" style="border-color:var(--orange);background:var(--orange-light);color:var(--orange)">${escapeHtml(data.compiler_message.trim())}</div>`;
+    body.appendChild(sec);
+  }
+
+  /* ── Program output ── */
+  const output = data.program_output ?? '';
+  if (output.trim()) {
+    const sec = document.createElement('div');
+    sec.className = 'output-section';
+    sec.innerHTML = `
+      <div class="output-section-label">stdout</div>
+      <div class="output-stdout">${escapeHtml(output)}</div>`;
+    body.appendChild(sec);
+  } else {
+    body.innerHTML += `<div class="output-section">
+      <div class="output-section-label">stdout</div>
+      <div style="color:var(--gray-400);font-size:13px;font-style:italic">
+        (Không có output — chương trình chạy thành công nhưng không in gì)
+      </div>
+    </div>`;
+  }
+
+  /* ── Exit / signal ── */
+  const exitCode = parseInt(data.status ?? '0');
+  const signal   = data.signal;
+  if (signal) {
+    const sec = document.createElement('div');
+    sec.className = 'output-section';
+    sec.innerHTML = `<div style="font-size:12px;color:var(--red);font-family:var(--font-mono)">
+      Signal: ${escapeHtml(signal)} — chương trình bị kill (vòng lặp vô hạn hoặc vượt giới hạn thời gian)
+    </div>`;
+    body.appendChild(sec);
+    setStatus('error', `Killed · ${signal}`);
+  } else if (exitCode !== 0) {
+    const sec = document.createElement('div');
+    sec.className = 'output-section';
+    sec.innerHTML = `<div style="font-size:12px;color:var(--orange);font-family:var(--font-mono)">Exit code: ${exitCode}</div>`;
+    body.appendChild(sec);
+    setStatus('error', `Exit code ${exitCode} · ${elapsed}ms`);
+  } else {
+    setStatus('success', `Thành công · ${elapsed}ms`);
+  }
+
+  document.getElementById('metaTime').style.display = 'flex';
+  document.getElementById('execTime').textContent = elapsed;
+}
+
+function renderNetworkError(err) {
+  document.getElementById('outputBody').innerHTML = `
+    <div class="output-section">
+      <div class="output-section-label" style="color:var(--red)">⛔ Lỗi kết nối</div>
+      <div class="output-stderr">Không thể kết nối đến compiler server.
+Kiểm tra kết nối mạng và thử lại.
+
+Chi tiết: ${escapeHtml(err.message)}</div>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:var(--gray-400)">
+      Compiler: <a href="https://wandbox.org" target="_blank" style="color:var(--blue)">Wandbox (GCC · C11)</a>
+    </div>`;
+  setStatus('error', 'Lỗi kết nối');
+}
+
+/* ════════════════════════════════════════════════
+   ERROR LINE HIGHLIGHT
+════════════════════════════════════════════════ */
+const errorMarkers = [];
+
+function highlightErrors(stderr) {
+  errorMarkers.forEach(m => m.clear());
+  errorMarkers.length = 0;
+
+  // Parse GCC error format: file:line:col: error: msg
+  const re = /main\.c:(\d+):\d+:/g;
+  let match;
+  while ((match = re.exec(stderr)) !== null) {
+    const line = parseInt(match[1]) - 1;
+    if (line >= 0 && line < cm.lineCount()) {
+      errorMarkers.push(cm.addLineClass(line, 'background', 'error-line-bg'));
+      errorMarkers.push(cm.addLineClass(line, 'gutter',     'error-line-gutter'));
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════
+   STATUS BAR
+════════════════════════════════════════════════ */
+function setStatus(type, text) {
+  const chip = document.getElementById('statusChip');
+  if (!chip) return;
+  chip.className = `status-chip status-chip--${type}`;
+  if (type === 'running') {
+    chip.innerHTML = `<div class="spinner" style="width:10px;height:10px;border-width:1.5px;flex-shrink:0"></div><span style="margin-left:6px">${text}</span>`;
+  } else {
+    chip.innerHTML = `<div class="status-dot status-dot--${type}"></div><span style="margin-left:5px">${text}</span>`;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   TOOLBAR ACTIONS
+════════════════════════════════════════════════ */
+document.getElementById('btnRun').addEventListener('click', runCode);
+
+/* ── Copy ── */
+document.getElementById('btnCopy').addEventListener('click', () => {
+  navigator.clipboard.writeText(cm.getValue()).then(() => {
+    document.getElementById('btnCopy').textContent = '✓ Copied!';
+    setTimeout(() => document.getElementById('btnCopy').textContent = '⎘ Copy', 1800);
+  });
+});
+
+/* ── Clear editor ── */
+document.getElementById('btnClear').addEventListener('click', () => {
+  if (cm.getValue().trim() && !confirm('Xóa toàn bộ code?')) return;
+  cm.setValue('');
+  cm.focus();
+  errorMarkers.forEach(m => m.clear());
+  errorMarkers.length = 0;
+});
+
+/* ── Clear output ── */
+document.getElementById('btnClearOutput').addEventListener('click', () => {
+  document.getElementById('outputBody').innerHTML = `
+    <div class="output-placeholder" id="outputPlaceholder">
+      <div class="output-placeholder-icon">▶</div>
+      <div class="output-placeholder-text">Nhấn <strong>Chạy</strong> để thực thi</div>
+      <div class="output-placeholder-hint">Ctrl + Enter</div>
+    </div>`;
+  setStatus('idle', 'Sẵn sàng');
+  document.getElementById('metaTime').style.display = 'none';
+});
+
+/* ── Format ── */
+document.getElementById('btnFormat').addEventListener('click', () => {
+  const totalLines = cm.lineCount();
+  for (let i = 0; i < totalLines; i++) cm.indentLine(i, 'smart');
+  showToast('✓ Đã format code');
+});
+
+/* ── Fullscreen ── */
+document.getElementById('btnFullscreen').addEventListener('click', () => {
+  const panel = document.querySelector('.editor-panel');
+  if (!document.fullscreenElement) panel.requestFullscreen().catch(() => {});
+  else document.exitFullscreen();
+});
+document.addEventListener('fullscreenchange', () => {
+  cm.setSize('100%', document.fullscreenElement ? 'calc(100vh - 44px - 60px)' : '100%');
+});
+
+/* ════════════════════════════════════════════════
+   EXPORT FILE
+════════════════════════════════════════════════ */
+const exportMenu = document.getElementById('exportMenu');
+
+document.getElementById('btnExport').addEventListener('click', (e) => {
+  e.stopPropagation();
+  exportMenu.classList.toggle('open');
+});
+document.addEventListener('click', () => exportMenu.classList.remove('open'));
+
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function getFilename(ext) {
+  // Try to extract function name from code for a smart filename
+  const code = cm.getValue();
+  const match = code.match(/\/\/\s*(.+)|filename[:\s]+(\S+)/i);
+  return `main.${ext}`;
+}
+
+/* Export .c */
+document.getElementById('exportC').addEventListener('click', () => {
+  const code = cm.getValue();
+  if (!code.trim()) { showToast('⚠️ Editor đang trống!'); return; }
+  downloadFile(code, 'main.c', 'text/x-csrc');
+  exportMenu.classList.remove('open');
+  showToast('✅ Đã xuất main.c');
+});
+
+/* Export .txt */
+document.getElementById('exportTxt').addEventListener('click', () => {
+  const code = cm.getValue();
+  if (!code.trim()) { showToast('⚠️ Editor đang trống!'); return; }
+  downloadFile(code, 'main.txt', 'text/plain');
+  exportMenu.classList.remove('open');
+  showToast('✅ Đã xuất main.txt');
+});
+
+/* Export .html — full standalone page with syntax highlight */
+document.getElementById('exportHtml').addEventListener('click', () => {
+  const code = cm.getValue();
+  if (!code.trim()) { showToast('⚠️ Editor đang trống!'); return; }
+
+  // Build highlighted HTML using CodeMirror's runMode
+  let highlighted = '';
+  CodeMirror.runMode(code, 'text/x-csrc', (text, cls) => {
+    const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    highlighted += cls ? `<span class="cm-${cls}">${escaped}</span>` : escaped;
+  });
+
+  const isDark = document.body.classList.contains('dark-mode');
+  const bg     = isDark ? '#1e1e1e' : '#ffffff';
+  const fg     = isDark ? '#d4d4d4' : '#1e1e1e';
+  const gut    = isDark ? '#1e1e1e' : '#f3f3f3';
+  const gutBdr = isDark ? '#3c3c3c' : '#e0e0e0';
+  const gutClr = isDark ? '#858585' : '#237893';
+  const lineBg = isDark ? '#2a2d2e' : '#f0f0f0';
+
+  // token colors for current theme
+  const T = isDark ? {
+    keyword:'#569cd6', def:'#dcdcaa', variable:'#9cdcfe',
+    string:'#ce9178', number:'#b5cea8', comment:'#6a9955',
+    meta:'#c586c0', error:'#f44747', operator:fg,
+  } : {
+    keyword:'#0000ff', def:'#795e26', variable:'#001080',
+    string:'#a31515', number:'#098658', comment:'#008000',
+    meta:'#af00db', error:'#cd3131', operator:'#1e1e1e',
+  };
+
+  // Build lines with line numbers
+  const lines = highlighted.split('\n');
+  const linesHtml = lines.map((line, i) =>
+    `<div class="line"><span class="ln">${i+1}</span><span class="lc">${line || ' '}</span></div>`
+  ).join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<title>main.c — tcaoanhvo</title>
+<style>
+  body { margin:0; background:${bg}; color:${fg}; font-family:'JetBrains Mono','Fira Code',Menlo,monospace; font-size:14px; line-height:1.7; }
+  .header { padding:14px 20px; background:${isDark?'#252526':'#f3f3f3'}; border-bottom:1px solid ${gutBdr}; display:flex; align-items:center; justify-content:space-between; }
+  .header h1 { font-size:14px; color:${isDark?'#4ec9b0':'#0078d4'}; font-weight:600; margin:0; }
+  .header small { font-size:11px; color:${isDark?'#555':'#999'}; }
+  .code { padding:16px 0; overflow-x:auto; }
+  .line { display:flex; min-width:max-content; }
+  .line:hover { background:${lineBg}; }
+  .ln { display:inline-block; min-width:44px; padding:0 12px 0 8px; color:${gutClr}; background:${gut}; border-right:1px solid ${gutBdr}; text-align:right; user-select:none; flex-shrink:0; }
+  .lc { padding:0 20px; white-space:pre; }
+  .cm-keyword,.cm-atom,.cm-type,.cm-builtin { color:${T.keyword}; }
+  .cm-def    { color:${T.def}; }
+  .cm-variable,.cm-variable-2,.cm-property { color:${T.variable}; }
+  .cm-string,.cm-string-2,.cm-header { color:${T.string}; }
+  .cm-number { color:${T.number}; }
+  .cm-comment { color:${T.comment}; font-style:italic; }
+  .cm-meta   { color:${T.meta}; }
+  .cm-operator,.cm-bracket { color:${T.operator}; }
+  .cm-error  { color:${T.error}; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📄 main.c</h1>
+  <small>Xuất từ tcaoanhvo C Playground · ${new Date().toLocaleDateString('vi-VN')}</small>
+</div>
+<div class="code">${linesHtml}</div>
+</body>
+</html>`;
+
+  downloadFile(html, 'main.html', 'text/html');
+  exportMenu.classList.remove('open');
+  showToast('✅ Đã xuất main.html');
+});
+
+/* ════════════════════════════════════════════════
+   THEME TOGGLE (Light ↔ Dark)
+════════════════════════════════════════════════ */
+let isDark = false;
+
+document.getElementById('btnTheme').addEventListener('click', () => {
+  isDark = !isDark;
+  document.body.classList.toggle('dark-mode', isDark);
+  document.getElementById('btnTheme').textContent = isDark ? '☀ Light' : '🌙 Dark';
+  // Persist preference
+  try { localStorage.setItem('tcaoanh_theme', isDark ? 'dark' : 'light'); } catch(e) {}
+});
+
+// Restore saved theme
+try {
+  if (localStorage.getItem('tcaoanh_theme') === 'dark') {
+    isDark = true;
+    document.body.classList.add('dark-mode');
+    document.getElementById('btnTheme').textContent = '☀ Light';
+  }
+} catch(e) {}
+
+/* ════════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════════ */
+function showToast(msg, duration = 2200) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), duration);
+}
+
+/* ════════════════════════════════════════════════
+   MISC
+════════════════════════════════════════════════ */
+// Initial line count
+document.getElementById('lineCount').textContent = cm.lineCount();
+
+// Focus editor on load
+setTimeout(() => cm.focus(), 100);
+</script>
+</body>
+</html>

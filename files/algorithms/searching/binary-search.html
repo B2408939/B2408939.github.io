@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Search — tcaoanhvo</title>
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <style>
+    .bs-vis {
+      display: flex;
+      gap: 4px;
+      padding: 14px 0 28px;
+      overflow-x: auto;
+    }
+    .bs-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      min-width: 36px;
+    }
+    .bs-cell .box {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px;
+      border: 2px solid var(--gray-200);
+      background: var(--white);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-900);
+      transition: all .3s ease;
+    }
+    .bs-cell .box.lo   { border-color: var(--blue); background: var(--blue-light); }
+    .bs-cell .box.mid  { border-color: var(--orange); background: var(--orange-light); color: var(--orange); }
+    .bs-cell .box.hi   { border-color: #8e44ad; background: #f5eeff; }
+    .bs-cell .box.found{ border-color: var(--green); background: var(--green-light); color: var(--green); }
+    .bs-cell .box.elim { opacity: .28; }
+    .bs-cell .idx { font-size: 10px; color: var(--gray-400); font-family: var(--font-mono); }
+    .bs-cell .ptr { font-size: 10px; font-weight: 600; height: 14px; }
+    .bs-cell .ptr.lo-ptr  { color: var(--blue); }
+    .bs-cell .ptr.mid-ptr { color: var(--orange); }
+    .bs-cell .ptr.hi-ptr  { color: #8e44ad; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav__logo" href="../../index.html">tcaoanh<span>vo</span></a>
+  <ul class="nav__links">
+    <li><a href="../../index.html">Trang chủ</a></li>
+    <li><a href="../../algorithms/index.html" class="active">Thuật toán</a></li>
+    <li><a href="../../data-structures/index.html">Cấu trúc DL</a></li>
+  </ul>
+  <div class="nav__spacer"></div>
+  <div class="nav__search"><span class="nav__search-icon">⌕</span><input type="text" placeholder="Tìm kiếm..." /></div>
+</nav>
+
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar__section">
+      <div class="sidebar__label">Nhập môn</div>
+      <ul class="sidebar__menu">
+        <li><a href="../../index.html">🏠 Giới thiệu</a></li>
+        <li><a href="../../algorithms/basics/min-max.html">🔢 Tìm Min / Max <span class="tag easy">Easy</span></a></li>
+        <li><a href="../../algorithms/basics/fibonacci.html">📐 Dãy Fibonacci <span class="tag easy">Easy</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__label">Sắp xếp</div>
+      <ul class="sidebar__menu">
+        <li><a href="../../algorithms/sorting/bubble-sort.html">🫧 Bubble Sort <span class="tag easy">Easy</span></a></li>
+        <li><a href="../../algorithms/sorting/selection-sort.html">✅ Selection Sort <span class="tag easy">Easy</span></a></li>
+        <li><a href="../../algorithms/sorting/insertion-sort.html">📥 Insertion Sort <span class="tag medium">Med</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__label">Tìm kiếm</div>
+      <ul class="sidebar__menu">
+        <li><a href="linear-search.html">🔍 Linear Search <span class="tag easy">Easy</span></a></li>
+        <li><a href="binary-search.html" class="active">⚡ Binary Search <span class="tag medium">Med</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main-content article">
+
+    <div class="breadcrumb">
+      <a href="../../index.html">Trang chủ</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="../../algorithms/index.html">Thuật toán</a>
+      <span class="breadcrumb__sep">›</span>
+      <span>Binary Search</span>
+    </div>
+
+    <div class="article__header">
+      <div class="article__category">Tìm kiếm · Chia đôi</div>
+      <h1 class="article__title">Binary Search — Tìm kiếm nhị phân</h1>
+      <p class="article__subtitle">
+        Tìm kiếm trên mảng <strong>đã sắp xếp</strong> bằng cách chia đôi không gian tìm kiếm 
+        sau mỗi bước — hiệu quả gấp hàng chục lần Linear Search.
+      </p>
+      <div class="article__meta">
+        <span class="badge badge--medium">● Medium</span>
+        <span>Thời gian: O(log n)</span>
+        <span>Bộ nhớ: O(1)</span>
+        <span>Yêu cầu: Mảng đã sắp xếp</span>
+      </div>
+    </div>
+
+    <h2>Ý tưởng</h2>
+    <p>
+      Thay vì kiểm tra từng phần tử như Linear Search, Binary Search <strong>chia đôi</strong> 
+      mảng mỗi bước: so sánh <code>target</code> với phần tử giữa (<code>mid</code>). 
+      Nếu target nhỏ hơn → tìm nửa trái; lớn hơn → tìm nửa phải; bằng → tìm thấy!
+    </p>
+
+    <div class="callout callout--info">
+      <span class="callout__icon">💡</span>
+      <div class="callout__body">
+        <strong>Ví dụ trực quan:</strong> Mảng 1.000 phần tử — Linear Search cần tối đa 1.000 bước, 
+        Binary Search chỉ cần tối đa <strong>10 bước</strong> (log₂ 1000 ≈ 10).
+      </div>
+    </div>
+
+    <h2>Thuật toán (lặp)</h2>
+    <ol>
+      <li>Đặt <code>lo = 0</code>, <code>hi = n - 1</code></li>
+      <li>Trong khi <code>lo ≤ hi</code>: tính <code>mid = (lo + hi) / 2</code></li>
+      <li>Nếu <code>a[mid] == target</code> → trả về <code>mid</code></li>
+      <li>Nếu <code>a[mid] &lt; target</code> → <code>lo = mid + 1</code></li>
+      <li>Nếu <code>a[mid] &gt; target</code> → <code>hi = mid - 1</code></li>
+      <li>Nếu thoát vòng lặp → không tìm thấy, trả về <code>-1</code></li>
+    </ol>
+
+    <h2>Cài đặt bằng C</h2>
+
+    <div class="code-block">
+      <div class="code-block__header">
+        <span class="code-block__title">
+          <span class="code-block__dots"><span class="code-block__dot"></span><span class="code-block__dot"></span><span class="code-block__dot"></span></span>
+          binary_search.c
+        </span>
+        <button class="copy-btn"><span>⎘</span> Copy</button>
+      </div>
+      <pre><span class="tok-pp">#include</span> <span class="tok-str">&lt;stdio.h&gt;</span>
+
+<span class="tok-cmt">/**
+ * Binary Search trên mảng đã sắp xếp tăng dần
+ * Trả về chỉ số của target, hoặc -1 nếu không tìm thấy
+ */</span>
+<span class="tok-type">int</span> <span class="tok-fn">binarySearch</span>(<span class="tok-type">int</span> a[], <span class="tok-type">int</span> n, <span class="tok-type">int</span> target) {
+    <span class="tok-type">int</span> lo = <span class="tok-num">0</span>, hi = n - <span class="tok-num">1</span>;
+
+    <span class="tok-kw">while</span> (lo &lt;= hi) {
+        <span class="tok-type">int</span> mid = lo + (hi - lo) / <span class="tok-num">2</span>;  <span class="tok-cmt">// Tránh tràn số (overflow)</span>
+
+        <span class="tok-kw">if</span> (a[mid] == target)
+            <span class="tok-kw">return</span> mid;           <span class="tok-cmt">// Tìm thấy!</span>
+        <span class="tok-kw">else if</span> (a[mid] &lt; target)
+            lo = mid + <span class="tok-num">1</span>;          <span class="tok-cmt">// Tìm nửa phải</span>
+        <span class="tok-kw">else</span>
+            hi = mid - <span class="tok-num">1</span>;          <span class="tok-cmt">// Tìm nửa trái</span>
+    }
+
+    <span class="tok-kw">return</span> -<span class="tok-num">1</span>;  <span class="tok-cmt">// Không tìm thấy</span>
+}
+
+<span class="tok-type">int</span> <span class="tok-fn">main</span>() {
+    <span class="tok-type">int</span> a[] = {<span class="tok-num">2</span>, <span class="tok-num">5</span>, <span class="tok-num">8</span>, <span class="tok-num">12</span>, <span class="tok-num">16</span>, <span class="tok-num">23</span>, <span class="tok-num">38</span>, <span class="tok-num">56</span>, <span class="tok-num">72</span>, <span class="tok-num">91</span>};
+    <span class="tok-type">int</span> n      = <span class="tok-kw">sizeof</span>(a) / <span class="tok-kw">sizeof</span>(a[<span class="tok-num">0</span>]);
+    <span class="tok-type">int</span> target = <span class="tok-num">23</span>;
+
+    <span class="tok-type">int</span> idx = <span class="tok-fn">binarySearch</span>(a, n, target);
+
+    <span class="tok-kw">if</span> (idx != -<span class="tok-num">1</span>)
+        <span class="tok-fn">printf</span>(<span class="tok-str">"Tìm thấy %d tại chỉ số %d\n"</span>, target, idx);
+    <span class="tok-kw">else</span>
+        <span class="tok-fn">printf</span>(<span class="tok-str">"Không tìm thấy %d\n"</span>, target);
+
+    <span class="tok-kw">return</span> <span class="tok-num">0</span>;
+}</pre>
+    </div>
+
+    <div class="callout callout--tip">
+      <span class="callout__icon">✅</span>
+      <div class="callout__body">
+        <strong>Lưu ý quan trọng:</strong> Dùng <code>mid = lo + (hi - lo) / 2</code> thay vì 
+        <code>(lo + hi) / 2</code> để tránh tràn số nguyên khi <code>lo + hi</code> vượt quá <code>INT_MAX</code>.
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <h2>Demo tương tác</h2>
+
+    <div class="demo-section">
+      <h3>🔍 Minh họa Binary Search</h3>
+      <div class="demo-input-row">
+        <span class="demo-label">Mảng (đã sort):</span>
+        <input class="demo-input" id="arrInput" type="text" value="2, 5, 8, 12, 16, 23, 38, 56, 72, 91" style="max-width:340px" />
+      </div>
+      <div class="demo-input-row">
+        <span class="demo-label">Tìm giá trị:</span>
+        <input class="demo-input" id="targetInput" type="number" value="23" style="max-width:100px" />
+        <button class="btn btn--primary" id="searchBtn">🔍 Tìm kiếm</button>
+        <button class="btn btn--ghost"   id="randomBtn">🎲 Random</button>
+      </div>
+
+      <div class="bs-vis" id="bsVis"></div>
+
+      <div class="step-log" id="stepLog" style="font-family:var(--font-mono);font-size:12.5px;line-height:2;padding:10px 14px;background:var(--white);border:1px solid var(--gray-100);border-radius:var(--radius-sm);max-height:140px;overflow-y:auto">
+        Nhập mảng đã sắp xếp và giá trị cần tìm, nhấn <strong>Tìm kiếm</strong>
+      </div>
+    </div>
+
+    <h2>Phân tích độ phức tạp</h2>
+    <table class="complexity-table">
+      <thead><tr><th>Trường hợp</th><th>Thời gian</th><th>Không gian</th><th>Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td>Tốt nhất</td><td class="good">O(1)</td><td class="good">O(1)</td><td>Phần tử nằm đúng giữa</td></tr>
+        <tr><td>Trung bình</td><td class="good">O(log n)</td><td class="good">O(1)</td><td>Cần chia đôi log₂n lần</td></tr>
+        <tr><td>Tệ nhất</td><td class="good">O(log n)</td><td class="good">O(1)</td><td>Phần tử không tồn tại</td></tr>
+      </tbody>
+    </table>
+
+    <h2>So sánh Linear vs Binary Search</h2>
+    <table class="complexity-table">
+      <thead><tr><th>Kích thước n</th><th>Linear Search</th><th>Binary Search</th></tr></thead>
+      <tbody>
+        <tr><td>10</td><td class="okay">10 bước</td><td class="good">4 bước</td></tr>
+        <tr><td>100</td><td class="bad">100 bước</td><td class="good">7 bước</td></tr>
+        <tr><td>1.000</td><td class="bad">1.000 bước</td><td class="good">10 bước</td></tr>
+        <tr><td>1.000.000</td><td class="bad">1.000.000 bước</td><td class="good">20 bước</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-nav">
+      <a href="linear-search.html" class="page-nav__btn" style="text-decoration:none">
+        <span class="page-nav__dir">← Trước</span>
+        <span class="page-nav__name">Linear Search</span>
+      </a>
+      <a href="../../algorithms/sorting/bubble-sort.html" class="page-nav__btn page-nav__btn--next" style="text-decoration:none">
+        <span class="page-nav__dir">Tiếp →</span>
+        <span class="page-nav__name">Bubble Sort</span>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2024 <strong>tcaoanhvo</strong></span>
+  <a href="../../index.html">← Về trang chủ</a>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script>
+const arrInput    = document.getElementById('arrInput');
+const targetInput = document.getElementById('targetInput');
+const searchBtn   = document.getElementById('searchBtn');
+const randomBtn   = document.getElementById('randomBtn');
+const bsVis       = document.getElementById('bsVis');
+const stepLog     = document.getElementById('stepLog');
+
+function parseArr(s) {
+  return s.split(/[\s,]+/).map(Number).filter(x => !isNaN(x) && x !== '');
+}
+
+function renderVis(arr, lo, hi, mid, found, eliminated) {
+  bsVis.innerHTML = arr.map((v, i) => {
+    let boxCls = '';
+    const isElim = eliminated.has(i);
+    if (found === i) boxCls = 'found';
+    else if (isElim) boxCls = 'elim';
+    else if (i === mid) boxCls = 'mid';
+    else if (i === lo) boxCls = 'lo';
+    else if (i === hi) boxCls = 'hi';
+
+    let ptr = '';
+    if (found === i) ptr = `<span class="ptr mid-ptr">✓</span>`;
+    else if (i === lo && i === hi) ptr = `<span class="ptr lo-ptr">lo=hi</span>`;
+    else if (i === lo) ptr = `<span class="ptr lo-ptr">lo</span>`;
+    else if (i === hi) ptr = `<span class="ptr hi-ptr">hi</span>`;
+    else if (i === mid && found !== i) ptr = `<span class="ptr mid-ptr">mid</span>`;
+    else ptr = `<span class="ptr"></span>`;
+
+    return `<div class="bs-cell">${ptr}<div class="box ${boxCls}">${v}</div><span class="idx">[${i}]</span></div>`;
+  }).join('');
+}
+
+async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function search() {
+  const arr = parseArr(arrInput.value);
+  const target = parseInt(targetInput.value);
+  if (arr.length === 0 || isNaN(target)) return;
+
+  // Sort silently if not sorted
+  const sorted = [...arr].sort((a,b)=>a-b);
+  arrInput.value = sorted.join(', ');
+
+  stepLog.innerHTML = `🔍 Tìm <strong>${target}</strong> trong [${sorted.join(', ')}]<br/>`;
+  searchBtn.disabled = true;
+
+  let lo = 0, hi = sorted.length - 1;
+  const eliminated = new Set();
+  let found = -1;
+  let step = 1;
+
+  renderVis(sorted, lo, hi, -1, -1, eliminated);
+  await sleep(600);
+
+  while (lo <= hi) {
+    const mid = lo + Math.floor((hi - lo) / 2);
+    renderVis(sorted, lo, hi, mid, -1, eliminated);
+    stepLog.innerHTML += `Bước ${step++}: lo=${lo} hi=${hi} → <span style="color:var(--orange);font-weight:600">mid=${mid} (a[mid]=${sorted[mid]})</span><br/>`;
+    stepLog.scrollTop = stepLog.scrollHeight;
+    await sleep(800);
+
+    if (sorted[mid] === target) {
+      found = mid;
+      renderVis(sorted, lo, hi, mid, found, eliminated);
+      stepLog.innerHTML += `<span style="color:var(--green);font-weight:600">✅ Tìm thấy ${target} tại chỉ số [${found}]!</span><br/>`;
+      break;
+    } else if (sorted[mid] < target) {
+      for (let i = lo; i <= mid; i++) eliminated.add(i);
+      stepLog.innerHTML += `  ${sorted[mid]} &lt; ${target} → tìm nửa phải (lo = ${mid+1})<br/>`;
+      lo = mid + 1;
+    } else {
+      for (let i = mid; i <= hi; i++) eliminated.add(i);
+      stepLog.innerHTML += `  ${sorted[mid]} &gt; ${target} → tìm nửa trái (hi = ${mid-1})<br/>`;
+      hi = mid - 1;
+    }
+    stepLog.scrollTop = stepLog.scrollHeight;
+    await sleep(600);
+  }
+
+  if (found === -1) {
+    renderVis(sorted, -1, -1, -1, -1, new Set(sorted.map((_, i) => i)));
+    stepLog.innerHTML += `<span style="color:var(--red);font-weight:600">❌ Không tìm thấy ${target} trong mảng.</span>`;
+  }
+  searchBtn.disabled = false;
+}
+
+randomBtn.addEventListener('click', () => {
+  const n = Math.floor(Math.random()*6)+6;
+  const arr = [...new Set(Array.from({length:n*2}, ()=>Math.floor(Math.random()*100)+1))].slice(0,n).sort((a,b)=>a-b);
+  arrInput.value = arr.join(', ');
+  targetInput.value = arr[Math.floor(Math.random()*arr.length)];
+  bsVis.innerHTML = '';
+  stepLog.innerHTML = 'Nhấn <strong>Tìm kiếm</strong>...';
+});
+searchBtn.addEventListener('click', search);
+
+// init render
+const initArr = parseArr(arrInput.value);
+renderVis(initArr, 0, initArr.length-1, -1, -1, new Set());
+</script>
+</body>
+</html>

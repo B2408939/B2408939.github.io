@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tcaoanhvo — Bách khoa Thuật toán & Cấu trúc Dữ liệu C</title>
+  <meta name="description" content="Tài liệu hướng dẫn thuật toán và cấu trúc dữ liệu bằng ngôn ngữ C — rõ ràng, đầy đủ, dễ hiểu." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body> 
+
+<!-- ── Navigation ── -->
+<nav class="nav">
+  <a class="nav__logo" href="index.html">tcaoanh<span>vo</span></a>
+  <ul class="nav__links">
+    <li><a href="index.html" class="active">Trang chủ</a></li>
+    <li><a href="algorithms/index.html">Thuật toán</a></li>
+    <li><a href="data-structures/index.html">Cấu trúc DL</a></li>
+  </ul>
+  <div class="nav__spacer"></div>
+  <div class="nav__search">
+    <span class="nav__search-icon">⌕</span>
+    <input type="text" placeholder="Tìm kiếm thuật toán..." />
+  </div>
+</nav>
+
+<!-- ── Main Layout ── -->
+<div class="page-wrapper">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar__section">
+      <div class="sidebar__label">Nhập môn</div>
+      <ul class="sidebar__menu">
+        <li><a href="index.html" class="active">🏠 Giới thiệu</a></li>
+        <li><a href="algorithms/basics/min-max.html">Tìm Min / Max <span class="tag easy">Easy</span></a></li>
+        <li><a href="algorithms/basics/fibonacci.html">Dãy Fibonacci <span class="tag easy">Easy</span></a></li>
+        <li><a href="algorithms/basics/fibonacci.html"> <span class="tag easy">Easy</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__label">Sắp xếp</div>
+      <ul class="sidebar__menu">
+        <li><a href="algorithms/sorting/bubble-sort.html">Bubble Sort <span class="tag easy">Easy</span></a></li>
+        <li><a href="algorithms/sorting/selection-sort.html">Selection Sort <span class="tag easy">Easy</span></a></li>
+        <li><a href="algorithms/sorting/insertion-sort.html">Insertion Sort <span class="tag medium">Med</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__label">Tìm kiếm</div>
+      <ul class="sidebar__menu">
+        <li><a href="algorithms/searching/linear-search.html">Linear Search <span class="tag easy">Easy</span></a></li>
+        <li><a href="algorithms/searching/binary-search.html">Binary Search <span class="tag medium">Med</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__label">Cấu trúc DL</div>
+      <ul class="sidebar__menu">
+        <li><a href="data-structures/index.html">Tổng quan</a></li>
+        <li><a href="tools/Playground.html">Biên dịch</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="main-content">
+
+    <section class="hero">
+      <p class="hero__eyebrow">Tài liệu lập trình C</p>
+      <h1 class="hero__title">Học <em>Thuật toán</em> &amp;<br/>Cấu trúc Dữ liệu.</h1>
+      <p class="hero__desc">
+        Hướng dẫn từng bước, mã nguồn C minh họa rõ ràng, phân tích độ phức tạp đầy đủ — 
+        dành cho sinh viên và lập trình viên mới bắt đầu.
+      </p>
+      <div class="hero__actions">
+        <a href="algorithms/basics/min-max.html" class="btn btn--primary btn--large">🚀 Bắt đầu học</a>
+        <a href="algorithms/index.html" class="btn btn--ghost btn--large">Xem tất cả thuật toán</a>
+      </div>
+    </section>
+
+    <!-- Quick access cards -->
+    <div class="section-heading">
+      <h2>Thuật toán nổi bật</h2>
+      <a href="algorithms/index.html">Xem tất cả →</a>
+    </div>
+
+    <div class="card-grid">
+      <a href="algorithms/basics/min-max.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">🔢</div>
+        <div class="card__title">Tìm Min / Max</div>
+        <div class="card__desc">Tìm phần tử nhỏ nhất và lớn nhất trong mảng</div>
+        <div class="card__meta">
+          <span class="badge badge--easy">Easy</span>
+          <span>O(n)</span>
+        </div>
+      </a>
+      <a href="algorithms/sorting/bubble-sort.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">🫧</div>
+        <div class="card__title">Bubble Sort</div>
+        <div class="card__desc">Sắp xếp nổi bọt — thuật toán cơ bản nhất</div>
+        <div class="card__meta">
+          <span class="badge badge--easy">Easy</span>
+          <span>O(n²)</span>
+        </div>
+      </a>
+      <a href="algorithms/sorting/selection-sort.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">✅</div>
+        <div class="card__title">Selection Sort</div>
+        <div class="card__desc">Sắp xếp chọn — chọn phần tử nhỏ nhất từng lượt</div>
+        <div class="card__meta">
+          <span class="badge badge--easy">Easy</span>
+          <span>O(n²)</span>
+        </div>
+      </a>
+      <a href="algorithms/sorting/heap-sort.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">🌳</div>
+        <div class="card__title">Heap Sort</div>
+        <div class="card__desc">Thêm cây nhị phân trực quan minh họa Max-Heap theo từng bước heapify</div>
+        <div class="card__meta">
+          <span class="badge badge--medium">Medium</span>
+          <span>O(n²)</span>
+        </div>
+      </a>
+      <a href="algorithms/searching/linear-search.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">🔍</div>
+        <div class="card__title">Linear Search</div>
+        <div class="card__desc">Tìm kiếm tuần tự qua từng phần tử</div>
+        <div class="card__meta">
+          <span class="badge badge--easy">Easy</span>
+          <span>O(n)</span>
+        </div>
+      </a>
+      <a href="algorithms/searching/binary-search.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">⚡</div>
+        <div class="card__title">Binary Search</div>
+        <div class="card__desc">Tìm kiếm nhị phân — nhanh gấp đôi mỗi bước</div>
+        <div class="card__meta">
+          <span class="badge badge--medium">Medium</span>
+          <span>O(log n)</span>
+        </div>
+      </a>
+      <a href="algorithms/basics/fibonacci.html" class="card fade-up" style="text-decoration:none">
+        <div class="card__icon">📐</div>
+        <div class="card__title">Fibonacci</div>
+        <div class="card__desc">Dãy số Fibonacci bằng vòng lặp và đệ quy</div>
+        <div class="card__meta">
+          <span class="badge badge--easy">Easy</span>
+          <span>O(n)</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Why section -->
+    <div style="margin-top:56px; padding-top:40px; border-top:1px solid var(--gray-100)">
+      <div class="section-heading"><h2>Tại sao dùng tài liệu này?</h2></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card__icon">📖</div>
+          <div class="card__title">Giải thích trực quan</div>
+          <div class="card__desc">Mỗi thuật toán có sơ đồ minh họa từng bước</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">💻</div>
+          <div class="card__title">Code C thực tế</div>
+          <div class="card__desc">Mã nguồn sạch, có chú thích, chạy được ngay</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">🎯</div>
+          <div class="card__title">Phân tích độ phức tạp</div>
+          <div class="card__desc">Big O được giải thích rõ ràng cho mọi trường hợp</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">🧪</div>
+          <div class="card__title">Demo tương tác</div>
+          <div class="card__desc">Nhập dữ liệu và xem thuật toán chạy trực tiếp</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <span>© 2024 <strong>tcaoanhvo</strong> — Tài liệu thuật toán C</span>
+  <span>Được xây dựng với ♥ bằng HTML · CSS · JS</span>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
